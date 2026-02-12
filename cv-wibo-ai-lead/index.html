@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Nadia Provenza - AI Adoption Lead Candidate</title>
+    <title>CV Nadia Provenza</title>
     <style>
         :root {
-            --main-color: #6d28d9; /* Viola Wibo */
+            --main-color: #6d28d9; 
             --text-color: #1f2937;
             --secondary-text: #4b5563;
             --bg-light: #f9fafb;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.5;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.4;
             color: var(--text-color);
             margin: 0;
             padding: 0;
@@ -22,53 +22,64 @@
         .page {
             width: 210mm;
             min-height: 297mm;
-            padding: 15mm 20mm;
+            padding: 15mm;
             margin: 10mm auto;
             background: white;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
             box-sizing: border-box;
         }
         header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             border-bottom: 2px solid var(--main-color);
             padding-bottom: 15px;
             margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
-        h1 { margin: 0; color: var(--main-color); font-size: 26px; letter-spacing: 1px; }
-        .contact-info { text-align: right; font-size: 11px; color: var(--secondary-text); }
+        .header-left h1 { margin: 0; color: var(--main-color); font-size: 28px; }
+        .header-left .subtitle { font-size: 14px; font-weight: bold; color: var(--secondary-text); margin-bottom: 10px; }
+        .contact-info { font-size: 11px; line-height: 1.4; }
         
-        .container { display: flex; gap: 25px; }
-        .sidebar { flex: 1; border-right: 1px solid #edf2f7; padding-right: 20px; }
-        .main-content { flex: 2.5; }
+        .photo-placeholder {
+            width: 35mm;
+            height: 45mm;
+            background-color: #eee;
+            border: 1px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #999;
+            text-align: center;
+        }
 
-        h2 { font-size: 14px; color: var(--main-color); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #eee; padding-bottom: 3px; margin-top: 20px; }
+        .container { display: flex; gap: 20px; }
+        .sidebar { flex: 1; padding-right: 15px; }
+        .main-content { flex: 2.5; border-left: 1px solid #eee; padding-left: 20px; }
+
+        h2 { font-size: 13px; color: var(--main-color); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #eee; padding-bottom: 3px; margin-top: 15px; }
+        .profile-text { font-size: 12.5px; margin-bottom: 15px; color: var(--secondary-text); font-style: italic; }
         
-        .profile-text { font-size: 13px; line-height: 1.6; text-align: justify; margin-bottom: 20px; color: var(--secondary-text); }
-        
-        .job { margin-bottom: 18px; }
+        .job { margin-bottom: 15px; }
         .job-header { display: flex; justify-content: space-between; align-items: baseline; }
-        .job-title { font-weight: bold; font-size: 14px; color: #111827; }
-        .job-date { font-size: 12px; color: var(--main-color); font-weight: bold; }
-        .company { font-size: 13px; color: var(--secondary-text); margin-bottom: 4px; font-weight: 600; }
+        .job-title { font-weight: bold; font-size: 13.5px; color: #111827; }
+        .job-date { font-size: 11px; color: var(--main-color); font-weight: bold; }
+        .company { font-size: 12.5px; color: var(--secondary-text); font-weight: 600; margin-bottom: 2px; }
         
-        ul { padding-left: 18px; margin: 4px 0; }
-        li { font-size: 12.5px; margin-bottom: 4px; color: var(--secondary-text); }
+        ul { padding-left: 15px; margin: 3px 0; }
+        li { font-size: 12px; margin-bottom: 3px; color: var(--secondary-text); }
         
-        .skill-group { margin-bottom: 15px; }
-        .skill-label { font-size: 12px; font-weight: bold; display: block; margin-bottom: 3px; }
         .skill-tag { 
             display: inline-block; 
             background: #f3f4f6; 
-            color: #4b5563; 
-            padding: 2px 7px; 
+            padding: 2px 6px; 
             border-radius: 4px; 
-            font-size: 11px; 
+            font-size: 10.5px; 
             margin: 2px 0;
             border: 1px solid #e5e7eb;
         }
-        .in-progress { color: var(--main-color); font-style: italic; font-size: 10px; }
 
         @media print {
             body { background: none; }
@@ -79,66 +90,57 @@
 <body>
     <div class="page">
         <header>
-            <div>
+            <div class="header-left">
                 <h1>NADIA PROVENZA</h1>
-                <div style="font-size: 14px; color: var(--secondary-text); font-weight: 500; margin-top: 5px;">
-                    Grants & AI Automation Specialist | Process Translator
+                <div class="subtitle">Grants & Automation Specialist | AI Enthusiast</div>
+                <div class="contact-info">
+                    Torino, Italia<br>
+                    nadia.provenza94@gmail.com<br>
+                    linkedin.com/in/nadia-provenza
                 </div>
             </div>
-            <div class="contact-info">
-                Torino, Italia<br>
-                nadia.provenza94@gmail.com<br>
-                linkedin.com/in/nadia-provenza
+            <div class="photo-placeholder">
+                INSERISCI FOTO QUI<br>(35x45mm)
             </div>
         </header>
 
         <div class="container">
             <div class="sidebar">
-                <h2>FORMAZIONE</h2>
-                <div style="font-size: 12px; margin-bottom: 15px;">
-                    <strong>Corso Python (80h)</strong><br>
-                    <span class="in-progress">In corso (2025)</span><br>
-                    Focus: API Backend, Data Analysis (Pandas), Automation.
-                </div>
-                <div style="font-size: 12px; margin-bottom: 15px;">
-                    <strong>Ingegneria Gestionale</strong><br>
-                    Università Mercatorum<br>
-                    <span class="in-progress">In corso</span>
-                </div>
-                <div style="font-size: 12px;">
-                    <strong>Studi in Ingegneria Fisica</strong><br>
-                    Politecnico di Torino
-                </div>
-
-                <h2>TECH STACK (Pragmatico)</h2>
-                <div class="skill-group">
-                    <span class="skill-label">AI & Prompting</span>
+                <h2>TECH STACK</h2>
+                <div style="margin-bottom: 10px;">
+                    <strong>AI & Automation</strong><br>
                     <span class="skill-tag">Prompt Engineering</span>
-                    <span class="skill-tag">LLM Interfaces</span>
-                </div>
-                <div class="skill-group">
-                    <span class="skill-label">Automation</span>
                     <span class="skill-tag">VBA (Excel)</span>
                     <span class="skill-tag">Google AppScript</span>
-                    <span class="skill-tag">Python <span class="in-progress">(In appredimento)</span></span>
+                    <span class="skill-tag">Python (In corso)</span>
                 </div>
-                <div class="skill-group">
-                    <span class="skill-label">Hardware</span>
+                <div style="margin-bottom: 10px;">
+                    <strong>Digital Management</strong><br>
+                    <span class="skill-tag">Wordpress</span>
+                    <span class="skill-tag">LMS Platforms</span>
+                    <span class="skill-tag">Editing Audio/Video</span>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <strong>Hardware</strong><br>
                     <span class="skill-tag">Arduino IDE</span>
                     <span class="skill-tag">IoT Prototyping</span>
                 </div>
 
-                <h2>LINGUE</h2>
-                <div style="font-size: 12px;">
-                    Italiano: Madrelingua<br>
-                    Inglese: Professionale
+                <h2>FORMAZIONE</h2>
+                <div style="font-size: 11.5px;">
+                    <strong>Ing. Gestionale</strong><br>
+                    Univ. Mercatorum (In corso)<br><br>
+                    <strong>Studi Ingegneria Fisica</strong><br>
+                    Politecnico di Torino<br><br>
+                    <strong>Python Programming</strong><br>
+                    Corso 80h (2025)
                 </div>
             </div>
 
             <div class="main-content">
                 <h2>PROFILO</h2>
                 <div class="profile-text">
-                    Ingegnera Gestionale in formazione con un background in Ingegneria Fisica. Mi definisco un "ponte" tra le necessità di business e le potenzialità della tecnologia. Ho esperienza pratica nell'introdurre soluzioni di automazione low-code (VBA, AppScript) e AI Generativa in contesti aziendali tradizionali. Il mio approccio è orientato alla semplicità e all'adozione reale: credo che l'innovazione debba essere comprensibile e utile per chi la utilizza ogni giorno, evitando inutili complessità tecniche a favore di risultati immediati e scalabili.
+                    La mia formazione ingegneristica mi spinge a ricercare l'ordine e l'efficienza laddove i processi risultano frammentati. Agisco come elemento di raccordo operativo tra le esigenze amministrative e gli strumenti tecnologici, applicando soluzioni di automazione (VBA, AI) per semplificare il lavoro quotidiano. Valorizzo la trasparenza e la concretezza, preferendo soluzioni agili e adottabili rispetto a sistemi eccessivamente complessi.
                 </div>
 
                 <h2>ESPERIENZA PROFESSIONALE</h2>
@@ -148,23 +150,24 @@
                         <span class="job-title">Grants & Automation Specialist</span>
                         <span class="job-date">10/2023 – OGGI</span>
                     </div>
-                    <div class="company">CWS S.r.l. - Torino</div>
+                    <div class="company">CWS S.r.l.</div>
                     <ul>
-                        <li><strong>AI Process Automation:</strong> Implementazione sperimentale di tecniche di Prompt Engineering per l'analisi e la sintesi di bandi PNRR e documentazione amministrativa complessa.</li>
-                        <li><strong>Efficienza AFC:</strong> Sviluppo di architetture in VBA per l'automazione del monitoraggio finanziario e del cash flow, riducendo le frizioni operative nell'area amministrazione.</li>
-                        <li><strong>Gestione del Cambiamento:</strong> Mediazione tra processi burocratici rigidi e l'introduzione di strumenti digitali per ottimizzare il flusso di lavoro del team.</li>
+                        <li>Automazione dell'area Amministrazione, Finanza e Controllo (AFC) tramite macro VBA.</li>
+                        <li>Sperimentazione di Prompt Engineering per l'analisi rapida di bandi PNRR.</li>
+                        <li>Gestione flussi documentali e supporto al monitoraggio finanziario.</li>
                     </ul>
                 </div>
 
                 <div class="job">
                     <div class="job-header">
-                        <span class="job-title">Referente Team Innovazione</span>
+                        <span class="job-title">Referente Team Innovazione / Business Support</span>
                         <span class="job-date">04/2022 – 09/2023</span>
                     </div>
-                    <div class="company">Connetto S.R.L.</div>
+                    <div class="company">Connetto S.R.L. (ex Giotto)</div>
                     <ul>
-                        <li><strong>Cloud Automation:</strong> Sviluppo di script in Google AppScript per automatizzare i flussi HR e la gestione della documentazione tecnica per crediti d'imposta (R&S, 4.0).</li>
-                        <li><strong>Logical Modeling:</strong> Traduzione di requisiti normativi in workflow digitali per PMI, garantendo la coerenza dei dati e la semplicità di adozione per gli utenti finali.</li>
+                        <li>Ricerca strategica di bandi e contributi a supporto della definizione di Business Model Canvas per i clienti.</li>
+                        <li>Sviluppo di script (AppScript) per l'ottimizzazione dei flussi di lavoro interni.</li>
+                        <li>Responsabile documentazione tecnica per progetti R&S e Transizione 4.0.</li>
                     </ul>
                 </div>
 
@@ -175,14 +178,27 @@
                     </div>
                     <div class="company">T4B - Technology For Business</div>
                     <ul>
-                        <li>Ricerca tecnologica e prototipazione hardware IoT (Arduino) per la raccolta dati in ambito industriale.</li>
-                        <li>Stesura di deliverable tecnici e supporto all'assistenza clienti per soluzioni innovative.</li>
+                        <li>Ricerca tecnologica e prototipazione hardware IoT (Arduino).</li>
+                        <li>Stesura di report tecnici per progetti di innovazione industriale.</li>
                     </ul>
                 </div>
 
-                <h2>VALORI & MINDSET</h2>
-                <div class="profile-text" style="margin-bottom: 0;">
-                    Condivido pienamente i valori di Wibo: agisco con <strong>Candor</strong> per favorire la crescita collettiva e applico un <strong>Root-Driven Mindset</strong> per risolvere i problemi alla radice. Sono convinta che la creatività, unita a un metodo schematico, sia la chiave per guidare le aziende verso una transizione digitale fluida e sostenibile.
+                <div class="job">
+                    <div class="job-header">
+                        <span class="job-title">Customer Care & Digital Support</span>
+                        <span class="job-date">01/2020 – 04/2022</span>
+                    </div>
+                    <div class="company">Sin Tesi Forma</div>
+                    <ul>
+                        <li>Supporto al cliente e gestione segreteria amministrativa.</li>
+                        <li>Gestione sito web (Wordpress) e piattaforma LMS per corsi online.</li>
+                        <li>Editing audio/video di contenuti digitali per la formazione.</li>
+                    </ul>
+                </div>
+
+                <h2>VALORI & ATTITUDINE</h2>
+                <div style="font-size: 12px; color: var(--secondary-text);">
+                    Credo fermamente che la tecnologia debba essere un supporto al fattore umano, non un ostacolo. Mi impegno a mantenere un approccio onesto e diretto (Candor) e ad analizzare ogni problema partendo dalle sue cause profonde. La mia curiosità mi spinge a sperimentare costantemente nuovi strumenti, ma la mia razionalità mi impone di scartarli se non portano un beneficio reale e misurabile al team.
                 </div>
             </div>
         </div>
