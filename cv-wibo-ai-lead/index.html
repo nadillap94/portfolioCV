@@ -34,11 +34,31 @@
             margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
         }
         h1 { margin: 0; color: var(--main-color); font-size: 26px; letter-spacing: 1px; }
-        .contact-info { text-align: right; font-size: 11px; color: var(--secondary-text); }
+        .header-left { flex: 2; }
+        .contact-info { 
+            text-align: left; 
+            font-size: 11px; 
+            color: var(--secondary-text); 
+            margin-top: 8px;
+            line-height: 1.4;
+        }
         
+        .photo-area {
+            flex: 0 0 35mm;
+            height: 45mm;
+            border: 1px dashed #ccc;
+            background-color: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #999;
+            text-align: center;
+        }
+
         .container { display: flex; gap: 25px; }
         .sidebar { flex: 1; border-right: 1px solid #edf2f7; padding-right: 20px; }
         .main-content { flex: 2.5; }
@@ -79,16 +99,19 @@
 <body>
     <div class="page">
         <header>
-            <div>
+            <div class="header-left">
                 <h1>NADIA PROVENZA</h1>
                 <div style="font-size: 14px; color: var(--secondary-text); font-weight: 500; margin-top: 5px;">
                     Grants & AI Automation Specialist | Process Translator
                 </div>
+                <div class="contact-info">
+                    Torino, Italia<br>
+                    nadia.provenza94@gmail.com<br>
+                    linkedin.com/in/nadia-provenza
+                </div>
             </div>
-            <div class="contact-info">
-                Torino, Italia<br>
-                nadia.provenza94@gmail.com<br>
-                linkedin.com/in/nadia-provenza
+            <div class="photo-area">
+                SPAZIO FOTO<br>(35mm x 45mm)
             </div>
         </header>
 
@@ -187,7 +210,7 @@
                     </div>
                     <div class="company">Sin Tesi Forma</div>
                     <ul>
-                        <li><strong>Gestione Ecosistema E-learning</strong> Amministrazione della piattaforma LMS e del sito WordPress, curando l'erogazione dei corsi e l'assistenza tecnica agli utenti.</li>
+                        <li><strong>Gestione Ecosistema E-learning:</strong> Amministrazione della piattaforma LMS e del sito WordPress, curando l'erogazione dei corsi e l'assistenza tecnica agli utenti.</li>
                         <li><strong>Digital Content & Support:</strong> Produzione di contenuti multimediali per la formazione (editing audio/video) e gestione dei flussi amministrativi della segreteria.</li>
                     </ul>
                 </div>
