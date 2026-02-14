@@ -10,9 +10,10 @@
             --text-color: #1f2937;
             --secondary-text: #4b5563;
         }
+        * { box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.4;
+            line-height: 1.5;
             color: var(--text-color);
             margin: 0;
             padding: 0;
@@ -20,60 +21,60 @@
         }
         .page {
             width: 210mm;
-            height: 297mm;
-            padding: 10mm 15mm;
+            min-height: 297mm;
+            padding: 15mm 20mm;
             margin: 0 auto;
             background: white;
-            box-sizing: border-box;
             display: flex;
             flex-direction: column;
         }
         header {
             border-bottom: 2px solid var(--main-color);
-            padding-bottom: 8px;
-            margin-bottom: 12px;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
         }
-        h1 { margin: 0; color: var(--main-color); font-size: 24px; letter-spacing: 1px; }
+        h1 { margin: 0; color: var(--main-color); font-size: 28px; letter-spacing: 1px; }
         
-        .container { display: flex; gap: 20px; flex: 1; }
-        .sidebar { flex: 1; border-right: 1px solid #edf2f7; padding-right: 15px; }
-        .main-content { flex: 2.7; }
+        .container { display: flex; gap: 30px; flex: 1; }
+        .sidebar { flex: 1; border-right: 1px solid #edf2f7; padding-right: 20px; }
+        .main-content { flex: 2.5; }
 
-        h2 { font-size: 13px; color: var(--main-color); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #eee; padding-bottom: 2px; margin-top: 15px; margin-bottom: 8px; }
+        h2 { font-size: 14px; color: var(--main-color); text-transform: uppercase; letter-spacing: 1.2px; border-bottom: 1px solid #eee; padding-bottom: 4px; margin-top: 20px; margin-bottom: 12px; }
         
-        .profile-text { font-size: 12px; line-height: 1.5; text-align: justify; margin-bottom: 12px; color: var(--secondary-text); }
+        .profile-text { font-size: 13px; line-height: 1.6; text-align: justify; margin-bottom: 15px; color: var(--secondary-text); }
         
-        .job { margin-bottom: 12px; }
+        .job { margin-bottom: 18px; }
         .job-header { display: flex; justify-content: space-between; align-items: baseline; }
-        .job-title { font-weight: bold; font-size: 13px; color: #111827; }
-        .job-date { font-size: 11px; color: var(--main-color); font-weight: bold; }
-        .company { font-size: 12px; color: var(--secondary-text); margin-bottom: 2px; font-weight: 600; }
+        .job-title { font-weight: bold; font-size: 15px; color: #111827; }
+        .job-date { font-size: 12px; color: var(--main-color); font-weight: bold; }
+        .company { font-size: 13.5px; color: var(--secondary-text); margin-bottom: 4px; font-weight: 600; }
         
-        ul { padding-left: 15px; margin: 2px 0; }
-        li { font-size: 11.5px; margin-bottom: 2px; color: var(--secondary-text); }
+        ul { padding-left: 20px; margin: 5px 0; }
+        li { font-size: 13px; margin-bottom: 4px; color: var(--secondary-text); }
         
-        .contact-box { font-size: 10.5px; color: var(--secondary-text); line-height: 1.5; margin-bottom: 10px; }
+        .contact-box { font-size: 12px; color: var(--secondary-text); line-height: 1.7; margin-bottom: 15px; }
 
-        .skill-group { margin-bottom: 10px; }
-        .skill-label { font-size: 11px; font-weight: bold; display: block; margin-bottom: 2px; }
+        .skill-group { margin-bottom: 15px; }
+        .skill-label { font-size: 12px; font-weight: bold; display: block; margin-bottom: 5px; }
         .skill-tag { 
             display: inline-block; 
             background: #f3f4f6; 
             color: #4b5563; 
-            padding: 1px 6px; 
+            padding: 3px 8px; 
             border-radius: 4px; 
-            font-size: 10px; 
-            margin: 1px 0;
+            font-size: 11px; 
+            margin: 2px 0;
             border: 1px solid #e5e7eb;
         }
-        .in-progress { color: var(--main-color); font-style: italic; font-size: 9px; }
+        .in-progress { color: var(--main-color); font-style: italic; font-size: 10px; }
 
         @media print {
             body { background: none; }
-            .page { margin: 0; box-shadow: none; width: 210mm; height: 297mm; }
+            .page { margin: 0; box-shadow: none; width: 210mm; min-height: 297mm; padding: 10mm 15mm; }
+            header { margin-top: 0; }
         }
     </style>
 </head>
@@ -82,11 +83,11 @@
         <header>
             <div>
                 <h1>NADIA PROVENZA</h1>
-                <div style="font-size: 13px; color: var(--secondary-text); font-weight: 500; margin-top: 2px;">
+                <div style="font-size: 15px; color: var(--secondary-text); font-weight: 500; margin-top: 4px;">
                     Grants & AI Automation Specialist | Process Translator
                 </div>
             </div>
-            <div style="width: 30mm; height: 35mm; margin-top: -5px;"></div>
+            <div style="width: 25mm; height: 25mm; margin-top: 0;"></div>
         </header>
 
         <div class="container">
@@ -99,17 +100,17 @@
                 </div>
 
                 <h2>FORMAZIONE</h2>
-                <div style="font-size: 11px; margin-bottom: 10px;">
+                <div style="font-size: 12px; margin-bottom: 12px;">
                     <strong>Corso Python (80h)</strong><br>
                     API Backend, Data Analysis, Automation.<br>
                     <span class="in-progress">In corso</span>
                 </div>
-                <div style="font-size: 11px; margin-bottom: 10px;">
+                <div style="font-size: 12px; margin-bottom: 12px;">
                     <strong>Ingegneria Gestionale</strong><br>
                     Università Mercatorum<br>
                     <span class="in-progress">In corso</span>
                 </div>
-                <div style="font-size: 11px;">
+                <div style="font-size: 12px;">
                     <strong>Studi in Ingegneria Fisica</strong><br>
                     Politecnico di Torino
                 </div>
@@ -124,7 +125,7 @@
                     <span class="skill-label">Automation</span>
                     <span class="skill-tag">VBA (Excel)</span>
                     <span class="skill-tag">Google AppScript</span>
-                    <span class="skill-tag">Python <span class="in-progress">(In appredimento)</span></span>
+                    <span class="skill-tag">Python <span class="in-progress">(Learning)</span></span>
                 </div>
                 <div class="skill-group">
                     <span class="skill-label">Hardware</span>
@@ -133,7 +134,7 @@
                 </div>
 
                 <h2>LINGUE</h2>
-                <div style="font-size: 11px;">
+                <div style="font-size: 12px;">
                     Italiano: Madrelingua<br>
                     Inglese: Professionale
                 </div>
@@ -197,7 +198,7 @@
 
                 <h2>VALORI & MINDSET</h2>
                 <div class="profile-text" style="margin-bottom: 0;">
-                    La mia curiosità mi spinge a sperimentare costantemente nuovi strumenti, ma considero la tecnologia non come fine a sé stessa, bensì come un atto di rispetto: una leva per restituire valore e tempo alle persone e alla loro dignità creativa. Credo infatti che l’innovazione abbia valore solo se avviene in un luogo che stimola, valorizza e tutela chi ne fa parte. Per questo, cerco un ambiente di lavoro che condivida questa visione, dove il rispetto umano e la correttezza professionale siano le fondamenta su cui costruire, insieme, progetti solidi e significativi."
+                    La mia curiosità mi spinge a sperimentare costantemente nuovi strumenti, ma considero la tecnologia non come fine a sé stessa, bensì come un atto di rispetto: una leva per restituire valore e tempo alle persone e alla loro dignità creativa. Credo infatti che l’innovazione abbia valore solo se avviene in un luogo che stimola, valorizza e tutela chi ne fa parte. Per questo, cerco un ambiente di lavoro che condivida questa visione, dove il rispetto umano e la correttezza professionale siano le fondamenta su cui costruire, insieme, progetti solidi e significativi.
                 </div>
             </div>
         </div>
