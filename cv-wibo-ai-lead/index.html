@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Nadia Provenza - AI Adoption Lead Candidate</title>
+    <title>CV Nadia Provenza - AI Adoption Lead</title>
     <style>
         :root {
-            --main-color: #6d28d9; /* Viola Wibo */
+            --main-color: #6d28d9; 
             --text-color: #1f2937;
             --secondary-text: #4b5563;
-            --bg-light: #f9fafb;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.5;
+            line-height: 1.4;
             color: var(--text-color);
             margin: 0;
             padding: 0;
@@ -21,59 +20,60 @@
         }
         .page {
             width: 210mm;
-            min-height: 297mm;
-            padding: 15mm 20mm;
-            margin: 10mm auto;
+            height: 297mm;
+            padding: 10mm 15mm;
+            margin: 0 auto;
             background: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
         header {
             border-bottom: 2px solid var(--main-color);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
         }
-        h1 { margin: 0; color: var(--main-color); font-size: 26px; letter-spacing: 1px; }
+        h1 { margin: 0; color: var(--main-color); font-size: 24px; letter-spacing: 1px; }
         
-        .container { display: flex; gap: 25px; }
-        .sidebar { flex: 1; border-right: 1px solid #edf2f7; padding-right: 20px; }
-        .main-content { flex: 2.5; }
+        .container { display: flex; gap: 20px; flex: 1; }
+        .sidebar { flex: 1; border-right: 1px solid #edf2f7; padding-right: 15px; }
+        .main-content { flex: 2.7; }
 
-        h2 { font-size: 14px; color: var(--main-color); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #eee; padding-bottom: 3px; margin-top: 20px; }
+        h2 { font-size: 13px; color: var(--main-color); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #eee; padding-bottom: 2px; margin-top: 15px; margin-bottom: 8px; }
         
-        .profile-text { font-size: 13px; line-height: 1.6; text-align: justify; margin-bottom: 20px; color: var(--secondary-text); }
+        .profile-text { font-size: 12px; line-height: 1.5; text-align: justify; margin-bottom: 12px; color: var(--secondary-text); }
         
-        .job { margin-bottom: 18px; }
+        .job { margin-bottom: 12px; }
         .job-header { display: flex; justify-content: space-between; align-items: baseline; }
-        .job-title { font-weight: bold; font-size: 14px; color: #111827; }
-        .job-date { font-size: 12px; color: var(--main-color); font-weight: bold; }
-        .company { font-size: 13px; color: var(--secondary-text); margin-bottom: 4px; font-weight: 600; }
+        .job-title { font-weight: bold; font-size: 13px; color: #111827; }
+        .job-date { font-size: 11px; color: var(--main-color); font-weight: bold; }
+        .company { font-size: 12px; color: var(--secondary-text); margin-bottom: 2px; font-weight: 600; }
         
-        ul { padding-left: 18px; margin: 4px 0; }
-        li { font-size: 12.5px; margin-bottom: 4px; color: var(--secondary-text); }
+        ul { padding-left: 15px; margin: 2px 0; }
+        li { font-size: 11.5px; margin-bottom: 2px; color: var(--secondary-text); }
         
-        .contact-box { font-size: 11px; color: var(--secondary-text); line-height: 1.6; margin-bottom: 10px; }
+        .contact-box { font-size: 10.5px; color: var(--secondary-text); line-height: 1.5; margin-bottom: 10px; }
 
-        .skill-group { margin-bottom: 15px; }
-        .skill-label { font-size: 12px; font-weight: bold; display: block; margin-bottom: 3px; }
+        .skill-group { margin-bottom: 10px; }
+        .skill-label { font-size: 11px; font-weight: bold; display: block; margin-bottom: 2px; }
         .skill-tag { 
             display: inline-block; 
             background: #f3f4f6; 
             color: #4b5563; 
-            padding: 2px 7px; 
+            padding: 1px 6px; 
             border-radius: 4px; 
-            font-size: 11px; 
-            margin: 2px 0;
+            font-size: 10px; 
+            margin: 1px 0;
             border: 1px solid #e5e7eb;
         }
-        .in-progress { color: var(--main-color); font-style: italic; font-size: 10px; }
+        .in-progress { color: var(--main-color); font-style: italic; font-size: 9px; }
 
         @media print {
             body { background: none; }
-            .page { margin: 0; box-shadow: none; }
+            .page { margin: 0; box-shadow: none; width: 210mm; height: 297mm; }
         }
     </style>
 </head>
@@ -82,11 +82,11 @@
         <header>
             <div>
                 <h1>NADIA PROVENZA</h1>
-                <div style="font-size: 14px; color: var(--secondary-text); font-weight: 500; margin-top: 5px;">
+                <div style="font-size: 13px; color: var(--secondary-text); font-weight: 500; margin-top: 2px;">
                     Grants & AI Automation Specialist | Process Translator
                 </div>
             </div>
-            <div style="width: 35mm; height: 45mm;"></div>
+            <div style="width: 30mm; height: 35mm; margin-top: -5px;"></div>
         </header>
 
         <div class="container">
@@ -95,21 +95,21 @@
                 <div class="contact-box">
                     📍 Torino, Italia<br>
                     ✉️ nadia.provenza94@gmail.com<br>
-                    🔗 linkedin.com/in/nadia-provenza
+                    🔗 in/nadia-provenza
                 </div>
 
                 <h2>FORMAZIONE</h2>
-                <div style="font-size: 12px; margin-bottom: 15px;">
+                <div style="font-size: 11px; margin-bottom: 10px;">
                     <strong>Corso Python (80h)</strong><br>
-                    Focus: API Backend, Data Analysis (Pandas), Automation.
-                    <span class="in-progress">In corso (2025)</span><br>
+                    API Backend, Data Analysis, Automation.<br>
+                    <span class="in-progress">In corso (2025)</span>
                 </div>
-                <div style="font-size: 12px; margin-bottom: 15px;">
+                <div style="font-size: 11px; margin-bottom: 10px;">
                     <strong>Ingegneria Gestionale</strong><br>
                     Università Mercatorum<br>
                     <span class="in-progress">In corso</span>
                 </div>
-                <div style="font-size: 12px;">
+                <div style="font-size: 11px;">
                     <strong>Studi in Ingegneria Fisica</strong><br>
                     Politecnico di Torino
                 </div>
@@ -133,7 +133,7 @@
                 </div>
 
                 <h2>LINGUE</h2>
-                <div style="font-size: 12px;">
+                <div style="font-size: 11px;">
                     Italiano: Madrelingua<br>
                     Inglese: Professionale
                 </div>
@@ -154,9 +154,9 @@
                     </div>
                     <div class="company">CWS S.r.l. - Torino</div>
                     <ul>
-                        <li><strong>AI Process Automation:</strong> Implementazione sperimentale di tecniche di Prompt Engineering per l'analisi e la sintesi di bandi PNRR e documentazione amministrativa complessa.</li>
-                        <li><strong>Efficienza AFC:</strong> Sviluppo di architetture in VBA per l'automazione del monitoraggio finanziario e del cash flow, riducendo le frizioni operative nell'area amministrazione.</li>
-                        <li><strong>Gestione del Cambiamento:</strong> Mediazione tra processi burocratici rigidi e l'introduzione di strumenti digitali per ottimizzare il flusso di lavoro del team.</li>
+                        <li><strong>AI Process Automation:</strong> Utilizzo sperimentale di tecniche di Prompt Engineering per l'analisi di bandi PNRR e documentazione complessa.</li>
+                        <li><strong>Efficienza AFC:</strong> Sviluppo di architetture in VBA per l'automazione del monitoraggio finanziario e del cash flow.</li>
+                        <li><strong>Gestione del Cambiamento:</strong> Mediazione tra processi rigidi e strumenti digitali per ottimizzare il workflow del team.</li>
                     </ul>
                 </div>
 
@@ -167,8 +167,8 @@
                     </div>
                     <div class="company">Giotto S.R.L.</div>
                     <ul>
-                        <li><strong>Cloud Automation:</strong> Sviluppo di script in Google AppScript per automatizzare i flussi di lavoro interni.</li>
-                        <li><strong>Analisi Progettuale e Bandi:</strong> Analisi approfondita dei progetti d'impresa per l'individuazione di bandi agevolati, collaborando alla definizione della strategia di business e alla validazione dei requisiti per progetti di innovazione e R&S.</li>
+                        <li><strong>Cloud Automation:</strong> Sviluppo di script Google AppScript per l'automazione dei flussi interni.</li>
+                        <li><strong>Analisi Progettuale:</strong> Scouting di bandi agevolati e supporto alla definizione della strategia di business per progetti R&S.</li>
                     </ul>
                 </div>
 
@@ -179,7 +179,7 @@
                     </div>
                     <div class="company">T4B - Technology For Business</div>
                     <ul>
-                        <li><strong>Protocolli LoRa e LoRaWAN:</strong> Ricerca tecnologica, prototipazione hardware IoT (Arduino) per la raccolta dati in ambito industriale e stesura di deliverable tecnici per la rendicontazione dei progetti di ricerca.</li>
+                        <li><strong>Hardware IoT:</strong> Ricerca tecnologica e prototipazione Arduino (LoRaWAN) per raccolta dati industriale e stesura deliverable tecnici.</li>
                     </ul>
                 </div>
 
@@ -190,14 +190,14 @@
                     </div>
                     <div class="company">Sin Tesi Forma</div>
                     <ul>
-                        <li><strong>Gestione Ecosistema E-learning:</strong> Amministrazione della piattaforma LMS e del sito WordPress, curando l'erogazione dei corsi e l'assistenza tecnica agli utenti.</li>
-                        <li><strong>Digital Content & Support:</strong> Produzione di contenuti multimediali per la formazione (editing audio/video) e gestione dei flussi amministrativi della segreteria.</li>
+                        <li><strong>Gestione LMS:</strong> Amministrazione piattaforma e-learning e sito WordPress, curando l'assistenza tecnica agli utenti.</li>
+                        <li><strong>Digital Content:</strong> Produzione di contenuti multimediali (editing audio/video) e gestione flussi amministrativi.</li>
                     </ul>
                 </div>
 
                 <h2>VALORI & MINDSET</h2>
                 <div class="profile-text" style="margin-bottom: 0;">
-                    Credo che la tecnologia debba essere un supporto al fattore umano, non un ostacolo. La mia curiosità mi spinge a sperimentare costantemente nuovi strumenti, alla ricerca di soluzioni che restituiscano valore e tempo alle persone. Considero l'innovazione un processo di ascolto e traduzione: la mia sfida è comprendere le reali necessità di un gruppo di lavoro per trasformarle in flussi digitali che siano, al tempo stesso, tecnicamente solidi e umanamente intuitivi. Questo approccio mi permette di affrontare anche i contesti più conservatori con un entusiasmo propositivo, basato sulla certezza che il progresso tecnologico abbia senso quando semplifica la complessità e abilita il potenziale creativo di chi lo utilizza.
+                    Credo che la tecnologia debba essere un supporto al fattore umano, non un ostacolo. La mia curiosità mi spinge a sperimentare costantemente nuovi strumenti, alla ricerca di soluzioni che restituiscano valore e tempo alle persone. Considero l'innovazione un processo di ascolto e traduzione: la mia sfida è comprendere le reali necessità di un gruppo di lavoro per trasformarle in flussi digitali che siano tecnicamente solidi e umanamente intuitivi. Questo approccio mi permette di affrontare anche i contesti più conservatori con un entusiasmo propositivo, semplificando la complessità e abilitando il potenziale creativo degli utenti.
                 </div>
             </div>
         </div>
