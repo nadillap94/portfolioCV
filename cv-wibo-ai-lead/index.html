@@ -10,6 +10,7 @@
             --text-color: #1f2937;
             --secondary-text: #4b5563;
         }
+        * { box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.4;
@@ -21,44 +22,48 @@
         .page {
             width: 210mm;
             height: 297mm;
-            padding: 10mm 12mm;
+            padding: 10mm 15mm;
             margin: 0 auto;
             background: white;
-            box-sizing: border-box;
             display: flex;
             flex-direction: column;
         }
         header {
             border-bottom: 2px solid var(--main-color);
-            padding-bottom: 10px;
-            margin-bottom: 15px;
+            height: 30mm; /* Altezza massima 3cm come richiesto */
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
         }
         .header-titles h1 { margin: 0; color: var(--main-color); font-size: 28px; letter-spacing: 1px; }
-        .header-titles .subtitle { font-size: 15px; color: var(--secondary-text); font-weight: 500; margin-top: 2px; }
+        .header-titles .subtitle { font-size: 15px; color: var(--secondary-text); font-weight: 600; margin-top: 2px; }
         
-        .photo-space { width: 35mm; height: 35mm; border-radius: 4px; }
+        .photo-space {
+            width: 30mm;
+            height: 30mm; /* Quadrata e allineata all'altezza dell'header */
+            background: transparent;
+        }
 
-        .container { display: flex; gap: 20px; flex: 1; }
-        .sidebar { flex: 0.9; border-right: 1px solid #edf2f7; padding-right: 15px; }
-        .main-content { flex: 2.6; }
+        .container { display: flex; gap: 25px; flex-grow: 1; }
+        .sidebar { flex: 1; border-right: 1px solid #edf2f7; padding-right: 20px; }
+        .main-content { flex: 2.8; }
 
         h2 { font-size: 14px; color: var(--main-color); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #eee; padding-bottom: 3px; margin-top: 15px; margin-bottom: 10px; }
         
         .profile-text { font-size: 13px; line-height: 1.5; text-align: justify; margin-bottom: 15px; color: var(--secondary-text); }
         
-        .job { margin-bottom: 14px; }
+        .job { margin-bottom: 15px; }
         .job-header { display: flex; justify-content: space-between; align-items: baseline; }
-        .job-title { font-weight: bold; font-size: 14px; color: #111827; }
-        .job-date { font-size: 11.5px; color: var(--main-color); font-weight: bold; }
-        .company { font-size: 13px; color: var(--secondary-text); margin-bottom: 3px; font-weight: 600; }
+        .job-title { font-weight: bold; font-size: 14.5px; color: #111827; }
+        .job-date { font-size: 12px; color: var(--main-color); font-weight: bold; }
+        .company { font-size: 13.5px; color: var(--secondary-text); margin-bottom: 3px; font-weight: 600; }
         
-        ul { padding-left: 18px; margin: 4px 0; }
-        li { font-size: 12.5px; margin-bottom: 3px; color: var(--secondary-text); }
+        ul { padding-left: 18px; margin: 3px 0; }
+        li { font-size: 13px; margin-bottom: 3px; color: var(--secondary-text); }
         
-        .contact-box { font-size: 11.5px; color: var(--secondary-text); line-height: 1.6; margin-bottom: 15px; }
+        .contact-box { font-size: 12px; color: var(--secondary-text); line-height: 1.6; margin-bottom: 15px; }
 
         .skill-group { margin-bottom: 12px; }
         .skill-label { font-size: 12px; font-weight: bold; display: block; margin-bottom: 4px; }
@@ -69,7 +74,7 @@
             padding: 2px 8px; 
             border-radius: 4px; 
             font-size: 11px; 
-            margin: 2px 1px;
+            margin: 2px 0;
             border: 1px solid #e5e7eb;
         }
         .in-progress { color: var(--main-color); font-style: italic; font-size: 10px; }
@@ -84,121 +89,120 @@
     <div class="page">
         <header>
             <div class="header-titles">
-                [span_0](start_span)<h1>NADIA PROVENZA[span_0](end_span)</h1>
-                <div class="subtitle">Grants & AI Automation Specialist | [span_1](start_span)Process Translator[span_1](end_span)</div>
+                [span_0](start_span)<h1>NADIA PROVENZA</h1>[span_0](end_span)
+                <div class="subtitle">Grants & AI Automation Specialist | [span_1](start_span)Process Translator</div>[span_1](end_span)
             </div>
-            <div class="photo-space"></div>
-        </header>
+            <div class="photo-space"></div> </header>
 
         <div class="container">
             <div class="sidebar">
-                [span_2](start_span)<h2>CONTATTI[span_2](end_span)</h2>
+                [span_2](start_span)<h2>CONTATTI</h2>[span_2](end_span)
                 <div class="contact-box">
-                    [span_3](start_span)📍 Torino, Italia[span_3](end_span)<br>
-                    [span_4](start_span)✉️ nadia.provenza94@gmail.com[span_4](end_span)<br>
+                    [span_3](start_span)📍 Torino, Italia<br>[span_3](end_span)
+                    [span_4](start_span)✉️ nadia.provenza94@gmail.com<br>[span_4](end_span)
                     [span_5](start_span)🔗 in/nadia-provenza[span_5](end_span)
                 </div>
 
-                [span_6](start_span)<h2>FORMAZIONE[span_6](end_span)</h2>
-                <div style="font-size: 12px; margin-bottom: 12px;">
-                    [span_7](start_span)<strong>Corso Python (80h)[span_7](end_span)</strong><br>
-                    [span_8](start_span)API Backend, Data Analysis, Automation.[span_8](end_span)<br>
-                    [span_9](start_span)<span class="in-progress">In corso (2025)[span_9](end_span)</span>
+                [span_6](start_span)<h2>FORMAZIONE</h2>[span_6](end_span)
+                <div style="font-size: 12.5px; margin-bottom: 12px;">
+                    [span_7](start_span)<strong>Corso Python (80h)</strong><br>[span_7](end_span)
+                    [span_8](start_span)API Backend, Data Analysis, Automation.<br>[span_8](end_span)
+                    [span_9](start_span)<span class="in-progress">In corso (2025)</span>[span_9](end_span)
                 </div>
-                <div style="font-size: 12px; margin-bottom: 12px;">
-                    [span_10](start_span)<strong>Ingegneria Gestionale[span_10](end_span)</strong><br>
-                    [span_11](start_span)Università Mercatorum[span_11](end_span)<br>
-                    [span_12](start_span)<span class="in-progress">In corso[span_12](end_span)</span>
+                <div style="font-size: 12.5px; margin-bottom: 12px;">
+                    [span_10](start_span)<strong>Ingegneria Gestionale</strong><br>[span_10](end_span)
+                    [span_11](start_span)Università Mercatorum<br>[span_11](end_span)
+                    [span_12](start_span)<span class="in-progress">In corso</span>[span_12](end_span)
                 </div>
-                <div style="font-size: 12px;">
-                    [span_13](start_span)<strong>Studi in Ingegneria Fisica[span_13](end_span)</strong><br>
+                <div style="font-size: 12.5px;">
+                    [span_13](start_span)<strong>Studi in Ingegneria Fisica</strong><br>[span_13](end_span)
                     [span_14](start_span)Politecnico di Torino[span_14](end_span)
                 </div>
 
-                [span_15](start_span)<h2>TECH STACK[span_15](end_span)</h2>
+                [span_15](start_span)<h2>TECH STACK</h2>[span_15](end_span)
                 <div class="skill-group">
-                    [span_16](start_span)<span class="skill-label">AI & Prompting[span_16](end_span)</span>
-                    [span_17](start_span)<span class="skill-tag">Prompt Engineering[span_17](end_span)</span>
-                    [span_18](start_span)<span class="skill-tag">LLM Interfaces[span_18](end_span)</span>
+                    [span_16](start_span)<span class="skill-label">AI & Prompting</span>[span_16](end_span)
+                    [span_17](start_span)<span class="skill-tag">Prompt Engineering</span>[span_17](end_span)
+                    [span_18](start_span)<span class="skill-tag">LLM Interfaces</span>[span_18](end_span)
                 </div>
                 <div class="skill-group">
-                    [span_19](start_span)<span class="skill-label">Automation[span_19](end_span)</span>
-                    [span_20](start_span)<span class="skill-tag">VBA (Excel)[span_20](end_span)</span>
-                    [span_21](start_span)<span class="skill-tag">Google AppScript[span_21](end_span)</span>
-                    [span_22](start_span)<span class="skill-tag">Python[span_22](end_span) [span_23](start_span)<span class="in-progress">(In apprendimento)[span_23](end_span)</span></span>
+                    [span_19](start_span)<span class="skill-label">Automation</span>[span_19](end_span)
+                    [span_20](start_span)<span class="skill-tag">VBA (Excel)</span>[span_20](end_span)
+                    [span_21](start_span)<span class="skill-tag">Google AppScript</span>[span_21](end_span)
+                    [span_22](start_span)<span class="skill-tag">Python <span class="in-progress">(In apprendimento)</span></span>[span_22](end_span)
                 </div>
                 <div class="skill-group">
-                    [span_24](start_span)<span class="skill-label">Hardware[span_24](end_span)</span>
-                    [span_25](start_span)<span class="skill-tag">Arduino IDE[span_25](end_span)</span>
-                    [span_26](start_span)<span class="skill-tag">IoT Prototyping[span_26](end_span)</span>
+                    [span_23](start_span)<span class="skill-label">Hardware</span>[span_23](end_span)
+                    [span_24](start_span)<span class="skill-tag">Arduino IDE</span>[span_24](end_span)
+                    [span_25](start_span)<span class="skill-tag">IoT Prototyping</span>[span_25](end_span)
                 </div>
 
-                [span_27](start_span)<h2>LINGUE[span_27](end_span)</h2>
+                [span_26](start_span)<h2>LINGUE</h2>[span_26](end_span)
                 <div style="font-size: 12px;">
-                    [span_28](start_span)Italiano: Madrelingua[span_28](end_span)<br>
-                    [span_29](start_span)Inglese: Professionale[span_29](end_span)
+                    [span_27](start_span)Italiano: Madrelingua[span_27](end_span)<br>
+                    [span_28](start_span)Inglese: Professionale[span_28](end_span)
                 </div>
             </div>
 
             <div class="main-content">
-                [span_30](start_span)<h2>PROFILO[span_30](end_span)</h2>
+                [span_29](start_span)<h2>PROFILO</h2>[span_29](end_span)
                 <div class="profile-text">
-                    [span_31](start_span)Ingegnera Gestionale in formazione con un background in Ingegneria Fisica.[span_31](end_span) [span_32](start_span)Opero come punto di raccordo tra le necessità di business e le potenzialità della tecnologia, con esperienza pratica nell'introdurre soluzioni di automazione low-code (VBA, AppScript) e AI Generativa in contesti aziendali tradizionali.[span_32](end_span) [span_33](start_span)Il mio approccio è orientato alla semplicità e all'adozione reale: credo che l'innovazione debba essere comprensibile e utile per chi la utilizza ogni giorno, evitando inutili complessità tecniche a favore di risultati immediati e scalabili.[span_33](end_span)
+                    [span_30](start_span)Ingegnera Gestionale in formazione con un background in Ingegneria Fisica.[span_30](end_span) [span_31](start_span)[span_32](start_span)Opero come punto di raccordo tra le necessità di business e le potenzialità della tecnologia, con esperienza pratica nell'introdurre soluzioni di automazione low-code (VBA, AppScript) e AI Generativa in contesti aziendali tradizionali.[span_31](end_span)[span_32](end_span) [span_33](start_span)[span_34](start_span)Il mio approccio è orientato alla semplicità e all'adozione reale: credo che l'innovazione debba essere comprensibile e utile per chi la utilizza ogni giorno, evitando inutili complessità tecniche a favore di risultati immediati e scalabili.[span_33](end_span)[span_34](end_span)
                 </div>
 
-                [span_34](start_span)<h2>ESPERIENZA PROFESSIONALE[span_34](end_span)</h2>
+                [span_35](start_span)[span_36](start_span)<h2>ESPERIENZA PROFESSIONALE</h2>[span_35](end_span)[span_36](end_span)
                 
                 <div class="job">
                     <div class="job-header">
-                        [span_35](start_span)<span class="job-title">Grants & Automation Specialist[span_35](end_span)</span>
-                        [span_36](start_span)<span class="job-date">10/2023 – OGGI[span_36](end_span)</span>
+                        [span_37](start_span)<span class="job-title">Grants & Automation Specialist</span>[span_37](end_span)
+                        [span_38](start_span)<span class="job-date">10/2023 – OGGI</span>[span_38](end_span)
                     </div>
-                    <div class="company">CWS S.r.l. - [span_37](start_span)Torino[span_37](end_span)</div>
+                    <div class="company">CWS S.r.l. - [span_39](start_span)Torino</div>[span_39](end_span)
                     <ul>
-                        [span_38](start_span)<li><strong>AI Process Automation:</strong> Utilizzo sperimentale di tecniche di Prompt Engineering per l'analisi di bandi PNRR e documentazione complessa.[span_38](end_span)</li>
-                        [span_39](start_span)<li><strong>Efficienza AFC:</strong> Sviluppo di architetture in VBA per l'automazione del monitoraggio finanziario e del cash flow.[span_39](end_span)</li>
-                        [span_40](start_span)<li><strong>Gestione del Cambiamento:</strong> Mediazione tra processi rigidi e strumenti digitali per ottimizzare il workflow del team.[span_40](end_span)</li>
+                        [span_40](start_span)<li><strong>AI Process Automation:</strong> Utilizzo sperimentale di tecniche di Prompt Engineering per l'analisi di bandi PNRR e documentazione complessa.[span_40](end_span)</li>
+                        [span_41](start_span)[span_42](start_span)<li><strong>Efficienza AFC:</strong> Sviluppo di architetture in VBA per l'automazione del monitoraggio finanziario e del cash flow.[span_41](end_span)[span_42](end_span)</li>
+                        [span_43](start_span)[span_44](start_span)<li><strong>Gestione del Cambiamento:</strong> Mediazione tra processi rigidi e strumenti digitali per ottimizzare il workflow del team.[span_43](end_span)[span_44](end_span)</li>
                     </ul>
                 </div>
 
                 <div class="job">
                     <div class="job-header">
-                        [span_41](start_span)<span class="job-title">Referente Team Innovazione[span_41](end_span)</span>
-                        [span_42](start_span)<span class="job-date">04/2022 – 09/2023[span_42](end_span)</span>
+                        [span_45](start_span)<span class="job-title">Referente Team Innovazione</span>[span_45](end_span)
+                        [span_46](start_span)[span_47](start_span)<span class="job-date">04/2022 – 09/2023</span>[span_46](end_span)[span_47](end_span)
                     </div>
-                    [span_43](start_span)<div class="company">Giotto S.R.L.[span_43](end_span)</div>
+                    [span_48](start_span)<div class="company">Giotto S.R.L.</div>[span_48](end_span)
                     <ul>
-                        [span_44](start_span)<li><strong>Cloud Automation:</strong> Sviluppo di script Google AppScript per l'automazione dei flussi interni.[span_44](end_span)</li>
-                        [span_45](start_span)<li><strong>Analisi Progettuale:</strong> Scouting di bandi agevolati e supporto alla definizione della strategia di business per progetti R&S.[span_45](end_span)</li>
+                        [span_49](start_span)<li><strong>Cloud Automation:</strong> Sviluppo di script Google AppScript per l'automazione dei flussi interni.[span_49](end_span)</li>
+                        [span_50](start_span)[span_51](start_span)<li><strong>Analisi Progettuale:</strong> Scouting di bandi agevolati e supporto alla definizione della strategia di business per progetti R&S.[span_50](end_span)[span_51](end_span)</li>
                     </ul>
                 </div>
 
                 <div class="job">
                     <div class="job-header">
-                        [span_46](start_span)<span class="job-title">Consulente Junior R&S[span_46](end_span)</span>
-                        [span_47](start_span)<span class="job-date">03/2021 – 03/2022[span_47](end_span)</span>
+                        [span_52](start_span)[span_53](start_span)<span class="job-title">Consulente Junior R&S</span>[span_52](end_span)[span_53](end_span)
+                        [span_54](start_span)[span_55](start_span)<span class="job-date">03/2021 – 03/2022</span>[span_54](end_span)[span_55](end_span)
                     </div>
-                    [span_48](start_span)<div class="company">T4B - Technology For Business[span_48](end_span)</div>
+                    [span_56](start_span)[span_57](start_span)<div class="company">T4B - Technology For Business</div>[span_56](end_span)[span_57](end_span)
                     <ul>
-                        [span_49](start_span)<li><strong>Hardware IoT:</strong> Ricerca tecnologica e prototipazione Arduino (LoRaWAN) per raccolta dati industriale e stesura deliverable tecnici.[span_49](end_span)</li>
+                        [span_58](start_span)<li><strong>Hardware IoT:</strong> Ricerca tecnologica e prototipazione Arduino (LoRaWAN) per raccolta dati industriale e stesura deliverable tecnici.[span_58](end_span)</li>
                     </ul>
                 </div>
 
                 <div class="job">
                     <div class="job-header">
-                        [span_50](start_span)<span class="job-title">Customer Care & Digital Support[span_50](end_span)</span>
-                        [span_51](start_span)<span class="job-date">01/2020 – 03/2022[span_51](end_span)</span>
+                        [span_59](start_span)[span_60](start_span)<span class="job-title">Customer Care & Digital Support</span>[span_59](end_span)[span_60](end_span)
+                        [span_61](start_span)[span_62](start_span)<span class="job-date">01/2020 – 03/2022</span>[span_61](end_span)[span_62](end_span)
                     </div>
-                    [span_52](start_span)<div class="company">Sin Tesi Forma[span_52](end_span)</div>
+                    [span_63](start_span)[span_64](start_span)<div class="company">Sin Tesi Forma</div>[span_63](end_span)[span_64](end_span)
                     <ul>
-                        [span_53](start_span)<li><strong>Gestione LMS:</strong> Amministrazione piattaforma e-learning e sito WordPress, curando l'assistenza tecnica agli utenti.[span_53](end_span)</li>
-                        [span_54](start_span)<li><strong>Digital Content:</strong> Produzione di contenuti multimediali (editing audio/video) e gestione flussi amministrativi.[span_54](end_span)</li>
+                        [span_65](start_span)<li><strong>Gestione LMS:</strong> Amministrazione piattaforma e-learning e sito WordPress, curando l'assistenza tecnica agli utenti.[span_65](end_span)</li>
+                        [span_66](start_span)[span_67](start_span)<li><strong>Digital Content:</strong> Produzione di contenuti multimediali (editing audio/video) e gestione flussi amministrativi.[span_66](end_span)[span_67](end_span)</li>
                     </ul>
                 </div>
 
-                [span_55](start_span)<h2>VALORI & MINDSET[span_55](end_span)</h2>
+                [span_68](start_span)[span_69](start_span)<h2>VALORI & MINDSET</h2>[span_68](end_span)[span_69](end_span)
                 <div class="profile-text" style="margin-bottom: 0;">
-                    [span_56](start_span)La mia curiosità mi spinge a sperimentare costantemente nuovi strumenti, ma considero la tecnologia non come fine a sé stessa, bensì come un atto di rispetto: una leva per restituire valore e tempo alle persone e alla loro dignità creativa.[span_56](end_span) [span_57](start_span)Credo infatti che l'innovazione abbia valore solo se avviene in un luogo che stimola, valorizza e tutela chi ne fa parte.[span_57](end_span) [span_58](start_span)Per questo, cerco un ambiente di lavoro che condivida questa visione, dove il rispetto umano e la correttezza professionale siano le fondamenta su cui costruire, insieme, progetti solidi e significativi.[span_58](end_span)
+                    [span_70](start_span)[span_71](start_span)La mia curiosità mi spinge a sperimentare costantemente nuovi strumenti, ma considero la tecnologia non come fine a sé stessa, bensì come un atto di rispetto: una leva per restituire valore e tempo alle persone e alla loro dignità creativa.[span_70](end_span)[span_71](end_span) [span_72](start_span)[span_73](start_span)Credo infatti che l'innovazione abbia valore solo se avviene in un luogo che stimola, valorizza e tutela chi ne fa parte.[span_72](end_span)[span_73](end_span) [span_74](start_span)Per questo, cerco un ambiente di lavoro che condivida questa visione, dove il rispetto umano e la correttezza professionale siano le fondamenta su cui costruire, insieme, progetti solidi e significativi.[span_74](end_span)
                 </div>
             </div>
         </div>
