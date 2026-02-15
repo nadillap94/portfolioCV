@@ -3,248 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Nadia Provenza - AI Adoption Lead</title>
+    <title>CV - AI Adoption Lead</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --wibo-purple: #6344fd;
-            --dark-text: #2d3436;
-            --light-text: #636e72;
-            --sidebar-bg: #f8f9fa;
-            --white: #ffffff;
+            --wibo-purple: #7B2CBF;
+            --dark-grey: #333333;
+            --light-grey: #F8F9FA;
+            --sidebar-bg: #2D1B4D;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { margin: 0; padding: 0; box-box: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--dark-grey); line-height: 1.5; background: #e0e0e0; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5;
-            color: var(--dark-text);
-            line-height: 1.5;
-            -webkit-print-color-adjust: exact;
-        }
-
-        .a4-page {
+        .page {
             width: 210mm;
             min-height: 297mm;
             margin: 20px auto;
-            background: var(--white);
+            background: white;
             display: flex;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
-        @media print {
-            body { background: none; }
-            .a4-page { margin: 0; box-shadow: none; }
-        }
-
-        /* --- SIDEBAR --- */
+        /* SIDEBAR */
         .sidebar {
-            width: 32%;
+            width: 33%;
             background-color: var(--sidebar-bg);
-            padding: 40px 20px;
+            color: white;
+            padding: 40px 25px;
             display: flex;
             flex-direction: column;
-            border-right: 1px solid #e1e4e8;
         }
 
-        .profile-photo {
-            width: 140px;
-            height: 140px;
-            background: #e1e4e8;
-            border: 3px solid var(--wibo-purple);
+        .photo-placeholder {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            margin: 0 auto 30px auto;
+            background: #eee;
+            margin: 0 auto 30px;
+            border: 3px solid var(--wibo-purple);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11px;
-            color: var(--light-text);
-            text-align: center;
+            color: #666;
+            font-size: 12px;
+            overflow: hidden;
         }
 
-        .sidebar-section { margin-bottom: 25px; }
-
-        .sidebar-title {
+        .sidebar h3 {
             color: var(--wibo-purple);
-            font-size: 13px;
-            font-weight: 700;
+            filter: brightness(1.5);
             text-transform: uppercase;
+            font-size: 14px;
             letter-spacing: 1.2px;
-            margin-bottom: 12px;
-            border-bottom: 2px solid var(--wibo-purple);
-            display: inline-block;
+            margin: 25px 0 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 5px;
         }
 
-        .contact-item { font-size: 12px; margin-bottom: 6px; word-break: break-all; }
-
+        .sidebar-item { margin-bottom: 15px; font-size: 13px; font-weight: 300; }
         .tech-tag {
             display: inline-block;
-            background: #eeeafb;
-            color: var(--wibo-purple);
-            padding: 3px 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 8px;
             border-radius: 4px;
+            margin: 0 4px 6px 0;
             font-size: 11px;
-            font-weight: 600;
-            margin: 0 3px 6px 0;
         }
 
-        /* --- MAIN CONTENT --- */
-        .main-content { width: 68%; padding: 40px 35px; }
+        /* MAIN CONTENT */
+        .main {
+            width: 67%;
+            padding: 50px 40px;
+        }
 
-        header { margin-bottom: 30px; }
-        h1 { font-size: 28px; font-weight: 700; color: var(--wibo-purple); text-transform: uppercase; }
-        .subtitle { font-size: 16px; color: var(--light-text); font-weight: 400; margin-top: 2px; }
-
-        .summary { font-size: 13px; margin-bottom: 30px; text-align: justify; border-left: 3px solid #eee; padding-left: 15px; }
+        header { margin-bottom: 35px; }
+        h1 { font-size: 28px; color: var(--sidebar-bg); text-transform: uppercase; letter-spacing: 1px; }
+        .subtitle { font-size: 16px; color: var(--wibo-purple); font-weight: 600; margin-top: 5px; }
 
         .section-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--dark-text);
-            margin: 25px 0 15px 0;
-            display: flex;
-            align-items: center;
+            font-size: 18px;
+            color: var(--sidebar-bg);
+            border-left: 4px solid var(--wibo-purple);
+            padding-left: 10px;
+            margin: 30px 0 15px;
             text-transform: uppercase;
         }
 
-        .section-title::after { content: ""; flex: 1; height: 1px; background: #eee; margin-left: 15px; }
+        .job { margin-bottom: 20px; }
+        .job-header { display: flex; justify-content: space-between; font-weight: 600; font-size: 14px; }
+        .job-company { color: var(--wibo-purple); }
+        .job-desc { font-size: 13.5px; margin-top: 5px; text-align: justify; }
+        .job-desc ul { margin-left: 18px; margin-top: 5px; }
 
-        .exp-item { margin-bottom: 20px; }
-        .exp-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 3px; }
-        .job-title { font-weight: 700; font-size: 14px; }
-        .company-date { font-size: 11px; color: var(--wibo-purple); font-weight: 600; }
-        .exp-content { font-size: 12.5px; color: var(--dark-text); }
-        .exp-content ul { list-style: none; margin-top: 5px; }
-        .exp-content li { margin-bottom: 4px; padding-left: 12px; position: relative; }
-        .exp-content li::before { content: "•"; color: var(--wibo-purple); position: absolute; left: 0; }
+        .project-card {
+            background: var(--light-grey);
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--wibo-purple);
+        }
+        .project-card strong { font-size: 14px; display: block; }
+        .project-card p { font-size: 13px; color: #555; }
 
-        .mindset-box { font-size: 12px; font-style: italic; color: var(--light-text); background: #fff; border: 1px dashed #ccc; padding: 10px; border-radius: 5px; }
-
+        @media print {
+            body { background: none; }
+            .page { margin: 0; box-shadow: none; }
+        }
     </style>
 </head>
 <body>
-
-<div class="a4-page">
-    <aside class="sidebar">
-        <div class="profile-photo">SPAZIO FOTO</div>
-
-        <div class="sidebar-section">
-            <h3 class="sidebar-title">Contatti</h3>
-            [span_0](start_span)<div class="contact-item">📍 Torino, Italia[span_0](end_span)</div>
-            [span_1](start_span)<div class="contact-item">📧 nadia.provenza94@gmail.com[span_1](end_span)</div>
-            [span_2](start_span)<div class="contact-item">🔗 in/nadia-provenza[span_2](end_span)</div>
-        </div>
-
-        <div class="sidebar-section">
-            <h3 class="sidebar-title">Tech Stack</h3>
-            <div>
-                [span_3](start_span)<span class="tech-tag">Prompt Engineering[span_3](end_span)</span>
-                [span_4](start_span)<span class="tech-tag">LLM Interfaces[span_4](end_span)</span>
-                [span_5](start_span)<span class="tech-tag">VBA (Excel)[span_5](end_span)</span>
-                [span_6](start_span)<span class="tech-tag">Google AppScript[span_6](end_span)</span>
-                [span_7](start_span)<span class="tech-tag">Python[span_7](end_span)</span>
-                [span_8](start_span)<span class="tech-tag">Arduino IDE[span_8](end_span)</span>
-                [span_9](start_span)<span class="tech-tag">LoRaWAN[span_9](end_span)</span>
+    <div class="page">
+        <div class="sidebar">
+            <div class="photo-placeholder">
+                FOTO
             </div>
-        </div>
+            
+            <h3>Contatti</h3>
+            <div class="sidebar-item">📍 Italia / Remoto</div>
+            <div class="sidebar-item">📧 email@esempio.com</div>
+            <div class="sidebar-item">🔗 linkedin.com/in/tuoprofilo</div>
 
-        <div class="sidebar-section">
-            <h3 class="sidebar-title">Formazione</h3>
-            <div class="contact-item">
-                [span_10](start_span)<strong>Ingegneria Gestionale[span_10](end_span)</strong><br>
+            <h3>Tech Stack</h3>
+            <div class="tech-tag">Prompt Engineering</div>
+            <div class="tech-tag">VBA</div>
+            <div class="tech-tag">Google AppScript</div>
+            <div class="tech-tag">Python (Pandas/Numpy)</div>
+            <div class="tech-tag">Arduino / IoT</div>
+            <div class="tech-tag">API Integration</div>
+
+            <h3>Formazione</h3>
+            <div class="sidebar-item">
+                <strong>Ingegneria Gestionale</strong><br>
                 Università Mercatorum (In corso)
             </div>
-            <div class="contact-item">
-                [span_11](start_span)<strong>Corso Python (80h)[span_11](end_span)</strong><br>
-                Focus: API & Automation (In corso)
+            <div class="sidebar-item">
+                <strong>Python for Automation</strong><br>
+                Corso Specializzato (80h)
             </div>
-            <div class="contact-item">
-                [span_12](start_span)<strong>Ingegneria Fisica[span_12](end_span)</strong><br>
-                Politecnico di Torino
-            </div>
+
+            <h3>Soft Skills</h3>
+            <div class="sidebar-item">• Analisi di Processo</div>
+            <div class="sidebar-item">• Change Management</div>
+            <div class="sidebar-item">• Problem Solving Tecnico</div>
+            <div class="sidebar-item">• Traduzione Business-Tech</div>
         </div>
 
-        <div class="sidebar-section">
-            <h3 class="sidebar-title">Lingue</h3>
-            [span_13](start_span)<div class="contact-item">Italiano: Madrelingua[span_13](end_span)</div>
-            [span_14](start_span)<div class="contact-item">Inglese: Professionale[span_14](end_span)</div>
-        </div>
+        <div class="main">
+            <header>
+                <h1>Il Tuo Nome</h1>
+                <div class="subtitle">AI Adoption Lead | Process Automation Specialist</div>
+                <p class="job-desc" style="margin-top: 15px; font-style: italic;">
+                    Ingegnera Gestionale con background in Fisica. Specializzata nel trasformare la complessità burocratica in flussi digitali snelli. Espertà nell'integrare AI Generativa e automazione low-code per massimizzare l'efficienza operativa.
+                </p>
+            </header>
 
-        <div class="sidebar-section">
-            <h3 class="sidebar-title">Valori</h3>
-            <div class="mindset-box">
-                [span_15](start_span)"Considero la tecnologia come leva per restituire valore e tempo alle persone."[span_15](end_span)
-            </div>
-        </div>
-    </aside>
-
-    <main class="main-content">
-        <header>
-            [span_16](start_span)<h1>Nadia Provenza[span_16](end_span)</h1>
-            <div class="subtitle">Grants & AI Automation Specialist | [span_17](start_span)Process Translator[span_17](end_span)</div>
-        </header>
-
-        <section class="summary">
-            [span_18](start_span)Ingegnera Gestionale in formazione con background in Ingegneria Fisica[span_18](end_span). [span_19](start_span)Punto di raccordo tra necessità di business e tecnologia, con esperienza pratica nell'introdurre soluzioni <strong>AI Generativa</strong> e automazione <strong>low-code</strong> in contesti aziendali[span_19](end_span). [span_20](start_span)Approccio orientato all'adozione reale e alla semplicità[span_20](end_span).
-        </section>
-
-        <h2 class="section-title">Esperienza Professionale</h2>
-        
-        <div class="exp-item">
-            <div class="exp-header">
-                <span class="job-title">Grants & Automation Specialist</span>
-                <span class="company-date">CWS S.R.L. | [span_21](start_span)10/2023 – OGGI[span_21](end_span)</span>
-            </div>
-            <div class="exp-content">
-                <ul>
-                    [span_22](start_span)<li><strong>AI Process Automation:</strong> Tecniche di Prompt Engineering per l'analisi di bandi PNRR e documenti complessi[span_22](end_span).</li>
-                    [span_23](start_span)<li><strong>Efficienza AFC:</strong> Sviluppo architetture VBA per l'automazione del monitoraggio finanziario e cash flow[span_23](end_span).</li>
-                    [span_24](start_span)<li><strong>Change Management:</strong> Ottimizzazione flussi di lavoro in area amministrazione mediando tra operatività e burocrazia[span_24](end_span).</li>
+            <div class="section-title">Esperienza Professionale</div>
+            
+            <div class="job">
+                <div class="job-header">
+                    <span>Grants & Automation Specialist</span>
+                    <span>10/2023 – Oggi</span>
+                </div>
+                <div class="job-company">CWS S.R.L.</div>
+                <ul class="job-desc">
+                    <li><strong>AI Process Design:</strong> Implementazione di Prompt Engineering per l'analisi di documentazione complessa (PNRR).</li>
+                    <li><strong>Efficienza AFC:</strong> Sviluppo architetture VBA per il monitoraggio cash flow, riducendo i tempi di reportistica.</li>
+                    <li><strong>Change Management:</strong> Guida alla digitalizzazione per ridurre il carico cognitivo dei team amministrativi.</li>
                 </ul>
             </div>
-        </div>
 
-        <div class="exp-item">
-            <div class="exp-header">
-                <span class="job-title">Referente Team Innovazione</span>
-                <span class="company-date">GIOTTO S.R.L. | [span_25](start_span)04/2022 – 09/2023[span_25](end_span)</span>
-            </div>
-            <div class="exp-content">
-                <ul>
-                    [span_26](start_span)<li><strong>Cloud Automation:</strong> Sviluppo script Google AppScript per automatizzare flussi di lavoro interni[span_26](end_span).</li>
-                    [span_27](start_span)<li><strong>Analisi Progettuale:</strong> Individuazione bandi agevolati e validazione requisiti per progetti R&S e Innovazione[span_27](end_span).</li>
+            <div class="job">
+                <div class="job-header">
+                    <span>Referente Team Innovazione</span>
+                    <span>04/2022 – 09/2023</span>
+                </div>
+                <div class="job-company">Giotto S.R.L. / Connetto S.R.L.</div>
+                <ul class="job-desc">
+                    <li><strong>Cloud Automation:</strong> Sviluppo script Google AppScript per l'integrazione di ecosistemi Calendar/Sheets.</li>
+                    <li><strong>Analisi Strategica:</strong> Gestione requisiti tecnici per Transizione 4.0, collegando visione di business e fattibilità tecnica.</li>
                 </ul>
             </div>
-        </div>
 
-        <div class="exp-item">
-            <div class="exp-header">
-                <span class="job-title">Consulente Junior R&S</span>
-                <span class="company-date">T4B S.R.L. | [span_28](start_span)03/2021 – 03/2022[span_28](end_span)</span>
+            <div class="section-title">Progetti di Automazione</div>
+            
+            <div class="project-card">
+                <strong>Sistema Monitoraggio Finanziario (VBA)</strong>
+                <p>Ecosistema di file Excel interconnessi per gestione HR e note spese, automatizzando il passaggio da dati grezzi a insight decisionali.</p>
             </div>
-            <div class="exp-content">
-                <ul>
-                    [span_29](start_span)<li><strong>IoT Prototyping:</strong> Ricerca e prototipazione hardware (Arduino/LoRaWAN) per raccolta dati industriali[span_29](end_span).</li>
-                    [span_30](start_span)<li><strong>Technical Writing:</strong> Stesura deliverable tecnici per rendicontazione progetti di ricerca[span_30](end_span).</li>
-                </ul>
-            </div>
-        </div>
 
-        <div class="exp-item">
-            <div class="exp-header">
-                <span class="job-title">Customer Care & Digital Support</span>
-                <span class="company-date">SIN TESI FORMA S.R.L. | [span_31](start_span)2020 – 2022[span_31](end_span)</span>
+            <div class="project-card">
+                <strong>AI Assistant Revisione Fiscale</strong>
+                <p>Sviluppo di prompt per sintesi di testi tecnici e revisione fascicoli, con una riduzione del tempo di analisi stimata al 40%.</p>
             </div>
-            <div class="exp-content">
-                <ul>
-                    [span_32](start_span)<li><strong>LMS Administration:</strong> Gestione piattaforma E-learning (WordPress) e assistenza tecnica utenti[span_32](end_span).</li>
-                    [span_33](start_span)<li><strong>Digital Content:</strong> Produzione contenuti multimediali (editing audio/video) e flussi amministrativi[span_33](end_span).</li>
-                </ul>
+
+            <div class="project-card">
+                <strong>IoT Prototyping (Arduino)</strong>
+                <p>Sviluppo sistemi LoRaWAN/WiFi per acquisizione dati industriali e reportistica tecnica automatizzata.</p>
             </div>
         </div>
-    </main>
-</div>
-
+    </div>
 </body>
 </html>
