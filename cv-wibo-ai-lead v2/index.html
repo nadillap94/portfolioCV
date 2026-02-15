@@ -2,103 +2,72 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Nadia Provenza - AI Adoption Lead</title>
+    <title>CV Nadia Provenza - Process Translator & AI Specialist</title>
     <style>
         :root {
-            --primary: #5e17eb; /* Colore Wibo Style */
-            --secondary: #2d3436;
-            --text: #444;
-            --light-bg: #f8f9fa;
+            --sidebar-bg: #1e272e;
+            --accent-color: #5e17eb;
+            --text-main: #2f3640;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
         }
 
-        * { box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.5;
-            color: var(--text);
-            background: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
-
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; color: var(--text-main); }
+        
         .page {
             width: 210mm;
-            min-height: 297mm;
-            padding: 20mm;
-            margin: 10mm auto;
-            background: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            height: 297mm;
+            margin: 0 auto;
+            background: var(--white);
+            display: grid;
+            grid-template-columns: 72mm 138mm;
+            overflow: hidden;
         }
 
-        header {
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            margin: 0;
-            color: var(--secondary);
-            font-size: 26pt;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .subtitle {
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 14pt;
-            margin-top: 5px;
-        }
-
-        .contact-info {
+        /* SIDEBAR */
+        .sidebar {
+            background: var(--sidebar-bg);
+            color: var(--white);
+            padding: 35px 25px;
             display: flex;
-            justify-content: space-between;
-            font-size: 9pt;
-            margin-top: 10px;
-            color: #666;
+            flex-direction: column;
         }
 
-        section { margin-bottom: 18px; }
+        h1 { font-size: 24pt; margin: 0 0 5px; line-height: 1.1; text-transform: uppercase; letter-spacing: 1px; }
+        .tagline { font-size: 11pt; color: var(--accent-color); font-weight: bold; margin-bottom: 35px; text-transform: uppercase; }
 
-        h2 {
-            font-size: 13pt;
-            color: var(--primary);
-            border-bottom: 1px solid #eee;
-            padding-bottom: 3px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
+        .sidebar-section { margin-bottom: 30px; }
+        .sidebar-h2 { font-size: 10pt; text-transform: uppercase; border-bottom: 1px solid #3d4e5f; padding-bottom: 5px; margin-bottom: 15px; color: var(--accent-color); letter-spacing: 1px; }
+        
+        .contact-item { font-size: 9pt; margin-bottom: 10px; display: block; color: #dcdde1; text-decoration: none; }
+        
+        .skill-group { margin-bottom: 18px; }
+        .skill-title { font-size: 9pt; font-weight: bold; display: block; margin-bottom: 6px; color: #f5f6fa; }
+        .tag { display: inline-block; background: #353b48; padding: 4px 10px; border-radius: 4px; font-size: 8pt; margin: 2px 0; color: #f5f6fa; }
 
-        .job-title { font-weight: bold; color: #333; }
-        .company-date { display: flex; justify-content: space-between; font-style: italic; font-size: 10pt; color: #666; }
+        /* MAIN CONTENT */
+        .main { padding: 40px 35px; }
+        
+        .main-section { margin-bottom: 25px; }
+        .main-h2 { font-size: 14pt; color: var(--accent-color); border-bottom: 2px solid #f1f2f6; padding-bottom: 5px; margin-bottom: 15px; text-transform: uppercase; font-weight: bold; }
 
-        ul { padding-left: 18px; margin: 5px 0; }
-        li { margin-bottom: 4px; font-size: 10.5pt; }
+        .job { margin-bottom: 20px; }
+        .job-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .job-title { font-size: 11pt; font-weight: bold; color: #1e272e; }
+        .job-company { font-size: 10pt; color: var(--accent-color); font-weight: 600; margin-top: 2px; }
+        .job-date { font-size: 9pt; color: var(--text-light); font-weight: bold; }
+        
+        ul { padding-left: 15px; margin: 8px 0; }
+        li { font-size: 10pt; color: var(--text-main); margin-bottom: 5px; line-height: 1.4; }
 
-        .tag-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 5px;
-        }
+        .highlight-card { background: #f9f9fb; border-left: 4px solid var(--accent-color); padding: 12px 15px; margin-top: 10px; }
+        .card-title { font-size: 10pt; font-weight: bold; display: block; margin-bottom: 3px; }
+        .card-desc { font-size: 9.5pt; color: var(--text-light); line-height: 1.3; }
 
-        .tag {
-            background: var(--light-bg);
-            border: 1px solid #ddd;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 9pt;
-            color: var(--secondary);
-        }
-
-        .highlight-box {
-            background-color: #fcfaff;
-            border-left: 4px solid var(--primary);
-            padding: 10px 15px;
-            margin: 10px 0;
-        }
+        .edu-item { margin-bottom: 12px; }
+        .edu-title { font-size: 10.5pt; font-weight: bold; }
+        .edu-inst { font-size: 9.5pt; color: var(--text-light); }
 
         @media print {
             body { background: none; }
@@ -109,106 +78,124 @@
 <body>
 
 <div class="page">
-    <header>
-        <h1>Nadia Provenza</h1>
-        <div class="subtitle">AI Adoption Specialist | Process Translator</div>
-        <div class="contact-info">
-            <span>📍 Torino, Italia</span>
-            <span>📧 nadia.provenza94@gmail.com</span>
-            <span>🔗 linkedin.com/in/nadia-provenza</span>
+    <div class="sidebar">
+        <h1>Nadia<br>Provenza</h1>
+        <div class="tagline">Process Translator & AI Specialist</div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-h2">Contatti</div>
+            <span class="contact-item">📍 Torino, Italia</span>
+            <span class="contact-item">📧 nadia.provenza94@gmail.com</span>
+            <span class="contact-item">🔗 linkedin.com/in/nadia-provenza</span>
         </div>
-    </header>
 
-    <section>
-        <h2>Profilo Professionale</h2>
-        <p style="font-size: 10.5pt; margin: 0;">
-            [span_0](start_span)[span_1](start_span)Ingegnera Gestionale in formazione con background in Ingegneria Fisica[span_0](end_span)[span_1](end_span). [span_2](start_span)[span_3](start_span)Specializzata nel tradurre la complessità dei processi amministrativi in soluzioni digitali agili[span_2](end_span)[span_3](end_span). [span_4](start_span)Esperta nell'integrazione di AI Generativa e automazione low-code (VBA, AppScript) per trasformare la burocrazia in flussi snelli e scalabili[span_4](end_span).
-        </p>
-    </section>
-
-    <section>
-        <h2>Esperienza Professionale</h2>
-        
-        <div class="job-item">
-            <div class="company-date">
-                <span class="job-title">Grants & Automation Specialist</span>
-                <span>10/2023 – OGGI</span>
+        <div class="sidebar-section">
+            <div class="sidebar-h2">Tech Stack</div>
+            <div class="skill-group">
+                <span class="skill-title">Generative AI</span>
+                <span class="tag">Prompt Engineering</span> <span class="tag">AI Agents</span>
             </div>
-            <div style="font-style: italic; font-size: 10pt; margin-bottom: 5px;">CWS S.R.L.</div>
-            <ul>
-                [span_5](start_span)[span_6](start_span)<li><strong>AI Process Design:</strong> Implementazione di tecniche di Prompt Engineering per l'analisi e sintesi di bandi PNRR e documentazione complessa[span_5](end_span)[span_6](end_span).</li>
-                [span_7](start_span)[span_8](start_span)[span_9](start_span)<li><strong>Efficienza AFC:</strong> Sviluppo di architetture VBA per l'automazione del cash flow e monitoraggio finanziario[span_7](end_span)[span_8](end_span)[span_9](end_span).</li>
-                [span_10](start_span)<li><strong>Change Management:</strong> Ottimizzazione dei flussi di lavoro mediando tra necessità operative e processi burocratici rigidi[span_10](end_span).</li>
-            </ul>
-        </div>
-
-        <div class="job-item" style="margin-top: 12px;">
-            <div class="company-date">
-                <span class="job-title">Referente Team Innovazione</span>
-                <span>04/2022 – 09/2023</span>
+            <div class="skill-group">
+                <span class="skill-title">Automation</span>
+                <span class="tag">VBA (Excel Expert)</span> <span class="tag">Google AppScript</span>
             </div>
-            <div style="font-style: italic; font-size: 10pt; margin-bottom: 5px;">Connetto S.R.L. (Giotto S.R.L.)</div>
-            <ul>
-                [span_11](start_span)[span_12](start_span)[span_13](start_span)<li><strong>Cloud Automation:</strong> Sviluppo di script Google AppScript per l'automazione bidirezionale tra Sheets e Calendar[span_11](end_span)[span_12](end_span)[span_13](end_span).</li>
-                [span_14](start_span)[span_15](start_span)<li><strong>Analisi Strategica:</strong> Validazione dei requisiti tecnici per progetti di R&S e Transizione 4.0 per PMI[span_14](end_span)[span_15](end_span).</li>
-            </ul>
-        </div>
-
-        <div class="job-item" style="margin-top: 12px;">
-            <div class="company-date">
-                <span class="job-title">Consulente Junior R&S</span>
-                <span>03/2021 – 03/2022</span>
+            <div class="skill-group">
+                <span class="skill-title">Coding</span>
+                <span class="tag">Python (Learning)</span> <span class="tag">Arduino IDE</span>
             </div>
-            <div style="font-style: italic; font-size: 10pt; margin-bottom: 5px;">T4B - Technology For Business S.R.L.</div>
-            <ul>
-                [span_16](start_span)[span_17](start_span)[span_18](start_span)<li><strong>IoT Prototyping:</strong> Ricerca e prototipazione hardware (Arduino) con protocolli LoRaWAN e Wi-Fi per ambito industriale[span_16](end_span)[span_17](end_span)[span_18](end_span).</li>
-                [span_19](start_span)[span_20](start_span)<li><strong>Technical Writing:</strong> Stesura di deliverable tecnici per la rendicontazione di progetti di ricerca[span_19](end_span)[span_20](end_span).</li>
-            </ul>
         </div>
-    </section>
 
-    <section>
-        <h2>Progetti di Automazione & AI</h2>
-        <div class="highlight-box">
-            <ul style="margin: 0;">
-                [span_21](start_span)<li><strong>AI Agent Development:</strong> Sviluppo di agenti specializzati per il supporto alla Finanza Agevolata e revisione fascicoli fiscali[span_21](end_span).</li>
-                [span_22](start_span)[span_23](start_span)<li><strong>Cross-Platform Ecosystem:</strong> Architettura di file complessi in VBA per la gestione di Cash Flow, Magazzino e HR[span_22](end_span)[span_23](end_span).</li>
-                [span_24](start_span)<li><strong>E-learning Tech Support:</strong> Gestione tecnica di piattaforme LMS (WordPress) e digital content editing[span_24](end_span).</li>
-            </ul>
+        <div class="sidebar-section">
+            <div class="sidebar-h2">Lingue</div>
+            <span class="contact-item">Italiano: Madrelingua</span>
+            <span class="contact-item">Inglese: Professionale</span>
         </div>
-    </section>
 
-    <section>
-        <h2>Formazione e Competenze</h2>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <div>
-                <div class="job-title" style="font-size: 10pt;">Percorso Accademico</div>
-                <ul style="font-size: 9pt;">
-                    [span_25](start_span)[span_26](start_span)<li>Ingegneria Gestionale (Univ. Mercatorum) - In corso[span_25](end_span)[span_26](end_span)</li>
-                    [span_27](start_span)[span_28](start_span)<li>Corso Python (80h): API, Data Analysis, ML - In corso[span_27](end_span)[span_28](end_span)</li>
-                    [span_29](start_span)[span_30](start_span)<li>Studi in Ingegneria Fisica (Politecnico di Torino)[span_29](end_span)[span_30](end_span)</li>
+        <div class="sidebar-section" style="margin-top: auto;">
+            <div class="sidebar-h2">Valori</div>
+            <p style="font-size: 9pt; font-style: italic; color: #bdc3c7; line-height: 1.4;">
+                "L'innovazione deve essere comprensibile e utile per chi la utilizza ogni giorno, evitando inutili complessità tecniche."
+            </p>
+        </div>
+    </div>
+
+    <div class="main">
+        <section class="main-section">
+            <div class="main-h2">Profilo Professionale</div>
+            <p style="font-size: 10pt; margin: 0; text-align: justify; line-height: 1.5;">
+                Ingegnera Gestionale in formazione con un forte focus sull'efficienza operativa. Opero come punto di raccordo tra le necessità di business e le potenzialità della tecnologia, integrando AI Generativa e automazione avanzata per trasformare la complessità burocratica in processi snelli.
+            </p>
+        </section>
+
+        <section class="main-section">
+            <div class="main-h2">Esperienza Professionale</div>
+            
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Grants & Automation Specialist</span>
+                    <span class="job-date">10/2023 – OGGI</span>
+                </div>
+                <div class="job-company">CWS S.R.L.</div>
+                <ul>
+                    <li>Digitalizzazione dello scouting bandi PNRR tramite Prompt Engineering avanzato.</li>
+                    <li>Sviluppo di architetture VBA per l'automazione del monitoraggio finanziario e cash flow.</li>
+                    <li>Ottimizzazione dei flussi nell'area AFC, mediando tra necessità operative e processi burocratici.</li>
                 </ul>
             </div>
-            <div>
-                <div class="job-title" style="font-size: 10pt;">Tech Stack</div>
-                <div class="tag-container">
-                    <span class="tag">Prompt Engineering</span>
-                    <span class="tag">VBA (Excel Expert)</span>
-                    <span class="tag">Google AppScript</span>
-                    <span class="tag">Python (Learning)</span>
-                    <span class="tag">Arduino IDE</span>
-                    <span class="tag">Agile Mindset</span>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section>
-        <h2>Valori & Mindset</h2>
-        <p style="font-size: 9.5pt; font-style: italic; color: #555; margin: 0;">
-            [span_31](start_span)[span_32](start_span)"Credo nell'innovazione come leva per restituire tempo e dignità creativa alle persone. Il mio approccio è guidato dalla pragmaticità: meno complessità tecnica, più risultati scalabili e comprensibili."[span_31](end_span)[span_32](end_span)
-        </p>
-    </section>
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Referente Team Innovazione</span>
+                    <span class="job-date">04/2022 – 09/2023</span>
+                </div>
+                <div class="job-company">Connetto S.R.L. (Giotto S.R.L.)</div>
+                <ul>
+                    <li>Sviluppo di strumenti di automazione cloud (AppScript) per i flussi di lavoro delle PMI.</li>
+                    <li>Analisi progettuale e individuazione bandi agevolati per progetti di R&S e innovazione.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Consulente Junior R&S</span>
+                    <span class="job-date">03/2021 – 03/2022</span>
+                </div>
+                <div class="job-company">T4B - Technology For Business S.R.L.</div>
+                <ul>
+                    <li>Ricerca tecnologica e prototipazione hardware IoT (Arduino) per raccolta dati industriali.</li>
+                    <li>Stesura di deliverable tecnici per la rendicontazione di progetti di ricerca.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="main-section">
+            <div class="main-h2">Expertise & Progetti</div>
+            <div class="highlight-card">
+                <span class="card-title">Automazione Amministrativa (AFC & HR)</span>
+                <span class="card-desc">Gestione flussi documenti HR, note spese, carte di credito e monitoraggio cash flow tramite tool custom.</span>
+            </div>
+            <div class="highlight-card">
+                <span class="card-title">AI Support & Knowledge Management</span>
+                <span class="card-desc">Sviluppo di agenti specializzati per supporto alla finanza agevolata e creazione di dispense tecniche.</span>
+            </div>
+        </section>
+
+        <section class="main-section" style="margin-bottom: 0;">
+            <div class="main-h2">Formazione</div>
+            <div class="edu-item">
+                <div class="edu-title">Ingegneria Gestionale (Laurea Triennale)</div>
+                <div class="edu-inst">Università Mercatorum | In corso</div>
+            </div>
+            <div class="edu-item">
+                <div class="edu-title">Corso Tecniche di Programmazione in Python (80h)</div>
+                <div class="edu-inst">Focus: API Backend, Data Analysis | In corso (2025)</div>
+            </div>
+            <div class="edu-item">
+                <div class="edu-title">Studi in Ingegneria Fisica</div>
+                <div class="edu-inst">Politecnico di Torino</div>
+            </div>
+        </section>
+    </div>
 </div>
 
 </body>
