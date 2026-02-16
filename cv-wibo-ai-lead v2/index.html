@@ -6,225 +6,210 @@
     <title>CV Nadia Provenza - AI Adoption Lead</title>
     <style>
         :root {
-            --wibo-purple: #6d28d9;
-            --wibo-light-purple: #f5f3ff;
-            --text-main: #1f2937;
-            --text-muted: #4b5563;
-            --accent: #8b5cf6;
+            --primary: #5e17eb; /* Colore Wibo Style */
+            --secondary: #2d3436;
+            --text: #444;
+            --light-bg: #f8f9fa;
         }
+
         * { box-sizing: border-box; }
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background-color: #e5e7eb;
-            margin: 0; padding: 0;
-            color: var(--text-main);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--text);
+            background: #f0f0f0;
+            margin: 0;
+            padding: 0;
         }
+
         .page {
             width: 210mm;
             min-height: 297mm;
+            padding: 20mm;
             margin: 10mm auto;
             background: white;
-            display: flex;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        /* Sidebar */
-        .sidebar {
-            flex: 1;
-            background-color: var(--wibo-light-purple);
-            padding: 30px 20px;
-            border-right: 1px solid #ddd6fe;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-        .photo-space {
-            width: 120px;
-            height: 120px;
-            background: #ddd6fe;
-            border-radius: 50%;
-            margin: 0 auto;
-            border: 3px solid white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            color: var(--wibo-purple);
-            text-transform: uppercase;
-        }
-        /* Main Content */
-        .main {
-            flex: 2.5;
-            padding: 40px;
-        }
-        h1 { margin: 0; color: var(--wibo-purple); font-size: 28px; text-transform: uppercase; letter-spacing: 1px; }
-        .subtitle { font-size: 16px; color: var(--accent); font-weight: 600; margin-bottom: 20px; }
-        
-        .value-prop {
-            background: var(--wibo-purple);
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 13px;
-            line-height: 1.5;
-            margin-bottom: 25px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
-        h2 { 
-            font-size: 14px; 
-            color: var(--wibo-purple); 
-            border-bottom: 2px solid var(--wibo-purple); 
-            padding-bottom: 5px; 
-            margin-top: 25px; 
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--secondary);
+            font-size: 26pt;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
-        .section-title-side {
-            font-size: 12px;
-            font-weight: bold;
-            color: var(--wibo-purple);
-            text-transform: uppercase;
+        .subtitle {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14pt;
+            margin-top: 5px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            margin-top: 10px;
+            color: #666;
+        }
+
+        section { margin-bottom: 18px; }
+
+        h2 {
+            font-size: 13pt;
+            color: var(--primary);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 3px;
             margin-bottom: 10px;
-            display: block;
+            text-transform: uppercase;
         }
 
-        .job { margin-bottom: 20px; }
-        .job-header { display: flex; justify-content: space-between; font-weight: bold; font-size: 14px; }
-        .company { color: var(--accent); font-size: 13px; margin-bottom: 5px; }
-        ul { padding-left: 15px; margin: 5px 0; }
-        li { font-size: 12.5px; color: var(--text-muted); margin-bottom: 5px; }
+        .job-title { font-weight: bold; color: #333; }
+        .company-date { display: flex; justify-content: space-between; font-style: italic; font-size: 10pt; color: #666; }
+
+        ul { padding-left: 18px; margin: 5px 0; }
+        li { margin-bottom: 4px; font-size: 10.5pt; }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 5px;
+        }
 
         .tag {
-            display: inline-block;
-            background: white;
-            padding: 4px 8px;
+            background: var(--light-bg);
+            border: 1px solid #ddd;
+            padding: 2px 8px;
             border-radius: 4px;
-            font-size: 11px;
-            margin: 2px;
-            border: 1px solid #ddd6fe;
+            font-size: 9pt;
+            color: var(--secondary);
         }
-        
-        .contact-item { font-size: 12px; margin-bottom: 8px; color: var(--text-muted); }
-        
+
+        .highlight-box {
+            background-color: #fcfaff;
+            border-left: 4px solid var(--primary);
+            padding: 10px 15px;
+            margin: 10px 0;
+        }
+
         @media print {
-            body { background: white; }
+            body { background: none; }
             .page { margin: 0; box-shadow: none; }
         }
     </style>
 </head>
 <body>
-    <div class="page">
-        <div class="sidebar">
-            <div class="photo-space">Inserisci Foto</div>
-            
-            <section>
-                <span class="section-title-side">Contatti</span>
-                <div class="contact-item">📍 Torino, Italia</div>
-                <div class="contact-item">✉️ nadia.provenza94@gmail.com</div>
-                <div class="contact-item">🔗 linkedin.com/in/nadia-provenza</div>
-            </section>
 
-            <section>
-                <span class="section-title-side">Formazione Tech</span>
-                <div style="font-size: 12px; font-weight: bold;">Python Masterclass (80h)</div>
-                <div style="font-size: 11px; color: var(--text-muted);">Focus: Backend API, Automazione & Data Analysis.</div>
-                <div style="font-size: 11px; color: var(--wibo-purple); margin-top:5px;"><i>In corso: consolidamento competenze per integrazione LLM via API.</i></div>
-            </section>
-
-            <section>
-                <span class="section-title-side">Hard Skills</span>
-                <div class="tag">Prompt Engineering</div>
-                <div class="tag">VBA (Excel Automation)</div>
-                <div class="tag">Google AppScript</div>
-                <div class="tag">Arduino / IoT</div>
-                <div class="tag">Gestione LMS</div>
-                <div class="tag">Controllo di Gestione</div>
-            </section>
-
-            <section>
-                <span class="section-title-side">Lingue</span>
-                <div class="contact-item">Italiano: Madrelingua</div>
-                <div class="contact-item">Inglese: Professionale</div>
-            </section>
-
-            <section>
-                <span class="section-title-side">Mindset</span>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">
-                    Metodo scientifico derivato dall'Ingegneria Fisica applicato alla risoluzione creativa di problemi aziendali. Specialista nel rendere l'innovazione "masticabile" e meno spaventosa.
-                </p>
-            </section>
+<div class="page">
+    <header>
+        <h1>Nadia Provenza</h1>
+        <div class="subtitle">AI Adoption Specialist | Process Translator</div>
+        <div class="contact-info">
+            <span>📍 Torino, Italia</span>
+            <span>📧 nadia.provenza94@gmail.com</span>
+            <span>🔗 linkedin.com/in/nadia-provenza</span>
         </div>
+    </header>
 
-        <div class="main">
-            <h1>Nadia Provenza</h1>
-            <div class="subtitle">AI Adoption Lead | Process Translator | Engineering Mindset</div>
-            
-            <div class="value-prop">
-                <strong>Perché io per Wibo:</strong> Non sono una programmatrice pura, ma un "Ponte". Unisco la forma mentis schematica dell'ingegneria alla capacità di parlare il linguaggio dell'amministrazione. La mia missione? Abbattere la resistenza al cambiamento creando automazioni semplici, efficaci e scalabili, "crescendo insieme al cliente" senza imporre inutili complessità.
+    <section>
+        <h2>Profilo Professionale</h2>
+        <p style="font-size: 10.5pt; margin: 0;">
+            [span_0](start_span)[span_1](start_span)Ingegnera Gestionale in formazione con background in Ingegneria Fisica[span_0](end_span)[span_1](end_span). [span_2](start_span)[span_3](start_span)Specializzata nel tradurre la complessità dei processi amministrativi in soluzioni digitali agili[span_2](end_span)[span_3](end_span). [span_4](start_span)Esperta nell'integrazione di AI Generativa e automazione low-code (VBA, AppScript) per trasformare la burocrazia in flussi snelli e scalabili[span_4](end_span).
+        </p>
+    </section>
+
+    <section>
+        <h2>Esperienza Professionale</h2>
+        
+        <div class="job-item">
+            <div class="company-date">
+                <span class="job-title">Grants & Automation Specialist</span>
+                <span>10/2023 – OGGI</span>
             </div>
-
-            <h2>Esperienza Professionale</h2>
-
-            <div class="job">
-                <div class="job-header">
-                    <span>Grants & Automation Specialist</span>
-                    <span style="color: var(--accent);">2023 – OGGI</span>
-                </div>
-                <div class="company">CWS S.R.L.</div>
-                <ul>
-                    <li><strong>AI Implementation:</strong> Utilizzo di Prompt Engineering avanzato per la sintesi di documentazione PNRR, trasformando testi complessi in dati azionabili.</li>
-                    <li><strong>Change Management Pratico:</strong> Automatizzazione dei flussi di Cash Flow tramite VBA, mediando tra processi burocratici rigidi e la necessità di efficienza moderna.</li>
-                </ul>
-            </div>
-
-            <div class="job">
-                <div class="job-header">
-                    <span>Referente Team Innovazione</span>
-                    <span style="color: var(--accent);">2022 – 2023</span>
-                </div>
-                <div class="company">Giotto S.R.L.</div>
-                <ul>
-                    <li><strong>Cloud Automation:</strong> Sviluppo di script in Google AppScript per la sincronizzazione dei dati tra team diversi.</li>
-                    <li><strong>Analisi Strategica:</strong> Validazione di requisiti tecnici per progetti R&S, traducendo le idee creative in piani di fattibilità metodologica.</li>
-                </ul>
-            </div>
-
-            <div class="job">
-                <div class="job-header">
-                    <span>Consulente Junior R&S</span>
-                    <span style="color: var(--accent);">2021 – 2022</span>
-                </div>
-                <div class="company">T4B - Technology For Business S.R.L.</div>
-                <ul>
-                    <li><strong>IoT Prototyping:</strong> Ricerca e sviluppo su protocolli LoRaWAN e prototipazione hardware con Arduino.</li>
-                    <li><strong>Technical Writing:</strong> Redazione di deliverable tecnici complessi per la rendicontazione di progetti industriali.</li>
-                </ul>
-            </div>
-
-            <h2>Istruzione</h2>
-            <div class="job">
-                <div class="job-header">
-                    <span>Ingegneria Gestionale</span>
-                    <span>In corso</span>
-                </div>
-                <div class="company">Università Mercatorum</div>
-            </div>
-            <div class="job">
-                <div class="job-header">
-                    <span>Studi in Ingegneria Fisica</span>
-                    <span></span>
-                </div>
-                <div class="company">Politecnico di Torino</div>
-                <div style="font-size: 11px; color: var(--text-muted);">Forma mentis basata su fisica quantistica, elettronica e informatica.</div>
-            </div>
-
-            <h2>Progetti e Competenze Extra</h2>
+            <div style="font-style: italic; font-size: 10pt; margin-bottom: 5px;">CWS S.R.L.</div>
             <ul>
-                <li><strong>Data Cleaning:</strong> Creazione di script collegati per la pulizia e l'armonizzazione di template Excel complessi.</li>
-                <li><strong>Customer Support & Training:</strong> Esperienza diretta nel supporto utenti su piattaforme LMS e WordPress, fondamentale per guidare l'adozione di nuove tecnologie (AI).</li>
+                [span_5](start_span)[span_6](start_span)<li><strong>AI Process Design:</strong> Implementazione di tecniche di Prompt Engineering per l'analisi e sintesi di bandi PNRR e documentazione complessa[span_5](end_span)[span_6](end_span).</li>
+                [span_7](start_span)[span_8](start_span)[span_9](start_span)<li><strong>Efficienza AFC:</strong> Sviluppo di architetture VBA per l'automazione del cash flow e monitoraggio finanziario[span_7](end_span)[span_8](end_span)[span_9](end_span).</li>
+                [span_10](start_span)<li><strong>Change Management:</strong> Ottimizzazione dei flussi di lavoro mediando tra necessità operative e processi burocratici rigidi[span_10](end_span).</li>
             </ul>
         </div>
-    </div>
+
+        <div class="job-item" style="margin-top: 12px;">
+            <div class="company-date">
+                <span class="job-title">Referente Team Innovazione</span>
+                <span>04/2022 – 09/2023</span>
+            </div>
+            <div style="font-style: italic; font-size: 10pt; margin-bottom: 5px;">Connetto S.R.L. (Giotto S.R.L.)</div>
+            <ul>
+                [span_11](start_span)[span_12](start_span)[span_13](start_span)<li><strong>Cloud Automation:</strong> Sviluppo di script Google AppScript per l'automazione bidirezionale tra Sheets e Calendar[span_11](end_span)[span_12](end_span)[span_13](end_span).</li>
+                [span_14](start_span)[span_15](start_span)<li><strong>Analisi Strategica:</strong> Validazione dei requisiti tecnici per progetti di R&S e Transizione 4.0 per PMI[span_14](end_span)[span_15](end_span).</li>
+            </ul>
+        </div>
+
+        <div class="job-item" style="margin-top: 12px;">
+            <div class="company-date">
+                <span class="job-title">Consulente Junior R&S</span>
+                <span>03/2021 – 03/2022</span>
+            </div>
+            <div style="font-style: italic; font-size: 10pt; margin-bottom: 5px;">T4B - Technology For Business S.R.L.</div>
+            <ul>
+                [span_16](start_span)[span_17](start_span)[span_18](start_span)<li><strong>IoT Prototyping:</strong> Ricerca e prototipazione hardware (Arduino) con protocolli LoRaWAN e Wi-Fi per ambito industriale[span_16](end_span)[span_17](end_span)[span_18](end_span).</li>
+                [span_19](start_span)[span_20](start_span)<li><strong>Technical Writing:</strong> Stesura di deliverable tecnici per la rendicontazione di progetti di ricerca[span_19](end_span)[span_20](end_span).</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Progetti di Automazione & AI</h2>
+        <div class="highlight-box">
+            <ul style="margin: 0;">
+                [span_21](start_span)<li><strong>AI Agent Development:</strong> Sviluppo di agenti specializzati per il supporto alla Finanza Agevolata e revisione fascicoli fiscali[span_21](end_span).</li>
+                [span_22](start_span)[span_23](start_span)<li><strong>Cross-Platform Ecosystem:</strong> Architettura di file complessi in VBA per la gestione di Cash Flow, Magazzino e HR[span_22](end_span)[span_23](end_span).</li>
+                [span_24](start_span)<li><strong>E-learning Tech Support:</strong> Gestione tecnica di piattaforme LMS (WordPress) e digital content editing[span_24](end_span).</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Formazione e Competenze</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+                <div class="job-title" style="font-size: 10pt;">Percorso Accademico</div>
+                <ul style="font-size: 9pt;">
+                    [span_25](start_span)[span_26](start_span)<li>Ingegneria Gestionale (Univ. Mercatorum) - In corso[span_25](end_span)[span_26](end_span)</li>
+                    [span_27](start_span)[span_28](start_span)<li>Corso Python (80h): API, Data Analysis, ML - In corso[span_27](end_span)[span_28](end_span)</li>
+                    [span_29](start_span)[span_30](start_span)<li>Studi in Ingegneria Fisica (Politecnico di Torino)[span_29](end_span)[span_30](end_span)</li>
+                </ul>
+            </div>
+            <div>
+                <div class="job-title" style="font-size: 10pt;">Tech Stack</div>
+                <div class="tag-container">
+                    <span class="tag">Prompt Engineering</span>
+                    <span class="tag">VBA (Excel Expert)</span>
+                    <span class="tag">Google AppScript</span>
+                    <span class="tag">Python (Learning)</span>
+                    <span class="tag">Arduino IDE</span>
+                    <span class="tag">Agile Mindset</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Valori & Mindset</h2>
+        <p style="font-size: 9.5pt; font-style: italic; color: #555; margin: 0;">
+            [span_31](start_span)[span_32](start_span)"Credo nell'innovazione come leva per restituire tempo e dignità creativa alle persone. Il mio approccio è guidato dalla pragmaticità: meno complessità tecnica, più risultati scalabili e comprensibili."[span_31](end_span)[span_32](end_span)
+        </p>
+    </section>
+</div>
+
 </body>
 </html>
