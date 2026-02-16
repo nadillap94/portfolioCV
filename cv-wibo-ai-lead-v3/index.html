@@ -54,14 +54,16 @@
         .photo-space {
             width: 140px;
             height: 140px;
-            background: #ddd6fe;
+            background: #ddd6fe; /* Questo è il colore lilla che vedrai dietro la tua foto trasparente */
             border-radius: 50%;
             margin: 0 auto 10px auto;
-            border: 3px solid white;
+            border: 3px solid white; /* Il bordo bianco "stacca" il cerchio dalla sidebar */
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden; /* Fondamentale: taglia l'immagine se esce dai bordi del cerchio */
         }
+
 
         /* Main Content */
         .main {
@@ -151,7 +153,10 @@
 <body>
     <div class="page">
         <div class="sidebar">
-            <div class="photo-space"></div>
+            <div class="photo-space">
+                <img src="foto-profilo.png" alt="Nadia Provenza" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+            </div>
+
             
             <section>
                 <span class="section-title-side">Contatti</span>
