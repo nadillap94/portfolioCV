@@ -2,76 +2,77 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>CV Nadia Provenza - Process Translator & AI Specialist</title>
+    <title>CV Nadia Provenza - AI Adoption Specialist</title>
     <style>
         :root {
-            --sidebar-bg: #1e272e;
-            --accent-color: #5e17eb;
-            --text-main: #2f3640;
-            --text-light: #7f8c8d;
-            --white: #ffffff;
+            --sidebar-bg: #2d3436; /* Grigio antracite leggibile */
+            --accent-light: #a29bfe; /* Viola chiaro per contrasto su scuro */
+            --accent-dark: #5e17eb; /* Viola Wibo per titoli su bianco */
+            --text-main: #2d3436;
+            --text-sidebar: #ffffff;
+            --text-muted: #636e72;
         }
 
         * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
-        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; color: var(--text-main); }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background: #f0f2f5; color: var(--text-main); }
         
         .page {
             width: 210mm;
             height: 297mm;
             margin: 0 auto;
-            background: var(--white);
+            background: #ffffff;
             display: grid;
-            grid-template-columns: 72mm 138mm;
+            grid-template-columns: 75mm 135mm;
             overflow: hidden;
         }
 
-        /* SIDEBAR */
+        /* SIDEBAR - Massima Leggibilità */
         .sidebar {
             background: var(--sidebar-bg);
-            color: var(--white);
-            padding: 35px 25px;
+            color: var(--text-sidebar);
+            padding: 40px 25px;
             display: flex;
             flex-direction: column;
         }
 
-        h1 { font-size: 24pt; margin: 0 0 5px; line-height: 1.1; text-transform: uppercase; letter-spacing: 1px; }
-        .tagline { font-size: 11pt; color: var(--accent-color); font-weight: bold; margin-bottom: 35px; text-transform: uppercase; }
+        h1 { font-size: 24pt; margin: 0; line-height: 1.1; text-transform: uppercase; letter-spacing: 1px; color: #ffffff; }
+        .tagline { font-size: 10.5pt; color: var(--accent-light); font-weight: bold; margin: 10px 0 40px 0; text-transform: uppercase; }
 
-        .sidebar-section { margin-bottom: 30px; }
-        .sidebar-h2 { font-size: 10pt; text-transform: uppercase; border-bottom: 1px solid #3d4e5f; padding-bottom: 5px; margin-bottom: 15px; color: var(--accent-color); letter-spacing: 1px; }
+        .sidebar-section { margin-bottom: 35px; }
+        .sidebar-h2 { font-size: 10pt; text-transform: uppercase; border-bottom: 1px solid #4b5563; padding-bottom: 5px; margin-bottom: 15px; color: var(--accent-light); font-weight: bold; }
         
-        .contact-item { font-size: 9pt; margin-bottom: 10px; display: block; color: #dcdde1; text-decoration: none; }
+        .contact-item { font-size: 9.5pt; margin-bottom: 12px; display: block; color: #ffffff; text-decoration: none; }
         
-        .skill-group { margin-bottom: 18px; }
-        .skill-title { font-size: 9pt; font-weight: bold; display: block; margin-bottom: 6px; color: #f5f6fa; }
-        .tag { display: inline-block; background: #353b48; padding: 4px 10px; border-radius: 4px; font-size: 8pt; margin: 2px 0; color: #f5f6fa; }
+        .skill-group { margin-bottom: 20px; }
+        .skill-title { font-size: 9pt; font-weight: bold; display: block; margin-bottom: 8px; color: #ffffff; text-transform: uppercase; }
+        .tag { display: inline-block; background: #444; border: 1px solid #555; padding: 5px 10px; border-radius: 4px; font-size: 8.5pt; margin: 2px; color: #ffffff; }
 
         /* MAIN CONTENT */
-        .main { padding: 40px 35px; }
+        .main { padding: 45px 35px; }
         
-        .main-section { margin-bottom: 25px; }
-        .main-h2 { font-size: 14pt; color: var(--accent-color); border-bottom: 2px solid #f1f2f6; padding-bottom: 5px; margin-bottom: 15px; text-transform: uppercase; font-weight: bold; }
+        .main-section { margin-bottom: 28px; }
+        .main-h2 { font-size: 14pt; color: var(--accent-dark); border-bottom: 2px solid #f1f2f6; padding-bottom: 5px; margin-bottom: 18px; text-transform: uppercase; font-weight: bold; }
 
-        .job { margin-bottom: 20px; }
+        .job { margin-bottom: 22px; }
         .job-header { display: flex; justify-content: space-between; align-items: baseline; }
-        .job-title { font-size: 11pt; font-weight: bold; color: #1e272e; }
-        .job-company { font-size: 10pt; color: var(--accent-color); font-weight: 600; margin-top: 2px; }
-        .job-date { font-size: 9pt; color: var(--text-light); font-weight: bold; }
+        .job-title { font-size: 11.5pt; font-weight: bold; color: #000000; }
+        .job-company { font-size: 10.5pt; color: var(--accent-dark); font-weight: 600; margin-top: 2px; }
+        .job-date { font-size: 9pt; color: var(--text-muted); font-weight: bold; }
         
         ul { padding-left: 15px; margin: 8px 0; }
-        li { font-size: 10pt; color: var(--text-main); margin-bottom: 5px; line-height: 1.4; }
+        li { font-size: 10pt; color: var(--text-main); margin-bottom: 6px; line-height: 1.4; }
 
-        .highlight-card { background: #f9f9fb; border-left: 4px solid var(--accent-color); padding: 12px 15px; margin-top: 10px; }
-        .card-title { font-size: 10pt; font-weight: bold; display: block; margin-bottom: 3px; }
-        .card-desc { font-size: 9.5pt; color: var(--text-light); line-height: 1.3; }
+        .highlight-card { background: #f8faff; border-left: 4px solid var(--accent-dark); padding: 12px 15px; margin-top: 12px; }
+        .card-title { font-size: 10pt; font-weight: bold; display: block; color: #000; }
+        .card-desc { font-size: 9.5pt; color: var(--text-muted); line-height: 1.4; }
 
-        .edu-item { margin-bottom: 12px; }
+        .edu-item { margin-bottom: 15px; }
         .edu-title { font-size: 10.5pt; font-weight: bold; }
-        .edu-inst { font-size: 9.5pt; color: var(--text-light); }
+        .edu-inst { font-size: 9.5pt; color: var(--text-muted); }
 
         @media print {
             body { background: none; }
-            .page { margin: 0; box-shadow: none; }
+            .page { margin: 0; box-shadow: none; border: none; }
         }
     </style>
 </head>
@@ -97,7 +98,7 @@
             </div>
             <div class="skill-group">
                 <span class="skill-title">Automation</span>
-                <span class="tag">VBA (Excel Expert)</span> <span class="tag">Google AppScript</span>
+                <span class="tag">VBA Expert</span> <span class="tag">AppScript</span>
             </div>
             <div class="skill-group">
                 <span class="skill-title">Coding</span>
@@ -107,14 +108,14 @@
 
         <div class="sidebar-section">
             <div class="sidebar-h2">Lingue</div>
-            [span_5](start_span)<span class="contact-item">Italiano: Madrelingua[span_5](end_span)</span>
-            [span_6](start_span)<span class="contact-item">Inglese: Professionale[span_6](end_span)</span>
+            <span class="contact-item">Italiano: Madrelingua</span>
+            <span class="contact-item">Inglese: Professionale (C1)</span>
         </div>
 
         <div class="sidebar-section" style="margin-top: auto;">
-            <div class="sidebar-h2">Valori</div>
-            <p style="font-size: 9pt; font-style: italic; color: #bdc3c7; line-height: 1.4;">
-                [span_7](start_span)"L'innovazione deve essere comprensibile e utile per chi la utilizza ogni giorno, evitando inutili complessità tecniche."[span_7](end_span)
+            <div class="sidebar-h2">Mindset</div>
+            <p style="font-size: 9.5pt; font-style: italic; color: #ffffff; line-height: 1.5; opacity: 0.9;">
+                "L'innovazione deve essere comprensibile e utile per chi la utilizza ogni giorno, abbattendo le barriere tra umano e tecnologia."
             </p>
         </div>
     </div>
@@ -122,8 +123,8 @@
     <div class="main">
         <section class="main-section">
             <div class="main-h2">Profilo Professionale</div>
-            <p style="font-size: 10pt; margin: 0; text-align: justify; line-height: 1.5;">
-                [span_8](start_span)Ingegnera Gestionale in formazione con un forte focus sull'efficienza operativa[span_8](end_span). [span_9](start_span)Opero come punto di raccordo tra le necessità di business e le potenzialità della tecnologia[span_9](end_span)[span_10](start_span), integrando AI Generativa e automazione avanzata per trasformare la complessità burocratica in processi snelli[span_10](end_span).
+            <p style="font-size: 10.5pt; margin: 0; text-align: justify; line-height: 1.6;">
+                Ingegnera Gestionale in formazione con background in Fisica. Opero come raccordo strategico tra business e tecnologia, utilizzando AI Generativa e automazione low-code per semplificare processi amministrativi e finanziari complessi.
             </p>
         </section>
 
@@ -133,50 +134,50 @@
             <div class="job">
                 <div class="job-header">
                     <span class="job-title">Grants & Automation Specialist</span>
-                    [span_11](start_span)<span class="job-date">10/2023 – OGGI[span_11](end_span)</span>
+                    <span class="job-date">2023 – OGGI</span>
                 </div>
                 <div class="job-company">CWS S.R.L.</div>
                 <ul>
-                    [span_12](start_span)<li>Digitalizzazione dello scouting bandi PNRR tramite Prompt Engineering avanzato[span_12](end_span).</li>
-                    [span_13](start_span)<li>Sviluppo di architetture VBA per l'automazione del monitoraggio finanziario e cash flow[span_13](end_span).</li>
-                    [span_14](start_span)<li>Ottimizzazione dei flussi nell'area AFC, mediando tra necessità operative e processi burocratici[span_14](end_span).</li>
+                    <li>Digitalizzazione analisi bandi PNRR tramite Prompt Engineering avanzato.</li>
+                    <li>Sviluppo architetture VBA per automazione Cash Flow e monitoraggio AFC.</li>
+                    <li>Mediazione tra requisiti operativi e processi burocratici per l'efficienza interna.</li>
                 </ul>
             </div>
 
             <div class="job">
                 <div class="job-header">
                     <span class="job-title">Referente Team Innovazione</span>
-                    [span_15](start_span)<span class="job-date">04/2022 – 09/2023[span_15](end_span)</span>
+                    <span class="job-date">2022 – 2023</span>
                 </div>
                 <div class="job-company">Connetto S.R.L. (Giotto S.R.L.)</div>
                 <ul>
-                    [span_16](start_span)<li>Sviluppo di strumenti di automazione cloud (AppScript) per i flussi di lavoro delle PMI[span_16](end_span).</li>
-                    [span_17](start_span)<li>Analisi progettuale e individuazione bandi agevolati per progetti di R&S e innovazione[span_17](end_span).</li>
+                    <li>Automazione workflow tramite Google AppScript e gestione dati integrata.</li>
+                    <li>Analisi tecnica per bandi di innovazione e progetti Transizione 4.0.</li>
                 </ul>
             </div>
 
             <div class="job">
                 <div class="job-header">
                     <span class="job-title">Consulente Junior R&S</span>
-                    [span_18](start_span)<span class="job-date">03/2021 – 03/2022[span_18](end_span)</span>
+                    <span class="job-date">2021 – 2022</span>
                 </div>
                 <div class="job-company">T4B - Technology For Business S.R.L.</div>
                 <ul>
-                    [span_19](start_span)[span_20](start_span)<li>Ricerca tecnologica e prototipazione hardware IoT (Arduino) per raccolta dati industriali[span_19](end_span)[span_20](end_span).</li>
-                    [span_21](start_span)<li>Stesura di deliverable tecnici per la rendicontazione di progetti di ricerca[span_21](end_span).</li>
+                    <li>Prototipazione hardware IoT (Arduino) per acquisizione dati industriali.</li>
+                    <li>Stesura deliverable tecnici e rendicontazione scientifica.</li>
                 </ul>
             </div>
         </section>
 
         <section class="main-section">
-            <div class="main-h2">Expertise & Progetti</div>
+            <div class="main-h2">Focus Operativo</div>
             <div class="highlight-card">
-                <span class="card-title">Automazione Amministrativa (AFC & HR)</span>
-                [span_22](start_span)[span_23](start_span)<span class="card-desc">Gestione flussi documenti HR, note spese, carte di credito e monitoraggio cash flow tramite tool custom[span_22](end_span)[span_23](end_span).</span>
+                <span class="card-title">Amministrazione, AFC & HR</span>
+                <span class="card-desc">Gestione flussi prima nota, note spese, HR document flow e controllo di gestione mediante strumenti custom.</span>
             </div>
             <div class="highlight-card">
-                <span class="card-title">AI Support & Knowledge Management</span>
-                [span_24](start_span)<span class="card-desc">Sviluppo di agenti specializzati per supporto alla finanza agevolata e creazione di dispense tecniche[span_24](end_span).</span>
+                <span class="card-title">Digital Support & AI Training</span>
+                <span class="card-desc">Amministrazione piattaforme LMS (WordPress) e creazione di assistenti AI per la formazione tecnica.</span>
             </div>
         </section>
 
@@ -184,15 +185,15 @@
             <div class="main-h2">Formazione</div>
             <div class="edu-item">
                 <div class="edu-title">Ingegneria Gestionale (Laurea Triennale)</div>
-                <div class="edu-inst">Università Mercatorum | [span_25](start_span)[span_26](start_span)In corso[span_25](end_span)[span_26](end_span)</div>
+                <div class="edu-inst">Università Mercatorum | In corso</div>
             </div>
             <div class="edu-item">
                 <div class="edu-title">Corso Tecniche di Programmazione in Python (80h)</div>
-                <div class="edu-inst">Focus: API Backend, Data Analysis | [span_27](start_span)[span_28](start_span)In corso (2025)[span_27](end_span)[span_28](end_span)</div>
+                <div class="edu-inst">Focus: API, Data Analysis, Scripting | In corso (2025)</div>
             </div>
             <div class="edu-item">
-                <div class="edu-title">Studi in Ingegneria Fisica</div>
-                [span_29](start_span)[span_30](start_span)<div class="edu-inst">Politecnico di Torino[span_29](end_span)[span_30](end_span)</div>
+                <div class="edu-title">Ingegneria Fisica</div>
+                <div class="edu-inst">Politecnico di Torino</div>
             </div>
         </section>
     </div>
@@ -200,3 +201,4 @@
 
 </body>
 </html>
+
