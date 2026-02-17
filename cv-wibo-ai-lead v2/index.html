@@ -6,18 +6,18 @@
     <title>CV Nadia Provenza - AI Adoption Lead</title>
     <style>
         :root {
-            /* Palette Tech Pro */
-            --vivid-royal: #3a0ca3;
-            --indigo-bloom: #7209b7;
-            --neon-pink: #f72585;
-            --electric-sapphire: #4361ee;
-            --sky-aqua: #4cc9f0;
-            
-            /* Toni funzionali derivati */
-            --bg-sidebar: #f8faff;
-            --text-main: #1e1b4b; /* Deep Indigo per il testo */
-            --text-muted: #475569;
+            /* Palette Codice 2 */
+            --vivid-royal: #20267a;       
+            --indigo-bloom: #472eb4;      
+            --electric-sapphire: #4361ee; 
+            --neon-pink: #d903ff;         
+            --sky-aqua: #72bcf1;          
+            --wibo-light-purple: #f5f3ff; 
+            --bg-profile: #e6e2ff;        
+            --text-main: #1f2937;
+            --text-muted: #4e65da;        
         }
+
         * { box-sizing: border-box; }
 
         @page {
@@ -26,8 +26,8 @@
         }
 
         body {
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-            background-color: #f1f5f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e5e7eb;
             margin: 0; padding: 0;
             color: var(--text-main);
             -webkit-print-color-adjust: exact;
@@ -39,17 +39,17 @@
             margin: 0 auto;
             background: white;
             display: flex;
-            box-shadow: 0 0 30px rgba(58, 12, 163, 0.1);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
         }
 
-        /* Sidebar: Chiara, tech-clean */
+        /* Sidebar */
         .sidebar {
             flex: 1.15;
-            background-color: var(--bg-sidebar);
+            background-color: var(--wibo-light-purple);
             padding: 35px 25px;
-            border-right: 1px solid #e2e8f0;
+            border-right: 1px solid #ddd6fe;
             display: flex;
             flex-direction: column;
             gap: 25px;
@@ -61,12 +61,12 @@
             background: white;
             border-radius: 50%;
             margin: 0 auto 10px auto;
-            border: 4px solid var(--electric-sapphire);
+            border: 4px solid var(--neon-pink);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+            box-shadow: 0 4px 15px rgba(217, 3, 255, 0.2);
         }
 
         /* Main Content */
@@ -80,33 +80,47 @@
 
         header {
             border-bottom: 4px solid var(--vivid-royal);
-            padding-bottom: 20px;
+            padding-bottom: 15px;
             margin-bottom: 10px;
         }
 
-        h1 { margin: 0; color: var(--vivid-royal); font-size: 32px; text-transform: uppercase; letter-spacing: -0.5px; font-weight: 800; }
-        .subtitle { font-size: 14px; color: var(--electric-sapphire); font-weight: 700; margin-top: 8px; text-transform: uppercase; letter-spacing: 1px; }
+        h1 { 
+            margin: 0; 
+            font-size: 30px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            line-height: 1;
+            background: linear-gradient(90deg, var(--vivid-royal), var(--indigo-bloom));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle { 
+            font-size: 15px; 
+            color: var(--electric-sapphire); 
+            font-weight: 600; 
+            margin-top: 8px; 
+        }
         
         h2 { 
             font-size: 14px; 
             color: var(--vivid-royal); 
             border-bottom: 2px solid var(--sky-aqua); 
             padding-bottom: 5px; 
-            margin-top: 20px; 
+            margin-top: 10px; 
             margin-bottom: 15px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 800;
+            letter-spacing: 1px;
         }
 
         .section-title-side {
-            font-size: 11px;
-            font-weight: 800;
+            font-size: 12px;
+            font-weight: bold;
             color: var(--indigo-bloom);
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: block;
-            border-left: 3px solid var(--sky-aqua);
+            border-left: 3px solid var(--neon-pink);
             padding-left: 8px;
         }
 
@@ -114,44 +128,68 @@
             font-size: 13px;
             line-height: 1.6;
             text-align: justify;
-            color: var(--text-muted);
-            background: #fdfdff;
-            padding: 10px;
-            border-radius: 4px;
+            color: var(--vivid-royal);
+            background: var(--bg-profile);
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 500;
         }
 
-        .job { margin-bottom: 22px; }
+        .job { margin-bottom: 25px; } 
         .job-header { display: flex; justify-content: space-between; align-items: baseline; }
-        .job-title { font-weight: 700; font-size: 15px; color: var(--vivid-royal); }
-        .job-date { font-size: 11px; color: var(--neon-pink); font-weight: 800; letter-spacing: 0.5px; }
-        .company { color: var(--electric-sapphire); font-size: 13px; font-weight: 600; margin-bottom: 5px; }
+        .job-title { font-weight: bold; font-size: 14.5px; color: var(--text-main); }
+        
+        .job-date { 
+            font-size: 11px; 
+            color: var(--neon-pink); 
+            font-weight: bold;
+            background: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--wibo-light-purple);
+        }
+
+        .company { color: var(--indigo-bloom); font-size: 13.5px; font-weight: 600; margin-bottom: 5px; }
         
         ul { padding-left: 18px; margin: 5px 0; }
-        li { font-size: 12.5px; color: var(--text-muted); margin-bottom: 6px; line-height: 1.5; }
+        li { font-size: 12.5px; color: var(--text-muted); margin-bottom: 5px; text-align: justify; line-height: 1.5; }
 
-        .skill-group { margin-bottom: 15px; }
-        .skill-label { font-size: 11px; font-weight: 800; display: block; margin-bottom: 6px; color: var(--vivid-royal); }
+        .skill-group { margin-bottom: 12px; }
+        .skill-label { font-size: 11.5px; font-weight: bold; display: block; margin-bottom: 4px; color: var(--vivid-royal); }
+        
         .tag {
             display: inline-block;
             background: white;
-            padding: 4px 10px;
+            padding: 4px 8px;
             border-radius: 4px;
             font-size: 10.5px;
             margin: 2px 0;
-            border: 1px solid var(--sky-aqua);
+            border: 1px solid var(--electric-sapphire);
             color: var(--vivid-royal);
-            font-weight: 600;
-            box-shadow: 2px 2px 0px var(--sky-aqua);
+            box-shadow: 2px 2px 0px var(--electric-sapphire);
         }
-        .in-progress { color: var(--indigo-bloom); font-style: italic; font-size: 10px; font-weight: 600; }
+
+        .in-progress { 
+            color: var(--indigo-bloom); 
+            font-style: italic; 
+            font-size: 10px; 
+            background: var(--bg-profile);
+            display: inline-block;
+            padding: 0 4px;
+            border-radius: 2px;
+        }
         
-        .contact-item { font-size: 12px; margin-bottom: 10px; color: var(--text-main); font-weight: 500; }
+        .contact-item { font-size: 12px; margin-bottom: 8px; color: var(--text-muted); line-height: 1.4; }
 
         @media print {
-            body { background: white; }
-            .page { box-shadow: none; margin: 0; }
-            .sidebar { background-color: var(--bg-sidebar) !important; }
-            .tag { box-shadow: none; border: 1px solid var(--sky-aqua) !important; }
+            body { background: white; margin: 0; padding: 0; }
+            .page { 
+                margin: 0; 
+                box-shadow: none; 
+                width: 210mm; 
+                height: 297mm; 
+            }
+            .sidebar { background-color: var(--wibo-light-purple) !important; }
         }
     </style>
 </head>
@@ -171,15 +209,15 @@
 
             <section>
                 <span class="section-title-side">Formazione</span>
-                <div style="font-size: 12px; font-weight: bold; color: var(--vivid-royal);">Corso Python</div>
-                <div style="font-size: 11px; color: var(--text-muted);">API Backend, Data Analysis.</div>
+                <div style="font-size: 12px; font-weight: bold; margin-bottom: 2px;">Corso Python</div>
+                <div style="font-size: 11px; color: var(--text-muted);">API Backend, Data Analysis, Automation.</div>
                 <div class="in-progress">In corso</div>
                 
-                <div style="font-size: 12px; font-weight: bold; margin-top: 12px; color: var(--vivid-royal);">Ingegneria Gestionale</div>
+                <div style="font-size: 12px; font-weight: bold; margin-top: 12px; margin-bottom: 2px;">Ingegneria Gestionale</div>
                 <div style="font-size: 11px; color: var(--text-muted);">Università Mercatorum</div>
                 <div class="in-progress">In corso</div>
 
-                <div style="font-size: 12px; font-weight: bold; margin-top: 12px; color: var(--vivid-royal);">Ingegneria Fisica</div>
+                <div style="font-size: 12px; font-weight: bold; margin-top: 12px; margin-bottom: 2px;">Ingegneria Fisica</div>
                 <div style="font-size: 11px; color: var(--text-muted);">Politecnico di Torino</div>
             </section>
 
@@ -190,18 +228,34 @@
                     <span class="tag">Prompt Engineering</span>
                     <span class="tag">AI Agents</span>
                     <span class="tag">LLM Interfaces</span>
+                    <span class="tag">Multi-Agents Systems</span>
+                    <span class="tag">Iterative Refinements</span>
                 </div>
                 <div class="skill-group">
                     <span class="skill-label">Automation</span>
                     <span class="tag">VBA (Excel)</span>
                     <span class="tag">Google AppScript</span> 
-                    <span class="tag">Python</span>
+                    <span class="tag">Python <small class="in-progress">(Learning)</small></span>
                 </div>
                 <div class="skill-group">
                     <span class="skill-label">Data & Hardware</span>
                     <span class="tag">Arduino IDE</span>
                     <span class="tag">IoT Prototyping</span>
+                    <span class="tag">Technical Writing</span>
                 </div>
+
+                <div class="skill-group">
+                    <span class="skill-label">Business Ops</span>
+                    <span class="tag">Workflow Design</span>
+                    <span class="tag">HR & Admin Flows</span>
+                    <span class="tag">Grants</span>
+                </div>
+            </section>
+
+            <section>
+                <span class="section-title-side">Lingue</span>
+                <div class="contact-item">Italiano: Madrelingua</div>
+                <div class="contact-item">Inglese: Professionale</div>
             </section>
         </div>
 
@@ -214,7 +268,7 @@
             <section>
                 <h2>Profilo</h2>
                 <div class="profile-text">
-                    Ingegnera Gestionale in formazione con un background in Ingegneria Fisica. Opero come punto di raccordo tra le necessità di business e le potenzialità della tecnologia, con esperienza pratica nell'introdurre soluzioni di automazione low-code e AI Generativa in contesti aziendali tradizionali.
+                    Ingegnera Gestionale in formazione con un background in Ingegneria Fisica. Opero come punto di raccordo tra le necessità di business e le potenzialità della tecnologia, con esperienza pratica nell'introdurre soluzioni di automazione low-code (VBA, AppScript) e AI Generativa in contesti aziendali tradizionali. Il mio approccio è orientato alla semplicità e all'adozione reale.
                 </div>
             </section>
 
@@ -228,8 +282,8 @@
                     </div>
                     <div class="company">CWS S.R.L.</div>
                     <ul>
-                        <li><strong>AI Process Automation:</strong> Implementazione di tecniche di Prompt Engineering per l'analisi di bandi PNRR.</li>
-                        <li><strong>Efficienza AFC:</strong> Sviluppo di architetture in VBA per l'automazione del cash flow.</li>
+                        <li><strong>AI Process Automation:</strong> Implementazione sperimentale di tecniche di Prompt Engineering per l'analisi e la sintesi di bandi PNRR.</li>
+                        <li><strong>Efficienza AFC & Change Management:</strong> Sviluppo di architetture in VBA per l'automazione del monitoraggio finanziario e del cash flow.</li>
                     </ul>
                 </div>
 
@@ -240,8 +294,8 @@
                     </div>
                     <div class="company">Giotto S.R.L.</div>
                     <ul>
-                        <li><strong>Cloud Automation:</strong> Sviluppo di script in Google AppScript per workflow interni.</li>
-                        <li><strong>Analisi Progettuale:</strong> Supporto alla validazione dei requisiti per progetti di R&S.</li>
+                        <li><strong>Cloud Automation:</strong> Sviluppo di script in Google AppScript per automatizzare i flussi di lavoro interni.</li>
+                        <li><strong>Analisi Progettuale e Bandi:</strong> Analisi dei progetti d'impresa per l'individuazione di bandi agevolati.</li>
                     </ul>
                 </div>
 
@@ -252,15 +306,26 @@
                     </div>
                     <div class="company">T4B - Technology For Business S.R.L.</div>
                     <ul>
-                        <li><strong>IoT Hardware:</strong> Ricerca e prototipazione hardware IoT (Arduino/LoRaWAN).</li>
+                        <li><strong>Protocolli LoRa e LoRaWAN:</strong> Ricerca tecnologica e prototipazione hardware IoT (Arduino) per la raccolta dati industriale.</li>
+                    </ul>
+                </div>
+
+                <div class="job" style="margin-bottom: 0;">
+                    <div class="job-header">
+                        <span class="job-title">Customer Care & Digital Support</span>
+                        <span class="job-date">01/2020 – 03/2022</span>
+                    </div>
+                    <div class="company">Sin Tesi Forma S.R.L.</div>
+                    <ul>
+                        <li><strong>Gestione Ecosistema E-learning:</strong> Amministrazione della piattaforma LMS e del sito WordPress.</li>
                     </ul>
                 </div>
             </section>
 
             <section>
                 <h2>VALORI & MINDSET</h2>
-                <div class="profile-text" style="border-left: 4px solid var(--neon-pink); font-style: italic;">
-                    Considero la tecnologia come una leva per restituire valore e tempo alle persone e alla loro dignità creativa.
+                <div class="profile-text">
+                    Considero la tecnologia come una leva per restituire valore e tempo alle persone e alla loro dignità creativa. Cerco un ambiente dove l'innovazione sposa il rispetto e la tutela della persona.
                 </div>
             </section>
 
