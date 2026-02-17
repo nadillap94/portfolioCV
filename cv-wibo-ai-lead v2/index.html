@@ -6,24 +6,30 @@
     <title>CV Nadia Provenza - AI Adoption Lead</title>
     <style>
         :root {
-            /* Palette Sophisticated Tech */
-            --slate-900: #0f172a;  /* Blu quasi nero per testi e titoli */
-            --slate-700: #334155;  /* Grigio fumo per testi secondari */
-            --indigo-600: #4361ee; /* Colore strutturale */
-            --aqua: #4cc9f0;       /* Accento principale (Tech/AI) */
-            --pink: #f72585;       /* Accento puntiforme (punti elenco/date) */
-            --bg-sidebar: #f8fafc; /* Grigio chiarissimo ghiaccio per la sidebar */
-            --white: #ffffff;
+            /* Palette Tech Pro */
+            --vivid-royal: #3a0ca3;
+            --indigo-bloom: #7209b7;
+            --neon-pink: #f72585;
+            --electric-sapphire: #4361ee;
+            --sky-aqua: #4cc9f0;
+            
+            /* Toni funzionali derivati */
+            --bg-sidebar: #f8faff;
+            --text-main: #1e1b4b; /* Deep Indigo per il testo */
+            --text-muted: #475569;
         }
         * { box-sizing: border-box; }
 
-        @page { size: A4; margin: 0; }
+        @page {
+            size: A4;
+            margin: 0;
+        }
 
         body {
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            background-color: #e2e8f0;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background-color: #f1f5f9;
             margin: 0; padding: 0;
-            color: var(--slate-900);
+            color: var(--text-main);
             -webkit-print-color-adjust: exact;
         }
 
@@ -31,132 +37,121 @@
             width: 210mm;
             min-height: 297mm;
             margin: 0 auto;
-            background: var(--white);
+            background: white;
             display: flex;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 0 30px rgba(58, 12, 163, 0.1);
             position: relative;
+            overflow: hidden;
         }
 
-        /* Sidebar: Chiara ed elegante */
+        /* Sidebar: Chiara, tech-clean */
         .sidebar {
-            flex: 1;
+            flex: 1.15;
             background-color: var(--bg-sidebar);
-            padding: 40px 30px;
+            padding: 35px 25px;
             border-right: 1px solid #e2e8f0;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 25px;
         }
 
         .photo-space {
-            width: 130px;
-            height: 130px;
-            border-radius: 20px; /* Quadrato arrotondato più moderno del cerchio */
-            margin: 0 auto;
-            background: #cbd5e1;
-            border: 2px solid var(--aqua);
+            width: 140px;
+            height: 140px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 10px auto;
+            border: 4px solid var(--electric-sapphire);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
-            transform: rotate(-3deg); /* Tocco di design asimmetrico */
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
         }
 
-        /* Main Content: Pulito e spazioso */
+        /* Main Content */
         .main {
-            flex: 2.6;
-            padding: 50px 50px;
+            flex: 2.85;
+            padding: 40px 45px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: space-between; 
         }
 
         header {
-            margin-bottom: 30px;
+            border-bottom: 4px solid var(--vivid-royal);
+            padding-bottom: 20px;
+            margin-bottom: 10px;
         }
 
-        h1 { 
-            margin: 0; 
-            color: var(--slate-900); 
-            font-size: 34px; 
-            font-weight: 800; 
-            letter-spacing: -1px;
-            line-height: 0.9;
-        }
-
-        .subtitle { 
-            font-size: 14px; 
-            color: var(--indigo-600); 
-            font-weight: 700; 
-            margin-top: 10px; 
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        h1 { margin: 0; color: var(--vivid-royal); font-size: 32px; text-transform: uppercase; letter-spacing: -0.5px; font-weight: 800; }
+        .subtitle { font-size: 14px; color: var(--electric-sapphire); font-weight: 700; margin-top: 8px; text-transform: uppercase; letter-spacing: 1px; }
         
         h2 { 
-            font-size: 13px; 
-            color: var(--slate-900); 
-            border-left: 4px solid var(--aqua); 
-            padding-left: 10px; 
-            margin: 30px 0 20px 0;
+            font-size: 14px; 
+            color: var(--vivid-royal); 
+            border-bottom: 2px solid var(--sky-aqua); 
+            padding-bottom: 5px; 
+            margin-top: 20px; 
+            margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
+            font-weight: 800;
         }
 
         .section-title-side {
             font-size: 11px;
             font-weight: 800;
-            color: var(--slate-700);
+            color: var(--indigo-bloom);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             display: block;
+            border-left: 3px solid var(--sky-aqua);
+            padding-left: 8px;
         }
 
         .profile-text {
             font-size: 13px;
-            line-height: 1.7;
-            color: var(--slate-700);
-            background: #f1f5f9;
-            padding: 15px;
-            border-radius: 10px;
+            line-height: 1.6;
+            text-align: justify;
+            color: var(--text-muted);
+            background: #fdfdff;
+            padding: 10px;
+            border-radius: 4px;
         }
 
-        .job { margin-bottom: 25px; position: relative; }
+        .job { margin-bottom: 22px; }
         .job-header { display: flex; justify-content: space-between; align-items: baseline; }
-        .job-title { font-weight: 700; font-size: 15px; color: var(--slate-900); }
-        .job-date { font-size: 11px; color: var(--pink); font-weight: 800; }
-        .company { color: var(--indigo-600); font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+        .job-title { font-weight: 700; font-size: 15px; color: var(--vivid-royal); }
+        .job-date { font-size: 11px; color: var(--neon-pink); font-weight: 800; letter-spacing: 0.5px; }
+        .company { color: var(--electric-sapphire); font-size: 13px; font-weight: 600; margin-bottom: 5px; }
         
-        ul { padding-left: 15px; list-style: none; }
-        li { 
-            font-size: 12.5px; 
-            color: var(--slate-700); 
-            margin-bottom: 6px; 
-            position: relative; 
-        }
-        li::before {
-            content: "→";
-            position: absolute;
-            left: -15px;
-            color: var(--aqua);
-            font-weight: bold;
-        }
+        ul { padding-left: 18px; margin: 5px 0; }
+        li { font-size: 12.5px; color: var(--text-muted); margin-bottom: 6px; line-height: 1.5; }
 
+        .skill-group { margin-bottom: 15px; }
+        .skill-label { font-size: 11px; font-weight: 800; display: block; margin-bottom: 6px; color: var(--vivid-royal); }
         .tag {
             display: inline-block;
             background: white;
             padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 10px;
-            margin: 2px;
-            border: 1px solid #e2e8f0;
-            color: var(--slate-700);
+            border-radius: 4px;
+            font-size: 10.5px;
+            margin: 2px 0;
+            border: 1px solid var(--sky-aqua);
+            color: var(--vivid-royal);
             font-weight: 600;
+            box-shadow: 2px 2px 0px var(--sky-aqua);
         }
+        .in-progress { color: var(--indigo-bloom); font-style: italic; font-size: 10px; font-weight: 600; }
         
-        .contact-item { font-size: 12px; margin-bottom: 10px; color: var(--slate-700); display: flex; align-items: center; gap: 8px; }
+        .contact-item { font-size: 12px; margin-bottom: 10px; color: var(--text-main); font-weight: 500; }
 
         @media print {
             body { background: white; }
             .page { box-shadow: none; margin: 0; }
+            .sidebar { background-color: var(--bg-sidebar) !important; }
+            .tag { box-shadow: none; border: 1px solid var(--sky-aqua) !important; }
         }
     </style>
 </head>
@@ -164,104 +159,111 @@
     <div class="page">
         <div class="sidebar">
             <div class="photo-space">
-                <img src="foto-profilo.png" alt="Nadia Provenza" style="width: 100%; height: 100%; object-fit: cover; transform: rotate(3deg);">
+                <img src="foto-profilo.png" alt="Nadia Provenza" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
             </div>
 
             <section>
                 <span class="section-title-side">Contatti</span>
-                <div class="contact-item">📍 Torino, IT</div>
+                <div class="contact-item">📍 Torino, Italia</div>
                 <div class="contact-item">✉️ nadia.provenza94@gmail.com</div>
                 <div class="contact-item">🔗 in/nadia-provenza</div>
             </section>
 
             <section>
-                <span class="section-title-side">Core Skills</span>
-                <div style="margin-bottom: 15px;">
-                    <div style="font-size: 11px; font-weight: 700; margin-bottom: 5px;">AI & LLM</div>
-                    <span class="tag">Prompt Engineering</span>
-                    <span class="tag">AI Agents</span>
-                    <span class="tag">Iterative Refinement</span>
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <div style="font-size: 11px; font-weight: 700; margin-bottom: 5px;">AUTOMATION</div>
-                    <span class="tag">VBA</span>
-                    <span class="tag">Google AppScript</span>
-                    <span class="tag">Python (Learning)</span>
-                </div>
-                <div>
-                    <div style="font-size: 11px; font-weight: 700; margin-bottom: 5px;">HARDWARE</div>
-                    <span class="tag">Arduino</span>
-                    <span class="tag">LoRaWAN</span>
-                </div>
+                <span class="section-title-side">Formazione</span>
+                <div style="font-size: 12px; font-weight: bold; color: var(--vivid-royal);">Corso Python</div>
+                <div style="font-size: 11px; color: var(--text-muted);">API Backend, Data Analysis.</div>
+                <div class="in-progress">In corso</div>
+                
+                <div style="font-size: 12px; font-weight: bold; margin-top: 12px; color: var(--vivid-royal);">Ingegneria Gestionale</div>
+                <div style="font-size: 11px; color: var(--text-muted);">Università Mercatorum</div>
+                <div class="in-progress">In corso</div>
+
+                <div style="font-size: 12px; font-weight: bold; margin-top: 12px; color: var(--vivid-royal);">Ingegneria Fisica</div>
+                <div style="font-size: 11px; color: var(--text-muted);">Politecnico di Torino</div>
             </section>
 
             <section>
-                <span class="section-title-side">Formazione</span>
-                <div style="font-size: 12px; font-weight: bold; color: var(--slate-900);">Ing. Gestionale</div>
-                <div style="font-size: 11px; color: var(--indigo-600); font-style: italic;">In corso</div>
-                
-                <div style="font-size: 12px; font-weight: bold; margin-top: 15px; color: var(--slate-900);">Ing. Fisica</div>
-                <div style="font-size: 11px; color: var(--slate-700);">Politecnico di Torino</div>
+                <span class="section-title-side">Tech Stack</span>
+                <div class="skill-group">
+                    <span class="skill-label">AI & Prompting</span>
+                    <span class="tag">Prompt Engineering</span>
+                    <span class="tag">AI Agents</span>
+                    <span class="tag">LLM Interfaces</span>
+                </div>
+                <div class="skill-group">
+                    <span class="skill-label">Automation</span>
+                    <span class="tag">VBA (Excel)</span>
+                    <span class="tag">Google AppScript</span> 
+                    <span class="tag">Python</span>
+                </div>
+                <div class="skill-group">
+                    <span class="skill-label">Data & Hardware</span>
+                    <span class="tag">Arduino IDE</span>
+                    <span class="tag">IoT Prototyping</span>
+                </div>
             </section>
         </div>
 
         <div class="main">
             <header>
-                <h1>Nadia<br>Provenza</h1>
-                <div class="subtitle">AI Automation Specialist | Bridge Architect</div>
+                <h1>Nadia Provenza</h1>
+                <div class="subtitle">Grants & AI Automation Specialist | Process Translator</div>
             </header>
             
             <section>
-                <h2>Il Mio Valore</h2>
+                <h2>Profilo</h2>
                 <div class="profile-text">
-                    Ingegnera specializzata nel colmare il gap tra business e tecnologia. Trasformo processi amministrativi rigidi in flussi agili grazie all'integrazione di AI Generativa e automazione low-code.
+                    Ingegnera Gestionale in formazione con un background in Ingegneria Fisica. Opero come punto di raccordo tra le necessità di business e le potenzialità della tecnologia, con esperienza pratica nell'introdurre soluzioni di automazione low-code e AI Generativa in contesti aziendali tradizionali.
                 </div>
             </section>
 
             <section>
-                <h2>Esperienze Chiave</h2>
+                <h2>Esperienza Professionale</h2>
 
                 <div class="job">
                     <div class="job-header">
                         <span class="job-title">Grants & Automation Specialist</span>
-                        <span class="job-date">2023 – OGGI</span>
+                        <span class="job-date">10/2023 – OGGI</span>
                     </div>
                     <div class="company">CWS S.R.L.</div>
                     <ul>
-                        <li>Implementazione agenti AI per analisi bandi PNRR.</li>
-                        <li>Automazione Cash-Flow tramite architetture VBA.</li>
+                        <li><strong>AI Process Automation:</strong> Implementazione di tecniche di Prompt Engineering per l'analisi di bandi PNRR.</li>
+                        <li><strong>Efficienza AFC:</strong> Sviluppo di architetture in VBA per l'automazione del cash flow.</li>
                     </ul>
                 </div>
 
                 <div class="job">
                     <div class="job-header">
                         <span class="job-title">Referente Team Innovazione</span>
-                        <span class="job-date">2022 – 2023</span>
+                        <span class="job-date">04/2022 – 09/2023</span>
                     </div>
                     <div class="company">Giotto S.R.L.</div>
                     <ul>
-                        <li>Workflow Automation su Google AppScript.</li>
-                        <li>Validazione tecnica progetti R&S.</li>
+                        <li><strong>Cloud Automation:</strong> Sviluppo di script in Google AppScript per workflow interni.</li>
+                        <li><strong>Analisi Progettuale:</strong> Supporto alla validazione dei requisiti per progetti di R&S.</li>
                     </ul>
                 </div>
 
                 <div class="job">
                     <div class="job-header">
                         <span class="job-title">Consulente Junior R&S</span>
-                        <span class="job-date">2021 – 2022</span>
+                        <span class="job-date">03/2021 – 03/2022</span>
                     </div>
-                    <div class="company">T4B S.R.L.</div>
+                    <div class="company">T4B - Technology For Business S.R.L.</div>
                     <ul>
-                        <li>Prototipazione IoT Industriale su protocolli LoRaWAN.</li>
+                        <li><strong>IoT Hardware:</strong> Ricerca e prototipazione hardware IoT (Arduino/LoRaWAN).</li>
                     </ul>
                 </div>
             </section>
 
-            <footer style="margin-top: 20px; border-top: 1px solid #f1f5f9; padding-top: 20px;">
-                <div style="font-size: 11px; color: var(--slate-700); text-align: center; font-style: italic;">
-                    "Tecnologia come leva per la dignità creativa."
+            <section>
+                <h2>VALORI & MINDSET</h2>
+                <div class="profile-text" style="border-left: 4px solid var(--neon-pink); font-style: italic;">
+                    Considero la tecnologia come una leva per restituire valore e tempo alle persone e alla loro dignità creativa.
                 </div>
-            </footer>
+            </section>
+
         </div>
     </div>
 </body>
