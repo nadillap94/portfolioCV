@@ -6,17 +6,18 @@
     <title>CV Nadia Provenza - AI Adoption Lead</title>
     <style>
         :root {
-            /* Palette Tech: Deep Navy, Electric Blue e Slate Gray */
-            --wibo-purple: #0f172a; /* Deep Navy per un look solido e IT */
-            --wibo-light-purple: #1e293b; /* Sidebar Slate per vibe "Dev" */
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --accent: #0ea5e9; /* Electric Blue per le parti "tech" e AI */
-            --border-side: #334155;
-            --tag-bg: #f1f5f9;
+            /* Nuova Palette Neon Tech */
+            --wibo-purple: #3a0ca3;       /* Vivid Royal - Titoli e Header */
+            --wibo-light-purple: #7209b7; /* Indigo Bloom - Sfondo Sidebar */
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --accent: #f72585;             /* Neon Pink - Accenti e Date */
+            --tech-aqua: #4cc9f0;         /* Sky Aqua - Highlight secondari */
+            --electric-sapphire: #4361ee; /* Electric Sapphire - Bordi e Divider */
         }
         * { box-sizing: border-box; }
 
+        /* Impostazioni per eliminare i bordi bianchi del browser in stampa */
         @page {
             size: A4;
             margin: 0;
@@ -24,7 +25,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #cbd5e1;
+            background-color: #1f2937; /* Sfondo pagina scuro per far risaltare il foglio */
             margin: 0; padding: 0;
             color: var(--text-main);
             -webkit-print-color-adjust: exact;
@@ -36,7 +37,7 @@
             margin: 0 auto;
             background: white;
             display: flex;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
             position: relative;
             overflow: hidden;
         }
@@ -46,20 +47,20 @@
             flex: 1.15;
             background-color: var(--wibo-light-purple);
             padding: 35px 25px;
-            border-right: 1px solid var(--border-side);
+            border-right: 2px solid var(--electric-sapphire);
             display: flex;
             flex-direction: column;
             gap: 25px;
-            color: #f1f5f9; /* Testo chiaro su sidebar scura */
+            color: white; /* Testo chiaro su sidebar colorata */
         }
 
         .photo-space {
             width: 140px;
             height: 140px;
-            background: var(--border-side); 
+            background: var(--wibo-purple);
             border-radius: 50%;
             margin: 0 auto 10px auto;
-            border: 3px solid var(--accent); /* Cerchio evidenziato in Electric Blue */
+            border: 3px solid var(--tech-aqua); /* Bordo Aqua per la foto */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -76,18 +77,18 @@
         }
 
         header {
-            border-bottom: 2px solid var(--accent);
+            border-bottom: 3px solid var(--accent); /* Linea Neon Pink */
             padding-bottom: 15px;
             margin-bottom: 10px;
         }
 
         h1 { margin: 0; color: var(--wibo-purple); font-size: 30px; text-transform: uppercase; letter-spacing: 1px; line-height: 1; }
-        .subtitle { font-size: 15px; color: var(--accent); font-weight: 600; margin-top: 8px; }
+        .subtitle { font-size: 15px; color: var(--electric-sapphire); font-weight: 600; margin-top: 8px; }
         
         h2 { 
             font-size: 14px; 
-            color: var(--wibo-purple); 
-            border-bottom: 1px solid #e2e8f0; 
+            color: var(--wibo-light-purple); 
+            border-bottom: 2px solid var(--tech-aqua); 
             padding-bottom: 5px; 
             margin-top: 10px; 
             margin-bottom: 15px;
@@ -98,11 +99,11 @@
         .section-title-side {
             font-size: 12px;
             font-weight: bold;
-            color: var(--accent); /* Titoli sidebar azzurri */
+            color: var(--tech-aqua); /* Titoli sidebar in Sky Aqua */
             text-transform: uppercase;
             margin-bottom: 8px;
             display: block;
-            border-bottom: 1px solid var(--border-side);
+            border-bottom: 1px solid var(--electric-sapphire);
             padding-bottom: 3px;
         }
 
@@ -113,30 +114,30 @@
             color: var(--text-muted);
         }
 
-        .job { margin-bottom: 25px; } 
+        .job { margin-bottom: 25px; }
         .job-header { display: flex; justify-content: space-between; align-items: baseline; }
-        .job-title { font-weight: bold; font-size: 14.5px; color: var(--text-main); }
-        .job-date { font-size: 12px; color: var(--accent); font-weight: bold; }
-        .company { color: var(--text-muted); font-size: 13.5px; font-weight: 600; margin-bottom: 5px; }
+        .job-title { font-weight: bold; font-size: 14.5px; color: var(--wibo-purple); }
+        .job-date { font-size: 12px; color: var(--accent); font-weight: bold; } /* Date Neon Pink */
+        .company { color: var(--electric-sapphire); font-size: 13.5px; font-weight: 600; margin-bottom: 5px; }
         
         ul { padding-left: 18px; margin: 5px 0; }
         li { font-size: 12.5px; color: var(--text-muted); margin-bottom: 5px; text-align: justify; line-height: 1.5; }
 
         .skill-group { margin-bottom: 12px; }
-        .skill-label { font-size: 11.5px; font-weight: bold; display: block; margin-bottom: 4px; color: #f1f5f9; }
+        .skill-label { font-size: 11.5px; font-weight: bold; display: block; margin-bottom: 4px; color: white; }
         .tag {
             display: inline-block;
-            background: rgba(255,255,255,0.05); /* Tag traslucidi per la sidebar scura */
+            background: rgba(255, 255, 255, 0.1);
             padding: 4px 8px;
             border-radius: 4px;
             font-size: 10.5px;
             margin: 2px 0;
-            border: 1px solid var(--border-side);
-            color: #cbd5e1;
+            border: 1px solid var(--tech-aqua);
+            color: white;
         }
-        .in-progress { color: var(--accent); font-style: italic; font-size: 10px; }
+        .in-progress { color: var(--tech-aqua); font-style: italic; font-size: 10px; }
         
-        .contact-item { font-size: 12px; margin-bottom: 8px; color: #cbd5e1; line-height: 1.4; }
+        .contact-item { font-size: 12px; margin-bottom: 8px; color: #f3f4f6; line-height: 1.4; }
 
         @media print {
             body { background: white; margin: 0; padding: 0; }
@@ -147,7 +148,6 @@
                 height: 297mm; 
             }
             .sidebar { background-color: var(--wibo-light-purple) !important; color: white !important; }
-            .tag { border: 1px solid #475569 !important; background: transparent !important; color: #cbd5e1 !important; }
         }
     </style>
 </head>
@@ -167,16 +167,16 @@
 
             <section>
                 <span class="section-title-side">Formazione</span>
-                <div style="font-size: 12px; font-weight: bold; margin-bottom: 2px; color: white;">Corso Python</div>
-                <div style="font-size: 11px; color: #94a3b8;">API Backend, Data Analysis, Automation.</div>
+                <div style="font-size: 12px; font-weight: bold; margin-bottom: 2px;">Corso Python</div>
+                <div style="font-size: 11px; color: #e5e7eb;">API Backend, Data Analysis, Automation.</div>
                 <div class="in-progress">In corso</div>
                 
-                <div style="font-size: 12px; font-weight: bold; margin-top: 12px; margin-bottom: 2px; color: white;">Ingegneria Gestionale</div>
-                <div style="font-size: 11px; color: #94a3b8;">Università Mercatorum</div>
+                <div style="font-size: 12px; font-weight: bold; margin-top: 12px; margin-bottom: 2px;">Ingegneria Gestionale</div>
+                <div style="font-size: 11px; color: #e5e7eb;">Università Mercatorum</div>
                 <div class="in-progress">In corso</div>
 
-                <div style="font-size: 12px; font-weight: bold; margin-top: 12px; margin-bottom: 2px; color: white;">Ingegneria Fisica</div>
-                <div style="font-size: 11px; color: #94a3b8;">Politecnico di Torino</div>
+                <div style="font-size: 12px; font-weight: bold; margin-top: 12px; margin-bottom: 2px;">Ingegneria Fisica</div>
+                <div style="font-size: 11px; color: #e5e7eb;">Politecnico di Torino</div>
             </section>
 
             <section>
@@ -261,3 +261,34 @@
                     <div class="job-header">
                         <span class="job-title">Consulente Junior R&S</span>
                         <span class="job-date">03/2021 – 03/2022</span>
+                    </div>
+                    <div class="company">T4B - Technology For Business S.R.L.</div>
+                    <ul>
+                        <li><strong>Protocolli LoRa e LoRaWAN:</strong> Ricerca tecnologica e prototipazione hardware IoT (Arduino) per la raccolta dati industriale e stesura di deliverable tecnici.</li>
+                    </ul>
+                </div>
+
+                <div class="job" style="margin-bottom: 0;">
+                    <div class="job-header">
+                        <span class="job-title">Customer Care & Digital Support</span>
+                        <span class="job-date">01/2020 – 03/2022</span>
+                    </div>
+                    <div class="company">Sin Tesi Forma S.R.L.</div>
+                    <ul>
+                        <li><strong>Gestione Ecosistema E-learning:</strong> Amministrazione della piattaforma LMS e del sito WordPress, curando l'assistenza tecnica e l'erogazione dei corsi.</li>
+                        <li><strong>Digital Content & Support:</strong> Produzione di contenuti multimediali per la formazione (editing audio/video) e gestione dei flussi amministrativi.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>VALORI & MINDSET</h2>
+                <div class="profile-text">
+                    Considero la tecnologia come una leva per restituire valore e tempo alle persone e alla loro dignità creativa. Cerco un ambiente dove l'innovazione sposa il rispetto e la tutela della persona, trasformando la competenza tecnica in progetti solidi e significativi.
+                </div>
+            </section>
+
+        </div>
+    </div>
+</body>
+</html>
