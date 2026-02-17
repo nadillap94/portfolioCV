@@ -2,67 +2,121 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>CV Nadia Provenza - Bridge Architect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nadia Provenza - Bridge Architect CV</title>
     <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #3498db;
-            --text: #333;
-            --light: #f4f7f6;
+            --bg: #ffffff;
+            --sidebar-bg: #1a1a2e;
+            --accent: #4361ee;
+            --text-dark: #2b2d42;
+            --text-light: #edf2f4;
+            --border: #e0e1dd;
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text); margin: 0; padding: 0; background: #fff; }
-        .container { width: 210mm; min-height: 297mm; padding: 20mm; margin: auto; box-sizing: border-box; display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
-        h1, h2 { color: var(--primary); text-transform: uppercase; margin-top: 0; }
-        .sidebar { background: var(--light); padding: 15px; border-radius: 8px; font-size: 0.9em; }
-        .tech-tag { background: #fff; border: 1px solid var(--accent); padding: 2px 8px; border-radius: 4px; display: inline-block; margin: 2px; font-size: 0.8em; }
-        .job { margin-bottom: 20px; }
-        .job-title { font-weight: bold; color: var(--accent); }
-        .date { font-style: italic; font-size: 0.85em; color: #666; }
+        body { font-family: 'Inter', -apple-system, sans-serif; margin: 0; color: var(--text-dark); background: #f8f9fa; }
+        .cv-page { width: 210mm; height: 297mm; background: var(--bg); margin: 20px auto; display: flex; box-shadow: 0 0 20px rgba(0,0,0,0.1); overflow: hidden; }
+        
+        /* Sidebar */
+        .sidebar { width: 35%; background: var(--sidebar-bg); color: var(--text-light); padding: 40px 25px; display: flex; flex-direction: column; }
+        .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--accent); margin: 0 auto 20px; object-fit: cover; }
+        .sidebar h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 15px; border-bottom: 1px solid #30343f; padding-bottom: 5px; }
+        .contact-item { font-size: 12px; margin-bottom: 10px; opacity: 0.9; }
+        .skill-tag { display: inline-block; background: rgba(67, 97, 238, 0.2); border: 1px solid var(--accent); color: white; padding: 4px 10px; border-radius: 15px; font-size: 11px; margin: 3px; }
+
+        /* Main Content */
+        .main { width: 65%; padding: 45px; position: relative; }
+        .header h1 { margin: 0; font-size: 32px; font-weight: 800; color: var(--sidebar-bg); }
+        .header p { margin: 5px 0; color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; }
+        .summary { font-size: 13px; line-height: 1.6; margin: 25px 0; font-style: italic; border-left: 4px solid var(--accent); padding-left: 15px; }
+        
+        .section-title { font-size: 18px; font-weight: 700; color: var(--sidebar-bg); margin: 30px 0 15px; display: flex; align-items: center; }
+        .section-title::after { content: ""; flex: 1; height: 2px; background: var(--border); margin-left: 15px; }
+        
+        .experience-item { margin-bottom: 25px; }
+        .exp-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .exp-role { font-weight: 700; color: var(--text-dark); font-size: 15px; }
+        .exp-company { color: var(--accent); font-weight: 600; font-size: 13px; }
+        .exp-date { font-size: 12px; color: #8d99ae; }
+        .exp-content { font-size: 12.5px; margin-top: 8px; padding-left: 15px; }
+        .exp-content li { margin-bottom: 5px; }
+        
+        .values-box { background: #f1f4ff; padding: 15px; border-radius: 8px; font-size: 12px; margin-top: 30px; }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="cv-page">
         <div class="sidebar">
+            <img src="https://via.placeholder.com/150" alt="Nadia Provenza" class="profile-img">
             <h2>Contatti</h2>
-            <p>Torino, Italia<br>nadia.provenza94@gmail.com<br>in/nadia-provenza</p>
+            <div class="contact-item">📍 Torino, Italia</div>
+            <div class="contact-item">✉️ nadia.provenza94@gmail.com</div>
+            <div class="contact-item">🔗 linkedin.com/in/nadia-provenza</div>
             
             <h2>Tech Stack</h2>
-            <p><strong>AI:</strong> <span class="tech-tag">Prompt Engineering</span> <span class="tech-tag">LLM Agents</span> <span class="tech-tag">Gemini/Copilot</span></p>
-            <p><strong>Dev:</strong> <span class="tech-tag">Python (Learning)</span> <span class="tech-tag">VBA</span> <span class="tech-tag">AppScript</span></p>
-            <p><strong>Hardware:</strong> <span class="tech-tag">Arduino</span> <span class="tech-tag">LoRaWAN</span> <span class="tech-tag">IoT Prototyping</span></p>
-            
+            <div>
+                <span class="skill-tag">Prompt Engineering</span>
+                <span class="skill-tag">AI Agents (LLMs)</span>
+                <span class="skill-tag">Python (Learning)</span>
+                <span class="skill-tag">VBA (Excel)</span>
+                <span class="skill-tag">Google AppScript</span>
+                <span class="skill-tag">Arduino / IoT</span>
+                <span class="skill-tag">LoRaWAN</span>
+            </div>
+
             <h2>Formazione</h2>
-            <p><strong>Ing. Gestionale</strong><br>UniMercatorum (In corso)</p>
-            <p><strong>Ing. Fisica</strong><br>Politecnico di Torino</p>
+            <div class="contact-item"><strong>Ing. [span_5](start_span)Gestionale</strong><br>UniMercatorum (In corso)[span_5](end_span)</div>
+            <div class="contact-item"><strong>Ing. [span_6](start_span)Fisica</strong><br>Politecnico di Torino[span_6](end_span)</div>
         </div>
-        
+
         <div class="main">
-            <h1>Nadia Provenza</h1>
-            <p><strong>AI Implementation Specialist | Bridge Architect</strong></p>
-            <hr>
-            <h2>Esperienza Professionale</h2>
-            <div class="job">
-                <div class="job-title">Grants & Automation Specialist @ CWS S.R.L.</div>
-                <div class="date">10/2023 - OGGI</div>
-                <ul>
-                    <li>Orchestrazione di AI Agents per l'analisi documentale complessa.</li>
-                    <li>Automazione monitoraggio finanziario tramite VBA.</li>
+            <div class="header">
+                <h1>Nadia Provenza</h1>
+                <p>Bridge Architect | AI & Process Automation Specialist</p>
+            </div>
+            
+            <div class="summary">
+                [span_7](start_span)Opero come punto di raccordo tra le necessità di business e le potenzialità della tecnologia[span_7](end_span). [span_8](start_span)Specializzata nel trasformare processi analogici in flussi digitali automatizzati e scalabili[span_8](end_span).
+            </div>
+
+            <div class="section-title">Esperienza Professionale</div>
+            
+            <div class="experience-item">
+                <div class="exp-header">
+                    <span class="exp-role">Grants & Automation Specialist</span>
+                    <span class="exp-date">10/2023 - OGGI</span>
+                </div>
+                [span_9](start_span)<div class="exp-company">CWS S.R.L.[span_9](end_span)</div>
+                <ul class="exp-content">
+                    [span_10](start_span)<li><strong>AI Implementation:</strong> Progettazione di agenti AI per la sintesi di bandi PNRR e documenti complessi[span_10](end_span).</li>
+                    [span_11](start_span)<li><strong>Financial Automation:</strong> Sviluppo architetture VBA per l’automazione del cash flow e monitoraggio finanziario[span_11](end_span).</li>
                 </ul>
             </div>
-            <div class="job">
-                <div class="job-title">Referente Team Innovazione @ Giotto S.R.L.</div>
-                <div class="date">04/2022 - 09/2023</div>
-                <ul>
-                    <li>Sviluppo workflow automation in Google AppScript.</li>
-                    <li>Validazione tecnica requisiti R&S per progetti d'impresa.</li>
+
+            <div class="experience-item">
+                <div class="exp-header">
+                    <span class="exp-role">Referente Team Innovazione</span>
+                    <span class="exp-date">04/2022 - 09/2023</span>
+                </div>
+                [span_12](start_span)<div class="exp-company">Giotto S.R.L.[span_12](end_span)</div>
+                <ul class="exp-content">
+                    [span_13](start_span)<li><strong>Cloud Automation:</strong> Automazione workflow interni tramite Google AppScript e sincronizzazione dati[span_13](end_span).</li>
+                    [span_14](start_span)<li><strong>Technical Advisory:</strong> Analisi di fattibilità per progetti R&S e validazione requisiti tecnologici[span_14](end_span).</li>
                 </ul>
             </div>
-            <div class="job">
-                <div class="job-title">Consulente Junior R&S @ T4B S.R.L.</div>
-                <div class="date">03/2021 - 03/2022</div>
-                <ul>
-                    <li>Prototipazione hardware IoT (Arduino/LoRaWAN).</li>
+
+            <div class="experience-item">
+                <div class="exp-header">
+                    <span class="exp-role">Consulente Junior R&S (IoT)</span>
+                    <span class="exp-date">03/2021 - 03/2022</span>
+                </div>
+                [span_15](start_span)<div class="exp-company">T4B - Technology For Business[span_15](end_span)</div>
+                <ul class="exp-content">
+                    [span_16](start_span)<li><strong>Hardware Prototyping:</strong> Ricerca su protocolli LoRaWAN e sviluppo prototipi IoT basati su Arduino[span_16](end_span).</li>
                 </ul>
+            </div>
+
+            <div class="values-box">
+                [span_17](start_span)<strong>Mindset:</strong> "Considero la tecnologia come una leva per restituire valore e tempo alle persone e alla loro dignità creativa."[span_17](end_span)
             </div>
         </div>
     </div>
