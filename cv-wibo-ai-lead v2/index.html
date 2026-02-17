@@ -2,201 +2,69 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Career Architect Innovatrice Metodica</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>CV Nadia Provenza - Bridge Architect</title>
     <style>
         :root {
-            --primary: #1a365d; /* Blu Navy Professionale */
-            --accent: #2d91a1;  /* Verde Acqua Tech */
+            --primary: #2c3e50;
+            --accent: #3498db;
             --text: #333;
-            --light-bg: #f4f7f9;
+            --light: #f4f7f6;
         }
-
-        * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
-        body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; color: var(--text); background: #fff; line-height: 1.5; }
-
-        .page {
-            width: 210mm;
-            min-height: 297mm;
-            margin: auto;
-            display: flex;
-            background: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        /* SIDEBAR */
-        .sidebar {
-            width: 33%;
-            background-color: var(--primary);
-            color: white;
-            padding: 30px 20px;
-        }
-
-        .sidebar h2 {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding-bottom: 8px;
-            margin-top: 30px;
-            color: var(--accent);
-        }
-
-        .contact-info p { font-size: 12px; margin: 8px 0; }
-        
-        .skill-tag {
-            display: inline-block;
-            background: rgba(255,255,255,0.1);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 11px;
-            margin: 3px 1px;
-        }
-
-        .learning-box {
-            background: rgba(45, 145, 161, 0.2);
-            padding: 10px;
-            border-left: 3px solid var(--accent);
-            font-size: 11px;
-            margin-top: 15px;
-        }
-
-        /* MAIN CONTENT */
-        .main {
-            width: 67%;
-            padding: 40px;
-        }
-
-        header { margin-bottom: 30px; }
-        header h1 { margin: 0; font-size: 28px; color: var(--primary); text-transform: uppercase; }
-        header p { margin: 5px 0 0; color: var(--accent); font-weight: 600; font-size: 18px; }
-
-        .summary { font-size: 13px; color: #555; font-style: italic; border-left: 3px solid var(--accent); padding-left: 15px; margin-bottom: 30px; }
-
-        .section-title {
-            font-size: 16px;
-            color: var(--primary);
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 5px;
-            margin: 25px 0 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .experience-item { margin-bottom: 20px; }
-        .exp-header { display: flex; justify-content: space-between; font-weight: 700; font-size: 14px; }
-        .exp-sub { font-size: 12px; color: var(--accent); font-weight: 600; margin-bottom: 5px; }
-        .exp-desc { font-size: 12.5px; margin: 0; }
-        .exp-desc li { margin-bottom: 4px; }
-
-        @media print {
-            body { background: none; }
-            .page { box-shadow: none; margin: 0; }
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text); margin: 0; padding: 0; background: #fff; }
+        .container { width: 210mm; min-height: 297mm; padding: 20mm; margin: auto; box-sizing: border-box; display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
+        h1, h2 { color: var(--primary); text-transform: uppercase; margin-top: 0; }
+        .sidebar { background: var(--light); padding: 15px; border-radius: 8px; font-size: 0.9em; }
+        .tech-tag { background: #fff; border: 1px solid var(--accent); padding: 2px 8px; border-radius: 4px; display: inline-block; margin: 2px; font-size: 0.8em; }
+        .job { margin-bottom: 20px; }
+        .job-title { font-weight: bold; color: var(--accent); }
+        .date { font-style: italic; font-size: 0.85em; color: #666; }
     </style>
 </head>
 <body>
-
-<div class="page">
-    <aside class="sidebar">
-        <div class="contact-info">
+    <div class="container">
+        <div class="sidebar">
             <h2>Contatti</h2>
-            <p>📍 Tua Città, Italia</p>
-            <p>📧 tua.email@esempio.com</p>
-            <p>🔗 linkedin.com/in/tuoprofilo</p>
-            <p>📞 +39 333 1234567</p>
+            <p>Torino, Italia<br>nadia.provenza94@gmail.com<br>in/nadia-provenza</p>
+            
+            <h2>Tech Stack</h2>
+            <p><strong>AI:</strong> <span class="tech-tag">Prompt Engineering</span> <span class="tech-tag">LLM Agents</span> <span class="tech-tag">Gemini/Copilot</span></p>
+            <p><strong>Dev:</strong> <span class="tech-tag">Python (Learning)</span> <span class="tech-tag">VBA</span> <span class="tech-tag">AppScript</span></p>
+            <p><strong>Hardware:</strong> <span class="tech-tag">Arduino</span> <span class="tech-tag">LoRaWAN</span> <span class="tech-tag">IoT Prototyping</span></p>
+            
+            <h2>Formazione</h2>
+            <p><strong>Ing. Gestionale</strong><br>UniMercatorum (In corso)</p>
+            <p><strong>Ing. Fisica</strong><br>Politecnico di Torino</p>
         </div>
-
-        <h2>AI Orchestration</h2>
-        <div class="skill-tag">Prompt Engineering</div>
-        <div class="skill-tag">Multi-Agent Systems</div>
-        <div class="skill-tag">Adversarial Prompting</div>
-        <div class="skill-tag">Persona Design</div>
-
-        <h2>Tech & Hardware</h2>
-        <div class="skill-tag">Arduino Prototyping</div>
-        <div class="skill-tag">Data Acquisition</div>
-        <div class="skill-tag">Technical Writing</div>
-        <div class="skill-tag">Excel Advanced</div>
-
-        <h2>Business Operations</h2>
-        <div class="skill-tag">Workflow Design</div>
-        <div class="skill-tag">HR & Admin Flows</div>
-        <div class="skill-tag">Business Model Canvas</div>
-
-        <h2>Focus 2024 (In Learning)</h2>
-        <div class="learning-box">
-            <strong>Full-Stack Python Program:</strong><br>
-            Pandas, API Backend, Automation, CI/CD, SQL, Cloud Deployment.
-        </div>
-    </aside>
-
-    <main class="main">
-        <header>
-            <h1>Nome Cognome</h1>
-            <p>Process Automation Specialist & AI Implementer</p>
-        </header>
-
-        <div class="summary">
-            "Specialista nell'ottimizzazione dei processi con background in Ingegneria Fisica. Unisco il rigore analitico della ricerca scientifica alla flessibilità dell'AI Generativa per tradurre complesse esigenze amministrative in architetture digitali efficienti."
-        </div>
-
-        <h2 class="section-title">Esperienza Professionale</h2>
-
-        <div class="experience-item">
-            <div class="exp-header">
-                <span>AI Implementation & Logic Design</span>
-                <span>2023 - Presente</span>
+        
+        <div class="main">
+            <h1>Nadia Provenza</h1>
+            <p><strong>AI Implementation Specialist | Bridge Architect</strong></p>
+            <hr>
+            <h2>Esperienza Professionale</h2>
+            <div class="job">
+                <div class="job-title">Grants & Automation Specialist @ CWS S.R.L.</div>
+                <div class="date">10/2023 - OGGI</div>
+                <ul>
+                    <li>Orchestrazione di AI Agents per l'analisi documentale complessa.</li>
+                    <li>Automazione monitoraggio finanziario tramite VBA.</li>
+                </ul>
             </div>
-            <div class="exp-sub">Progetti Indipendenti / Ricerca Applicata</div>
-            <ul class="exp-desc">
-                <li><strong>Sviluppo Sistemi Multi-Agente:</strong> Progettazione di catene di Google Gems per la validazione di Business Design, implementando logiche di stress-test (Adversarial Prompting).</li>
-                <li><strong>Workflow Automation:</strong> Design concettuale di sistemi automatici per la gestione note spese e flussi documentali HR.</li>
-                <li><strong>Conflict Mitigation:</strong> Architettura di prompt personalizzati per la gestione di task complessi e integrazione di database logici in ambienti LLM.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <div class="exp-header">
-                <span>Amministrazione & Supporto Tecnico</span>
-                <span>[Anno Inizio] - [Anno Fine]</span>
+            <div class="job">
+                <div class="job-title">Referente Team Innovazione @ Giotto S.R.L.</div>
+                <div class="date">04/2022 - 09/2023</div>
+                <ul>
+                    <li>Sviluppo workflow automation in Google AppScript.</li>
+                    <li>Validazione tecnica requisiti R&S per progetti d'impresa.</li>
+                </ul>
             </div>
-            <div class="exp-sub">Azienda Attuale / Precedente</div>
-            <ul class="exp-desc">
-                <li><strong>Data Acquisition:</strong> Sperimentazione hardware con Arduino e stesura di deliverable tecnici per la presentazione di dati complessi.</li>
-                <li><strong>Finance & Ops:</strong> Gestione prima nota, carte di credito aziendali e flussi amministrativi, identificando aree di miglioramento digitale.</li>
-            </ul>
-        </div>
-
-        <h2 class="section-title">Formazione</h2>
-
-        <div class="experience-item">
-            <div class="exp-header">
-                <span>Studi in Ingegneria Fisica</span>
-                <span>[Anno]</span>
+            <div class="job">
+                <div class="job-title">Consulente Junior R&S @ T4B S.R.L.</div>
+                <div class="date">03/2021 - 03/2022</div>
+                <ul>
+                    <li>Prototipazione hardware IoT (Arduino/LoRaWAN).</li>
+                </ul>
             </div>
-            <div class="exp-sub">Università degli Studi di [...]</div>
-            <p class="exp-desc"><em>Focus: Metodo scientifico, Analisi dei sistemi complessi, Fisica Quantistica e Informatica.</em></p>
         </div>
-
-        <div class="experience-item">
-            <div class="exp-header">
-                <span>Corso Full-Stack Python (In Corso)</span>
-                <span>Fine prevista: Giugno 2024</span>
-            </div>
-            <div class="exp-sub">Specializzazione Tecnica</div>
-            <p class="exp-desc">Percorso intensivo su: OOP, API Development, Data Analysis (Pandas/Numpy), Machine Learning e Containerizzazione (Docker/Cloud).</p>
-        </div>
-
-        <h2 class="section-title">Soft Skills</h2>
-        <ul class="exp-desc">
-            <li><strong>Ponte Tecnico-Amministrativo:</strong> Capacità di tradurre requisiti burocratici in logiche di programmazione.</li>
-            <li><strong>Problem Solving Creativo:</strong> Approccio "fuori dagli schemi" per l'automazione di processi obsoleti.</li>
-            <li><strong>Mentalità Metodologica:</strong> Rigore ingegneristico applicato allo sviluppo di nuovi flussi di lavoro.</li>
-        </ul>
-    </main>
-</div>
-
+    </div>
 </body>
 </html>
