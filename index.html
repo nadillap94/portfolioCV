@@ -7,7 +7,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* ==========================================================================
@@ -19,147 +19,193 @@
             padding: 0;
         }
 
+        :root {
+            --primary-red: #E41E2B;       /* Coca-Cola Brand Red */
+            --dark-red: #B3000C;
+            --text-dark: #1E1E1E;
+            --text-muted: #555555;
+            --bg-sidebar: #F9FAFB;
+            --border-color: #E5E7EB;
+            --white: #FFFFFF;
+        }
+
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            color: #2b2d42;
-            background-color: #f4f5f7;
-            font-size: 9.5pt;
+            color: var(--text-dark);
+            background-color: #ECEFF1;
+            font-size: 9pt;
             line-height: 1.45;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
 
-        /* Color Palette */
-        :root {
-            --primary-color: #0f2c59;
-            --accent-color: #2563eb;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --bg-sidebar: #f8fafc;
-            --border-color: #e2e8f0;
-        }
-
         /* ==========================================================================
-           2. PAGE STRUCTURE & LAYOUT (A4 Print Specs)
+           2. PAGE STRUCTURE & A4 SPECS
            ========================================================================== */
         .page {
             width: 210mm;
-            min-height: 297mm;
+            height: 297mm;
             margin: 20px auto;
-            background: #ffffff;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            background: var(--white);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Brand Accent Bar */
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6mm;
+            background: var(--primary-red);
+            z-index: 10;
+        }
+
+        /* ==========================================================================
+           3. CV LAYOUT (PAGE 1)
+           ========================================================================== */
+        .cv-header {
+            padding: 12mm 15mm 6mm 15mm;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--border-color);
+            margin-top: 4mm;
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        .header-text h1 {
+            font-size: 22pt;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .header-text h1 span {
+            color: var(--primary-red);
+        }
+
+        .contact-bar {
+            margin-top: 8px;
+            font-size: 8.5pt;
+            color: var(--text-muted);
+            display: flex;
+            gap: 12px;
+            font-weight: 500;
+        }
+
+        /* Photo Placeholder */
+        .photo-frame {
+            width: 28mm;
+            height: 28mm;
+            border-radius: 50%;
+            border: 3px solid var(--primary-red);
+            background-color: #F3F4F6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 7.5pt;
+            text-align: center;
+            font-weight: 600;
+            overflow: hidden;
+            flex-shrink: 0;
+            margin-left: 15px;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .cv-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            min-height: 297mm;
+            grid-template-columns: 1fr 68mm;
+            flex: 1;
+            height: calc(297mm - 40mm);
         }
 
         .main-content {
-            padding: 30px 25px 30px 35px;
+            padding: 6mm 8mm 10mm 15mm;
         }
 
         .sidebar {
             background-color: var(--bg-sidebar);
             border-left: 1px solid var(--border-color);
-            padding: 30px 25px 30px 20px;
-        }
-
-        .cover-letter-page {
-            padding: 50px 50px;
+            padding: 6mm 12mm 10mm 8mm;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
         /* ==========================================================================
-           3. TYPOGRAPHY & COMPONENTS
+           4. TYPOGRAPHY & SECTIONS
            ========================================================================== */
-        h1 {
-            font-size: 20pt;
-            font-weight: 700;
-            color: var(--primary-color);
-            letter-spacing: -0.5px;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-        }
-
-        .subtitle {
-            font-size: 10pt;
-            font-weight: 600;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
-        }
-
-        .contact-info {
-            font-size: 8.5pt;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .contact-info a {
-            color: var(--text-muted);
-            text-decoration: none;
-        }
-
         .section-title {
-            font-size: 10.5pt;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-size: 10pt;
+            font-weight: 800;
+            color: var(--primary-red);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 3px;
-            margin-top: 18px;
-            margin-bottom: 12px;
+            letter-spacing: 0.8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            margin-bottom: 8px;
         }
 
-        .sidebar .section-title {
-            border-bottom-color: var(--accent-color);
+        .section-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background-color: var(--border-color);
         }
 
         p {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             text-align: justify;
+            color: #333333;
         }
 
-        /* Experience Timeline */
+        /* Job Blocks */
         .job-block {
-            margin-bottom: 14px;
+            margin-bottom: 10px;
         }
 
         .job-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 2px;
         }
 
         .job-title {
             font-size: 9.5pt;
             font-weight: 700;
-            color: var(--text-main);
+            color: var(--text-dark);
         }
 
         .job-company {
-            font-size: 9pt;
+            font-size: 8.5pt;
             font-weight: 600;
-            color: var(--accent-color);
+            color: var(--primary-red);
+            margin-bottom: 3px;
         }
 
         .job-date {
             font-size: 8pt;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text-muted);
-            white-space: nowrap;
         }
 
         ul {
@@ -170,67 +216,102 @@
         ul li {
             position: relative;
             padding-left: 12px;
-            margin-bottom: 4px;
-            font-size: 8.8pt;
+            margin-bottom: 3px;
+            font-size: 8.3pt;
+            color: #333333;
         }
 
         ul li::before {
             content: "•";
             position: absolute;
             left: 0;
-            color: var(--accent-color);
+            color: var(--primary-red);
             font-weight: bold;
+            font-size: 10pt;
+            line-height: 8.3pt;
         }
 
-        /* Sidebar Lists */
+        /* Sidebar Elements */
         .sidebar-group {
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .sidebar-group-title {
-            font-size: 9pt;
+            font-size: 8.5pt;
             font-weight: 700;
-            color: var(--text-main);
+            color: var(--text-dark);
             margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
         }
 
         .sidebar-list li {
-            font-size: 8.5pt;
+            font-size: 8pt;
             margin-bottom: 3px;
-            line-height: 1.35;
+            line-height: 1.3;
         }
 
         .footer-legal {
-            font-size: 7.5pt;
+            font-size: 7pt;
             color: var(--text-muted);
-            margin-top: 20px;
             line-height: 1.2;
-        }
-
-        /* Cover Letter Specifics */
-        .recipient {
-            margin-top: 25px;
-            margin-bottom: 25px;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .letter-body p {
-            margin-bottom: 14px;
-            font-size: 9.5pt;
-            line-height: 1.5;
-        }
-
-        .signature {
-            margin-top: 30px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 8px;
+            margin-top: 10px;
         }
 
         /* ==========================================================================
-           4. PRINT MEDIA QUERIES
+           5. COVER LETTER LAYOUT (PAGE 2)
+           ========================================================================== */
+        .cover-letter-page {
+            padding: 15mm 20mm 15mm 20mm;
+            justify-content: space-between;
+        }
+
+        .letter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-top: 6mm;
+        }
+
+        .recipient-box {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: var(--bg-sidebar);
+            padding: 12px 16px;
+            border-left: 3px solid var(--primary-red);
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 9.5pt;
+        }
+
+        .letter-body p {
+            font-size: 9.2pt;
+            line-height: 1.55;
+            margin-bottom: 12px;
+            color: #222222;
+        }
+
+        .signature {
+            margin-top: 20px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 12px;
+        }
+
+        .signature p {
+            margin-bottom: 2px;
+        }
+
+        /* ==========================================================================
+           6. PRINT MEDIA QUERIES
            ========================================================================== */
         @media print {
             body {
                 background: none;
+                padding: 0;
             }
 
             .page {
@@ -244,32 +325,35 @@
             .page:last-child {
                 page-break-after: avoid;
             }
-
-            .cv-grid {
-                height: 100%;
-            }
         }
     </style>
 </head>
 <body>
 
     <!-- ==========================================================================
-       PAGE 1: CURRICULUM VITAE
+       PAGINA 1: CURRICULUM VITAE
        ========================================================================== -->
     <div class="page">
-        <div class="cv-grid">
-            
-            <!-- MAIN CONTENT (Left Column) -->
-            <main class="main-content">
-                <header>
-                    <h1>Nadia Provenza</h1>
-                    <div class="contact-info">
-                        <span>Torino, Italia</span> | 
-                        <span>nadia.provenza94@gmail.com</span> | 
-                        <span>linkedin.com/in/nadia-provenza</span>
-                    </div>
-                </header>
+        <!-- Header con Foto integrata -->
+        <header class="cv-header">
+            <div class="header-text">
+                <h1>Nadia <span>Provenza</span></h1>
+                <div class="contact-bar">
+                    <span>Torino, Italia</span> • 
+                    <span>nadia.provenza94@gmail.com</span> • 
+                    <span>linkedin.com/in/nadia-provenza</span>
+                </div>
+            </div>
+            <!-- Spazio dedicato alla foto profilo -->
+            <div class="photo-frame">
+                <!-- Sostituire il testo o inserire <img src="URL_FOTO" alt="Nadia Provenza"> -->
+                FOTO
+            </div>
+        </header>
 
+        <div class="cv-grid">
+            <!-- COLONNA PRINCIPALE (Sinistra) -->
+            <main class="main-content">
                 <section>
                     <h2 class="section-title">Profilo Professionale</h2>
                     <p>
@@ -280,11 +364,11 @@
                 <section>
                     <h2 class="section-title">Esperienza Professionale</h2>
                     
-                    <!-- Job 1 -->
+                    <!-- Esperienza 1 -->
                     <div class="job-block">
                         <div class="job-header">
                             <span class="job-title">Operations & Automation Specialist</span>
-                            <span class="job-date">Ottobre 2023 – Oggi</span>
+                            <span class="job-date">10/2023 – Oggi</span>
                         </div>
                         <div class="job-company">CWS S.R.L. – Torino</div>
                         <ul>
@@ -296,11 +380,11 @@
                         </ul>
                     </div>
 
-                    <!-- Job 2 -->
+                    <!-- Esperienza 2 -->
                     <div class="job-block">
                         <div class="job-header">
                             <span class="job-title">Referente Team Innovazione & Consulente R&S</span>
-                            <span class="job-date">Aprile 2022 – Settembre 2023</span>
+                            <span class="job-date">04/2022 – 09/2023</span>
                         </div>
                         <div class="job-company">Giotto S.R.L. – Torino</div>
                         <ul>
@@ -309,11 +393,11 @@
                         </ul>
                     </div>
 
-                    <!-- Job 3 -->
+                    <!-- Esperienza 3 -->
                     <div class="job-block">
                         <div class="job-header">
-                            <span class="job-title">Consulente Junior R&S (Apprendistato di Ricerca)</span>
-                            <span class="job-date">Marzo 2021 – Marzo 2022</span>
+                            <span class="job-title">Consulente Junior R&S (Apprendistato)</span>
+                            <span class="job-date">03/2021 – 03/2022</span>
                         </div>
                         <div class="job-company">T4B - Technology For Business S.R.L. – Torino</div>
                         <ul>
@@ -322,11 +406,11 @@
                         </ul>
                     </div>
 
-                    <!-- Job 4 -->
+                    <!-- Esperienza 4 -->
                     <div class="job-block">
                         <div class="job-header">
                             <span class="job-title">Customer Care & Digital Support Specialist</span>
-                            <span class="job-date">Gennaio 2020 – Marzo 2022</span>
+                            <span class="job-date">01/2020 – 03/2022</span>
                         </div>
                         <div class="job-company">Sin Tesi Forma S.R.L. – Torino</div>
                         <ul>
@@ -336,49 +420,52 @@
                 </section>
             </main>
 
-            <!-- SIDEBAR (Right Column) -->
+            <!-- SIDEBAR (Destra) -->
             <aside class="sidebar">
-                <section>
-                    <h2 class="section-title">Competenze e Strumenti</h2>
+                <div>
+                    <h2 class="section-title">Competenze</h2>
                     
                     <div class="sidebar-group">
-                        <div class="sidebar-group-title">Processo & Business Transformation:</div>
+                        <div class="sidebar-group-title">Processo & Transformation</div>
                         <ul class="sidebar-list">
-                            <li>Process Mapping & Optimization (Interviste utenti, rilevamento pain points, eliminazione colli di bottiglia)</li>
+                            <li>Process Mapping & Optimization (Interviste utenti, pain points, eliminazione colli di bottiglia)</li>
                             <li>Change Management & User Enablement (Guide operative, formazione e affiancamento)</li>
-                            <li>Business Analysis & Data Reconciliation (Supporto a HR, Amministrazione e Controllo di Gestione)</li>
+                            <li>Business Analysis & Data Reconciliation (Supporto HR, Amministrazione, Controllo di Gestione)</li>
                         </ul>
                     </div>
 
                     <div class="sidebar-group">
-                        <div class="sidebar-group-title">Tecniche & Digital Tools:</div>
+                        <div class="sidebar-group-title">Tecniche & Digital Tools</div>
                         <ul class="sidebar-list">
-                            <li><strong>Process Automation & Low-Code:</strong> Power Automate, SharePoint, Google AppScript, Macro VBA (Excel)</li>
-                            <li><strong>AI Prompting & Adoption:</strong> Prompt Chaining con LLM (Copilot, Gemini) per sintesi dati, validazione e refactoring codice</li>
-                            <li><strong>Digital Support & CMS:</strong> LMS, WordPress backend, Troubleshooting</li>
+                            <li><strong>Process Automation:</strong> Power Automate, SharePoint, Google AppScript, Macro VBA (Excel)</li>
+                            <li><strong>AI Prompting:</strong> Prompt Chaining con LLM (Copilot, Gemini) per sintesi dati, validazione logica e refactoring codice</li>
+                            <li><strong>Digital Support:</strong> LMS, WordPress backend, Troubleshooting</li>
                             <li><strong>Linguaggi & IoT:</strong> Fondamenti di Python (Data Analysis e Automation), Arduino IDE, LoRa/LoRaWAN</li>
                         </ul>
                     </div>
 
                     <div class="sidebar-group">
-                        <div class="sidebar-group-title">Competenze Trasversali:</div>
+                        <div class="sidebar-group-title">Trasversali</div>
                         <ul class="sidebar-list">
-                            <li>Comunicazione interfunzionale e capacità di fare da "bridge" tra business e tecnici</li>
+                            <li>Comunicazione interfunzionale, capacità di fare da "bridge" tra business e tecnici</li>
                             <li>Pensiero analitico, approccio logico e risoluzione sistematica dei problemi</li>
                             <li>Autonomia, rigore gestionale e miglioramento continuo</li>
                         </ul>
                     </div>
-                </section>
 
-                <section>
-                    <h2 class="section-title">Formazione e Lingue</h2>
+                    <h2 class="section-title" style="margin-top: 15px;">Formazione</h2>
                     <ul class="sidebar-list">
                         <li><strong>Laurea in Ingegneria Gestionale</strong><br>Università Mercatorum (In corso)</li>
-                        <li style="margin-top: 6px;"><strong>Corso di Formazione in Python (80 ore)</strong><br>Focus: API Backend, Data Analysis, Automation</li>
-                        <li style="margin-top: 6px;"><strong>Frequenza e studi in Ingegneria Fisica</strong><br>Politecnico di Torino</li>
-                        <li style="margin-top: 6px;"><strong>Lingue:</strong><br>Italiano (Madrelingua)<br>Inglese (Livello Professionale - Certificazione B2 First)</li>
+                        <li style="margin-top: 5px;"><strong>Corso Python (80 ore)</strong><br>Focus: API Backend, Data Analysis, Automation</li>
+                        <li style="margin-top: 5px;"><strong>Ingegneria Fisica (Studi)</strong><br>Politecnico di Torino</li>
                     </ul>
-                </section>
+
+                    <h2 class="section-title" style="margin-top: 15px;">Lingue</h2>
+                    <ul class="sidebar-list">
+                        <li><strong>Italiano:</strong> Madrelingua</li>
+                        <li><strong>Inglese:</strong> Professionale (Certificazione B2 First)</li>
+                    </ul>
+                </div>
 
                 <footer class="footer-legal">
                     Autorizzo il trattamento dei dati personali contenuti nel presente curriculum vitae ai sensi del D.Lgs.196/2003.
@@ -388,21 +475,22 @@
     </div>
 
     <!-- ==========================================================================
-       PAGE 2: LETTERA DI PRESENTAZIONE
+       PAGINA 2: LETTERA DI PRESENTAZIONE
        ========================================================================== -->
     <div class="page cover-letter-page">
         <div>
-            <header>
-                <h1>Nadia Provenza</h1>
-                <div class="subtitle">Lettera di Presentazione</div>
-                <div class="contact-info">
-                    <span>Torino, Italia</span> | 
-                    <span>nadia.provenza94@gmail.com</span> | 
-                    <span>linkedin.com/in/nadia-provenza</span>
+            <header class="letter-header">
+                <div class="header-text">
+                    <h1>Nadia <span>Provenza</span></h1>
+                    <div class="contact-bar" style="margin-top: 4px;">
+                        <span>Torino, Italia</span> • 
+                        <span>nadia.provenza94@gmail.com</span> • 
+                        <span>linkedin.com/in/nadia-provenza</span>
+                    </div>
                 </div>
             </header>
 
-            <div class="recipient">
+            <div class="recipient-box">
                 Alla cortese attenzione del Team di Selezione di Coca-Cola HBC
             </div>
 
@@ -428,7 +516,7 @@
 
         <footer class="signature">
             <p>Cordialmente,</p>
-            <p><strong>Nadia Provenza</strong></p>
+            <p><strong style="color: var(--primary-red); font-size: 11pt;">Nadia Provenza</strong></p>
         </footer>
     </div>
 
