@@ -3,40 +3,434 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mio Portfolio CV</title>
+    <title>CV & Lettera di Presentazione - Nadia Provenza</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; color: #333; display: flex; justify-content: center; padding: 40px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; width: 100%; max-width: 1000px; }
-        .card { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s; cursor: pointer; border: 1px solid #eee; text-decoration: none; color: inherit; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-        .tag { background: #e3f2fd; color: #1976d2; padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: bold; }
-        h3 { margin: 15px 0 5px 0; color: #1a1a1a; }
-        p { font-size: 0.9rem; color: #666; }
+        /* ==========================================================================
+           1. RESET & GLOBALS
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #2b2d42;
+            background-color: #f4f5f7;
+            font-size: 9.5pt;
+            line-height: 1.45;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Color Palette */
+        :root {
+            --primary-color: #0f2c59;
+            --accent-color: #2563eb;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg-sidebar: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+
+        /* ==========================================================================
+           2. PAGE STRUCTURE & LAYOUT (A4 Print Specs)
+           ========================================================================== */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            background: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cv-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            min-height: 297mm;
+        }
+
+        .main-content {
+            padding: 30px 25px 30px 35px;
+        }
+
+        .sidebar {
+            background-color: var(--bg-sidebar);
+            border-left: 1px solid var(--border-color);
+            padding: 30px 25px 30px 20px;
+        }
+
+        .cover-letter-page {
+            padding: 50px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* ==========================================================================
+           3. TYPOGRAPHY & COMPONENTS
+           ========================================================================== */
+        h1 {
+            font-size: 20pt;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 10pt;
+            font-weight: 600;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .contact-info {
+            font-size: 8.5pt;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .section-title {
+            font-size: 10.5pt;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 3px;
+            margin-top: 18px;
+            margin-bottom: 12px;
+        }
+
+        .sidebar .section-title {
+            border-bottom-color: var(--accent-color);
+        }
+
+        p {
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        /* Experience Timeline */
+        .job-block {
+            margin-bottom: 14px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+
+        .job-title {
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .job-company {
+            font-size: 9pt;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .job-date {
+            font-size: 8pt;
+            font-weight: 500;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 12px;
+            margin-bottom: 4px;
+            font-size: 8.8pt;
+        }
+
+        ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Sidebar Lists */
+        .sidebar-group {
+            margin-bottom: 16px;
+        }
+
+        .sidebar-group-title {
+            font-size: 9pt;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .sidebar-list li {
+            font-size: 8.5pt;
+            margin-bottom: 3px;
+            line-height: 1.35;
+        }
+
+        .footer-legal {
+            font-size: 7.5pt;
+            color: var(--text-muted);
+            margin-top: 20px;
+            line-height: 1.2;
+        }
+
+        /* Cover Letter Specifics */
+        .recipient {
+            margin-top: 25px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .letter-body p {
+            margin-bottom: 14px;
+            font-size: 9.5pt;
+            line-height: 1.5;
+        }
+
+        .signature {
+            margin-top: 30px;
+        }
+
+        /* ==========================================================================
+           4. PRINT MEDIA QUERIES
+           ========================================================================== */
+        @media print {
+            body {
+                background: none;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+                width: 210mm;
+                height: 297mm;
+            }
+
+            .page:last-child {
+                page-break-after: avoid;
+            }
+
+            .cv-grid {
+                height: 100%;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="grid">
-        <a href="cv-wibo-ai-lead/index.html" class="card">
-            <span class="tag">Nuovo</span>
-            <h3>AI Adoption Lead</h3>
-            <p><strong>Azienda:</strong> Wibo</p>
-            <p><strong>Data:</strong> 12 Febbraio 2026</p>
-        </a>
 
-        <a href="cv-wibo-ai-lead v2/index.html" class="card">
-            <span class="tag">Archiviato</span>
-            <h3>AI Adoption Lead</h3>
-            <p><strong>Azienda:</strong> Wibo</p>
-            <p><strong>Data:</strong> 15 Febbraio 2026</p>
-        </a>
+    <!-- ==========================================================================
+       PAGE 1: CURRICULUM VITAE
+       ========================================================================== -->
+    <div class="page">
+        <div class="cv-grid">
+            
+            <!-- MAIN CONTENT (Left Column) -->
+            <main class="main-content">
+                <header>
+                    <h1>Nadia Provenza</h1>
+                    <div class="contact-info">
+                        <span>Torino, Italia</span> | 
+                        <span>nadia.provenza94@gmail.com</span> | 
+                        <span>linkedin.com/in/nadia-provenza</span>
+                    </div>
+                </header>
 
-        <a href="cv-wibo-ai-lead-v3/index.html" class="card">
-            <span class="tag">Archiviato</span>
-            <h3>AI Adoption Lead</h3>
-            <p><strong>Azienda:</strong> Wibo</p>
-            <p><strong>Data:</strong> 16 Febbraio 2026</p>
-        </a>
+                <section>
+                    <h2 class="section-title">Profilo Professionale</h2>
+                    <p>
+                        Ingegnera Gestionale in formazione con background in Ingegneria Fisica e oltre 5 anni di esperienza nell'analisi dei processi, digital transformation e automazione dei flussi operativi. Specializzata nell'identificazione delle inefficienze aziendali e nella loro risoluzione tramite soluzioni Low-Code (Power Automate, AppScript), automazione (VBA) e AI Prompting. Abile nell'agire come punto di raccordo tra le esigenze degli utenti di business (HR, Amministrazione, Controllo di Gestione) e l'implementazione tecnologica, curando l'intero ciclo: dall'analisi dello status quo, alla prototipazione, fino alla redazione di documentazione tecnica e all'affiancamento per l'adozione da parte degli utenti.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="section-title">Esperienza Professionale</h2>
+                    
+                    <!-- Job 1 -->
+                    <div class="job-block">
+                        <div class="job-header">
+                            <span class="job-title">Operations & Automation Specialist</span>
+                            <span class="job-date">Ottobre 2023 – Oggi</span>
+                        </div>
+                        <div class="job-company">CWS S.R.L. – Torino</div>
+                        <ul>
+                            <li><strong>Process Mapping & Semplificazione:</strong> Analisi e riprogettazione del flusso di controllo delle note spese mensili, riducendo il tempo di gestione da 30 ore a circa 6 ore al mese (-80% del lavoro manuale).</li>
+                            <li><strong>Automazione Financial & Operations:</strong> Sviluppo di strumenti strutturati per controllo di gestione, forecast, budget e cash flow. Scrittura di codici VBA per il controllo automatico delle scadenze clienti, riducendo le verifiche da diverse ore a pochi secondi.</li>
+                            <li><strong>Platform & Cloud Automation:</strong> Ideazione e sviluppo di un sistema LMS integrato tramite Power Automate e SharePoint con notifiche automatiche via Teams (Adaptive Cards), reportistica automatizzata per l'HR e solleciti personalizzati.</li>
+                            <li><strong>User Enablement & Documentazione:</strong> Attività di discovery tramite interviste agli utenti per mappare le criticità dei processi; redazione di guide operative e affiancamento diretto ai colleghi per facilitare l'adozione delle automazioni.</li>
+                            <li><strong>Project Monitoring:</strong> Gestione della documentazione tecnica e monitoraggio dei KPI operativi per progetti di R&S&I e Formazione 4.0.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Job 2 -->
+                    <div class="job-block">
+                        <div class="job-header">
+                            <span class="job-title">Referente Team Innovazione & Consulente R&S</span>
+                            <span class="job-date">Aprile 2022 – Settembre 2023</span>
+                        </div>
+                        <div class="job-company">Giotto S.R.L. – Torino</div>
+                        <ul>
+                            <li><strong>Consulenza di Processo:</strong> Interfaccia diretta con clienti aziendali per analizzare e mappare la struttura logica di progetti di ricerca, sviluppo tecnologico e finanza agevolata.</li>
+                            <li><strong>Cloud Automation:</strong> Sviluppo di script in Google AppScript per automatizzare lo scambio dati interfunzionale e i flussi di lavoro interni.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Job 3 -->
+                    <div class="job-block">
+                        <div class="job-header">
+                            <span class="job-title">Consulente Junior R&S (Apprendistato di Ricerca)</span>
+                            <span class="job-date">Marzo 2021 – Marzo 2022</span>
+                        </div>
+                        <div class="job-company">T4B - Technology For Business S.R.L. – Torino</div>
+                        <ul>
+                            <li><strong>Prototipazione & Testing Data:</strong> Prototipazione e test su microcontrollori (Arduino) per l'acquisizione di dati industriali tramite protocolli wireless LoRa/LoRaWAN.</li>
+                            <li><strong>Documentazione Tecnica:</strong> Redazione di reportistica di progetto e rendicontazione tecnica finale.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Job 4 -->
+                    <div class="job-block">
+                        <div class="job-header">
+                            <span class="job-title">Customer Care & Digital Support Specialist</span>
+                            <span class="job-date">Gennaio 2020 – Marzo 2022</span>
+                        </div>
+                        <div class="job-company">Sin Tesi Forma S.R.L. – Torino</div>
+                        <ul>
+                            <li><strong>Gestione Sistemi & Digital Support:</strong> Gestione e manutenzione backend di piattaforme e-learning (LMS) e siti WordPress, erogazione contenuti e supporto utenti di primo livello.</li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+
+            <!-- SIDEBAR (Right Column) -->
+            <aside class="sidebar">
+                <section>
+                    <h2 class="section-title">Competenze e Strumenti</h2>
+                    
+                    <div class="sidebar-group">
+                        <div class="sidebar-group-title">Processo & Business Transformation:</div>
+                        <ul class="sidebar-list">
+                            <li>Process Mapping & Optimization (Interviste utenti, rilevamento pain points, eliminazione colli di bottiglia)</li>
+                            <li>Change Management & User Enablement (Guide operative, formazione e affiancamento)</li>
+                            <li>Business Analysis & Data Reconciliation (Supporto a HR, Amministrazione e Controllo di Gestione)</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-group">
+                        <div class="sidebar-group-title">Tecniche & Digital Tools:</div>
+                        <ul class="sidebar-list">
+                            <li><strong>Process Automation & Low-Code:</strong> Power Automate, SharePoint, Google AppScript, Macro VBA (Excel)</li>
+                            <li><strong>AI Prompting & Adoption:</strong> Prompt Chaining con LLM (Copilot, Gemini) per sintesi dati, validazione e refactoring codice</li>
+                            <li><strong>Digital Support & CMS:</strong> LMS, WordPress backend, Troubleshooting</li>
+                            <li><strong>Linguaggi & IoT:</strong> Fondamenti di Python (Data Analysis e Automation), Arduino IDE, LoRa/LoRaWAN</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-group">
+                        <div class="sidebar-group-title">Competenze Trasversali:</div>
+                        <ul class="sidebar-list">
+                            <li>Comunicazione interfunzionale e capacità di fare da "bridge" tra business e tecnici</li>
+                            <li>Pensiero analitico, approccio logico e risoluzione sistematica dei problemi</li>
+                            <li>Autonomia, rigore gestionale e miglioramento continuo</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="section-title">Formazione e Lingue</h2>
+                    <ul class="sidebar-list">
+                        <li><strong>Laurea in Ingegneria Gestionale</strong><br>Università Mercatorum (In corso)</li>
+                        <li style="margin-top: 6px;"><strong>Corso di Formazione in Python (80 ore)</strong><br>Focus: API Backend, Data Analysis, Automation</li>
+                        <li style="margin-top: 6px;"><strong>Frequenza e studi in Ingegneria Fisica</strong><br>Politecnico di Torino</li>
+                        <li style="margin-top: 6px;"><strong>Lingue:</strong><br>Italiano (Madrelingua)<br>Inglese (Livello Professionale - Certificazione B2 First)</li>
+                    </ul>
+                </section>
+
+                <footer class="footer-legal">
+                    Autorizzo il trattamento dei dati personali contenuti nel presente curriculum vitae ai sensi del D.Lgs.196/2003.
+                </footer>
+            </aside>
+        </div>
     </div>
-</body>
 
+    <!-- ==========================================================================
+       PAGE 2: LETTERA DI PRESENTAZIONE
+       ========================================================================== -->
+    <div class="page cover-letter-page">
+        <div>
+            <header>
+                <h1>Nadia Provenza</h1>
+                <div class="subtitle">Lettera di Presentazione</div>
+                <div class="contact-info">
+                    <span>Torino, Italia</span> | 
+                    <span>nadia.provenza94@gmail.com</span> | 
+                    <span>linkedin.com/in/nadia-provenza</span>
+                </div>
+            </header>
+
+            <div class="recipient">
+                Alla cortese attenzione del Team di Selezione di Coca-Cola HBC
+            </div>
+
+            <main class="letter-body">
+                <p>Buongiorno,</p>
+                <p>
+                    Vi scrivo perché sono alla ricerca di nuovi stimoli e, leggendo l'annuncio per il ruolo di Digital & Technology Platform Expert, ho pensato subito che ci fosse una certa affinità con quello che faccio e con come mi piace lavorare.
+                </p>
+                <p>
+                    Nell'annuncio fate riferimento al concetto di "secret ingredient"; se dovessi definire il mio, direi che sta proprio nel mio percorso ibrido. Non sono un'amministrativa pura e nemmeno un profilo puramente tecnico: capisco il linguaggio del business e della gestione aziendale, ma so tradurlo in pratica con strumenti come Power Automate, VBA, AppScript e l'integrazione di strumenti di IA. Questo mi permette di guardare i processi senza limitarmi a un'unica prospettiva, facendo da ponte tra chi vive i problemi operativi ogni giorno e le soluzioni tecnologiche per risolverli.
+                </p>
+                <p>
+                    Per me la curiosità verso ciò che è segreto o non ancora noto è il vero motore dell'apprendimento: c'è qualcosa di estremamente stimolante nel prendere un processo complesso, capirne la logica nascosta e scoprire come semplificarlo per far risparmiare tempo e risorse alle persone. È un approccio che ho applicato ovunque sia stata, lasciando sempre un'impronta concreta, che si trattasse di ridurre un flusso manuale sulle note spese da 30 a 6 ore mensili, di automatizzare i controlli sul cash flow in pochi secondi o di realizzare un sistema LMS integrato per la formazione.
+                </p>
+                <p>
+                    Potendo scegliere dove portare questo entusiasmo, fare parte di una realtà grande e inimitabile come Coca-Cola avrebbe per me un significato speciale. Significherebbe sentire di appartenere a un marchio che c'è sempre stato nella mia vita e che fa parte dei ricordi di tutti noi; in questo c'è qualcosa di magico a cui mi piacerebbe molto contribuire con il mio lavoro quotidiano.
+                </p>
+                <p>
+                    Vi ringrazio per il tempo e l'attenzione. Sarei davvero felice di poter raccontare qualcosa in più su di me e sul mio percorso in un colloquio conoscitivo.
+                </p>
+            </main>
+        </div>
+
+        <footer class="signature">
+            <p>Cordialmente,</p>
+            <p><strong>Nadia Provenza</strong></p>
+        </footer>
+    </div>
+
+</body>
 </html>
