@@ -7,7 +7,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* ==========================================================================
@@ -20,97 +20,102 @@
         }
 
         :root {
-            --primary-red: #E41E2B;       /* Coca-Cola Brand Red */
-            --dark-red: #B3000C;
-            --text-dark: #1E1E1E;
-            --text-muted: #555555;
-            --bg-sidebar: #F9FAFB;
-            --border-color: #E5E7EB;
+            /* Palette: Elegante, scura con leggeri e sottili richiami al brand */
+            --brand-dark-red: #6B0C11;   /* Rosso Ebano / Bordeaux scuro */
+            --brand-accent-red: #B81D24; /* Rosso vibrante desaturato */
+            --text-main: #0F172A;        /* Slate / Antracite Profondo */
+            --text-muted: #475569;       /* Grigio medio */
+            --bg-page: #F1F5F9;         /* Grigio chiaro di sfondo fuori stampa */
+            --bg-card: #F8FAFC;         /* Sfondo card sidebar */
+            --border-subtle: #E2E8F0;   /* Bordi delicati */
             --white: #FFFFFF;
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            color: var(--text-dark);
-            background-color: #ECEFF1;
-            font-size: 9pt;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-page);
+            font-size: 8.8pt;
             line-height: 1.45;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
 
         /* ==========================================================================
-           2. PAGE STRUCTURE & A4 SPECS
+           2. PAGE STRUCTURE (A4 SPECS)
            ========================================================================== */
         .page {
             width: 210mm;
             height: 297mm;
             margin: 20px auto;
             background: var(--white);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(15, 23, 42, 0.08);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
-        /* Top Brand Accent Bar */
-        .page::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* Dettaglio grafico elegante in cima alla pagina */
+        .page-top-accent {
+            height: 4mm;
             width: 100%;
-            height: 6mm;
-            background: var(--primary-red);
-            z-index: 10;
+            background: linear-gradient(90deg, var(--brand-dark-red) 0%, var(--brand-accent-red) 70%, var(--text-main) 100%);
         }
 
         /* ==========================================================================
-           3. CV LAYOUT (PAGE 1)
+           3. CV HEADER & PHOTO
            ========================================================================== */
         .cv-header {
-            padding: 12mm 15mm 6mm 15mm;
+            padding: 10mm 15mm 6mm 15mm;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 2px solid var(--border-color);
-            margin-top: 4mm;
+            border-bottom: 1px solid var(--border-subtle);
         }
 
-        .header-text {
+        .header-left {
             flex: 1;
         }
 
-        .header-text h1 {
+        .header-left h1 {
             font-size: 22pt;
             font-weight: 800;
-            color: var(--text-dark);
-            letter-spacing: -0.5px;
+            color: var(--text-main);
+            letter-spacing: -0.6px;
             text-transform: uppercase;
-            line-height: 1.1;
+            line-height: 1.05;
         }
 
-        .header-text h1 span {
-            color: var(--primary-red);
+        .header-left h1 span {
+            color: var(--brand-dark-red);
+        }
+
+        .header-subtitle {
+            font-size: 9.5pt;
+            font-weight: 600;
+            color: var(--brand-accent-red);
+            letter-spacing: 0.3px;
+            margin-top: 3px;
+            text-transform: uppercase;
         }
 
         .contact-bar {
             margin-top: 8px;
-            font-size: 8.5pt;
+            font-size: 8.2pt;
             color: var(--text-muted);
             display: flex;
             gap: 12px;
             font-weight: 500;
         }
 
-        /* Photo Placeholder */
+        /* Photo Frame */
         .photo-frame {
-            width: 28mm;
-            height: 28mm;
-            border-radius: 50%;
-            border: 3px solid var(--primary-red);
-            background-color: #F3F4F6;
+            width: 27mm;
+            height: 27mm;
+            border-radius: 12px;
+            border: 2px solid var(--border-subtle);
+            background-color: var(--bg-card);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -121,6 +126,7 @@
             overflow: hidden;
             flex-shrink: 0;
             margin-left: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
         }
 
         .photo-frame img {
@@ -129,9 +135,12 @@
             object-fit: cover;
         }
 
+        /* ==========================================================================
+           4. CV GRID LAYOUT
+           ========================================================================== */
         .cv-grid {
             display: grid;
-            grid-template-columns: 1fr 68mm;
+            grid-template-columns: 1fr 66mm;
             flex: 1;
             height: calc(297mm - 40mm);
         }
@@ -141,8 +150,8 @@
         }
 
         .sidebar {
-            background-color: var(--bg-sidebar);
-            border-left: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            border-left: 1px solid var(--border-subtle);
             padding: 6mm 12mm 10mm 8mm;
             display: flex;
             flex-direction: column;
@@ -150,12 +159,12 @@
         }
 
         /* ==========================================================================
-           4. TYPOGRAPHY & SECTIONS
+           5. SECTION STYLES
            ========================================================================== */
         .section-title {
-            font-size: 10pt;
+            font-size: 9.5pt;
             font-weight: 800;
-            color: var(--primary-red);
+            color: var(--brand-dark-red);
             text-transform: uppercase;
             letter-spacing: 0.8px;
             display: flex;
@@ -165,17 +174,26 @@
             margin-bottom: 8px;
         }
 
+        .section-title::before {
+            content: "";
+            width: 4px;
+            height: 12px;
+            background-color: var(--brand-accent-red);
+            border-radius: 2px;
+            display: inline-block;
+        }
+
         .section-title::after {
             content: "";
             flex: 1;
             height: 1px;
-            background-color: var(--border-color);
+            background-color: var(--border-subtle);
         }
 
         p {
             margin-bottom: 6px;
             text-align: justify;
-            color: #333333;
+            color: var(--text-main);
         }
 
         /* Job Blocks */
@@ -190,22 +208,25 @@
         }
 
         .job-title {
-            font-size: 9.5pt;
+            font-size: 9.2pt;
             font-weight: 700;
-            color: var(--text-dark);
+            color: var(--text-main);
         }
 
         .job-company {
-            font-size: 8.5pt;
-            font-weight: 600;
-            color: var(--primary-red);
+            font-size: 8.3pt;
+            font-weight: 700;
+            color: var(--brand-accent-red);
             margin-bottom: 3px;
         }
 
         .job-date {
-            font-size: 8pt;
+            font-size: 7.8pt;
             font-weight: 600;
             color: var(--text-muted);
+            background: #E2E8F0;
+            padding: 1px 6px;
+            border-radius: 4px;
         }
 
         ul {
@@ -217,18 +238,18 @@
             position: relative;
             padding-left: 12px;
             margin-bottom: 3px;
-            font-size: 8.3pt;
-            color: #333333;
+            font-size: 8.2pt;
+            color: var(--text-main);
         }
 
         ul li::before {
             content: "•";
             position: absolute;
             left: 0;
-            color: var(--primary-red);
+            color: var(--brand-accent-red);
             font-weight: bold;
-            font-size: 10pt;
-            line-height: 8.3pt;
+            font-size: 9pt;
+            line-height: 8.2pt;
         }
 
         /* Sidebar Elements */
@@ -237,68 +258,87 @@
         }
 
         .sidebar-group-title {
-            font-size: 8.5pt;
+            font-size: 8.2pt;
             font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 4px;
+            color: var(--text-main);
+            margin-bottom: 5px;
             text-transform: uppercase;
             letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .sidebar-list li {
-            font-size: 8pt;
+            font-size: 7.8pt;
             margin-bottom: 3px;
-            line-height: 1.3;
+            line-height: 1.35;
+        }
+
+        .skill-badge {
+            display: inline-block;
+            background: var(--white);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-main);
+            font-size: 7.5pt;
+            font-weight: 600;
+            padding: 2px 7px;
+            border-radius: 4px;
+            margin-right: 3px;
+            margin-bottom: 4px;
         }
 
         .footer-legal {
-            font-size: 7pt;
+            font-size: 6.8pt;
             color: var(--text-muted);
-            line-height: 1.2;
-            border-top: 1px solid var(--border-color);
+            line-height: 1.25;
+            border-top: 1px solid var(--border-subtle);
             padding-top: 8px;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         /* ==========================================================================
-           5. COVER LETTER LAYOUT (PAGE 2)
+           6. COVER LETTER LAYOUT (PAGE 2)
            ========================================================================== */
         .cover-letter-page {
-            padding: 15mm 20mm 15mm 20mm;
+            padding: 0 0 12mm 0;
             justify-content: space-between;
+        }
+
+        .letter-container {
+            padding: 12mm 20mm 0 20mm;
         }
 
         .letter-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 12px;
-            margin-top: 6mm;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 10px;
         }
 
-        .recipient-box {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            background-color: var(--bg-sidebar);
-            padding: 12px 16px;
-            border-left: 3px solid var(--primary-red);
+        .recipient-card {
+            margin-top: 18px;
+            margin-bottom: 18px;
+            background-color: var(--bg-card);
+            padding: 10px 14px;
+            border-left: 3px solid var(--brand-dark-red);
+            border-radius: 0 6px 6px 0;
             font-weight: 700;
-            color: var(--text-dark);
-            font-size: 9.5pt;
+            color: var(--text-main);
+            font-size: 9pt;
         }
 
         .letter-body p {
-            font-size: 9.2pt;
+            font-size: 9pt;
             line-height: 1.55;
             margin-bottom: 12px;
-            color: #222222;
+            color: #1E293B;
         }
 
         .signature {
-            margin-top: 20px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 12px;
+            padding: 0 20mm;
+            margin-top: 15px;
         }
 
         .signature p {
@@ -306,7 +346,7 @@
         }
 
         /* ==========================================================================
-           6. PRINT MEDIA QUERIES
+           7. PRINT MEDIA QUERIES
            ========================================================================== */
         @media print {
             body {
@@ -334,19 +374,21 @@
        PAGINA 1: CURRICULUM VITAE
        ========================================================================== -->
     <div class="page">
+        <div class="page-top-accent"></div>
+        
         <!-- Header con Foto integrata -->
         <header class="cv-header">
-            <div class="header-text">
+            <div class="header-left">
                 <h1>Nadia <span>Provenza</span></h1>
+                <div class="header-subtitle">Operations & Automation Specialist</div>
                 <div class="contact-bar">
                     <span>Torino, Italia</span> • 
                     <span>nadia.provenza94@gmail.com</span> • 
                     <span>linkedin.com/in/nadia-provenza</span>
                 </div>
             </div>
-            <!-- Spazio dedicato alla foto profilo -->
+            <!-- Spazio foto opzionale -->
             <div class="photo-frame">
-                <!-- Sostituire il testo o inserire <img src="URL_FOTO" alt="Nadia Provenza"> -->
                 FOTO
             </div>
         </header>
@@ -436,34 +478,39 @@
 
                     <div class="sidebar-group">
                         <div class="sidebar-group-title">Tecniche & Digital Tools</div>
-                        <ul class="sidebar-list">
-                            <li><strong>Process Automation:</strong> Power Automate, SharePoint, Google AppScript, Macro VBA (Excel)</li>
-                            <li><strong>AI Prompting:</strong> Prompt Chaining con LLM (Copilot, Gemini) per sintesi dati, validazione logica e refactoring codice</li>
-                            <li><strong>Digital Support:</strong> LMS, WordPress backend, Troubleshooting</li>
-                            <li><strong>Linguaggi & IoT:</strong> Fondamenti di Python (Data Analysis e Automation), Arduino IDE, LoRa/LoRaWAN</li>
-                        </ul>
+                        <div style="margin-top: 4px;">
+                            <span class="skill-badge">Power Automate</span>
+                            <span class="skill-badge">SharePoint</span>
+                            <span class="skill-badge">Google AppScript</span>
+                            <span class="skill-badge">VBA (Excel)</span>
+                            <span class="skill-badge">Copilot</span>
+                            <span class="skill-badge">Gemini</span>
+                            <span class="skill-badge">Python</span>
+                            <span class="skill-badge">WordPress</span>
+                            <span class="skill-badge">LMS</span>
+                            <span class="skill-badge">Arduino</span>
+                        </div>
                     </div>
 
                     <div class="sidebar-group">
                         <div class="sidebar-group-title">Trasversali</div>
                         <ul class="sidebar-list">
-                            <li>Comunicazione interfunzionale, capacità di fare da "bridge" tra business e tecnici</li>
-                            <li>Pensiero analitico, approccio logico e risoluzione sistematica dei problemi</li>
+                            <li>Comunicazione interfunzionale e ruolo di "bridge" business-tech</li>
+                            <li>Pensiero analitico, approccio logico e problem solving</li>
                             <li>Autonomia, rigore gestionale e miglioramento continuo</li>
                         </ul>
                     </div>
-
-                    <h2 class="section-title" style="margin-top: 15px;">Formazione</h2>
+        <h2 class="section-title" style="margin-top: 12px;">Formazione</h2>
                     <ul class="sidebar-list">
                         <li><strong>Laurea in Ingegneria Gestionale</strong><br>Università Mercatorum (In corso)</li>
-                        <li style="margin-top: 5px;"><strong>Corso Python (80 ore)</strong><br>Focus: API Backend, Data Analysis, Automation</li>
-                        <li style="margin-top: 5px;"><strong>Ingegneria Fisica (Studi)</strong><br>Politecnico di Torino</li>
+                        <li style="margin-top: 4px;"><strong>Corso Python (80 ore)</strong><br>API Backend, Data Analysis, Automation</li>
+                        <li style="margin-top: 4px;"><strong>Ingegneria Fisica (Studi)</strong><br>Politecnico di Torino</li>
                     </ul>
 
-                    <h2 class="section-title" style="margin-top: 15px;">Lingue</h2>
+                    <h2 class="section-title" style="margin-top: 12px;">Lingue</h2>
                     <ul class="sidebar-list">
                         <li><strong>Italiano:</strong> Madrelingua</li>
-                        <li><strong>Inglese:</strong> Professionale (Certificazione B2 First)</li>
+                        <li><strong>Inglese:</strong> Professional (B2 First)</li>
                     </ul>
                 </div>
 
@@ -472,53 +519,3 @@
                 </footer>
             </aside>
         </div>
-    </div>
-
-    <!-- ==========================================================================
-       PAGINA 2: LETTERA DI PRESENTAZIONE
-       ========================================================================== -->
-    <div class="page cover-letter-page">
-        <div>
-            <header class="letter-header">
-                <div class="header-text">
-                    <h1>Nadia <span>Provenza</span></h1>
-                    <div class="contact-bar" style="margin-top: 4px;">
-                        <span>Torino, Italia</span> • 
-                        <span>nadia.provenza94@gmail.com</span> • 
-                        <span>linkedin.com/in/nadia-provenza</span>
-                    </div>
-                </div>
-            </header>
-
-            <div class="recipient-box">
-                Alla cortese attenzione del Team di Selezione di Coca-Cola HBC
-            </div>
-
-            <main class="letter-body">
-                <p>Buongiorno,</p>
-                <p>
-                    Vi scrivo perché sono alla ricerca di nuovi stimoli e, leggendo l'annuncio per il ruolo di Digital & Technology Platform Expert, ho pensato subito che ci fosse una certa affinità con quello che faccio e con come mi piace lavorare.
-                </p>
-                <p>
-                    Nell'annuncio fate riferimento al concetto di "secret ingredient"; se dovessi definire il mio, direi che sta proprio nel mio percorso ibrido. Non sono un'amministrativa pura e nemmeno un profilo puramente tecnico: capisco il linguaggio del business e della gestione aziendale, ma so tradurlo in pratica con strumenti come Power Automate, VBA, AppScript e l'integrazione di strumenti di IA. Questo mi permette di guardare i processi senza limitarmi a un'unica prospettiva, facendo da ponte tra chi vive i problemi operativi ogni giorno e le soluzioni tecnologiche per risolverli.
-                </p>
-                <p>
-                    Per me la curiosità verso ciò che è segreto o non ancora noto è il vero motore dell'apprendimento: c'è qualcosa di estremamente stimolante nel prendere un processo complesso, capirne la logica nascosta e scoprire come semplificarlo per far risparmiare tempo e risorse alle persone. È un approccio che ho applicato ovunque sia stata, lasciando sempre un'impronta concreta, che si trattasse di ridurre un flusso manuale sulle note spese da 30 a 6 ore mensili, di automatizzare i controlli sul cash flow in pochi secondi o di realizzare un sistema LMS integrato per la formazione.
-                </p>
-                <p>
-                    Potendo scegliere dove portare questo entusiasmo, fare parte di una realtà grande e inimitabile come Coca-Cola avrebbe per me un significato speciale. Significherebbe sentire di appartenere a un marchio che c'è sempre stato nella mia vita e che fa parte dei ricordi di tutti noi; in questo c'è qualcosa di magico a cui mi piacerebbe molto contribuire con il mio lavoro quotidiano.
-                </p>
-                <p>
-                    Vi ringrazio per il tempo e l'attenzione. Sarei davvero felice di poter raccontare qualcosa in più su di me e sul mio percorso in un colloquio conoscitivo.
-                </p>
-            </main>
-        </div>
-
-        <footer class="signature">
-            <p>Cordialmente,</p>
-            <p><strong style="color: var(--primary-red); font-size: 11pt;">Nadia Provenza</strong></p>
-        </footer>
-    </div>
-
-</body>
-</html>
