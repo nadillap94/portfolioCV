@@ -7,11 +7,11 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* ==========================================================================
-           1. RESET & GLOBALS
+           1. RESET & VARIABLES
            ========================================================================== */
         * {
             box-sizing: border-box;
@@ -20,21 +20,23 @@
         }
 
         :root {
-            --sidebar-bg: #0f172a;       /* Antracite Notte scuro dal vecchio CV */
-            --sidebar-text: #f8fafc;     /* Testo chiaro sidebar */
-            --sidebar-muted: #94a3b8;    /* Testo secondario sidebar */
-            --accent-teal: #0d9488;      /* Acquamarina / Ottanio dal vecchio CV */
-            --accent-teal-light: #2dd4bf;
-            --main-text: #1e293b;        /* Testo principale */
-            --main-muted: #64748b;
-            --border-color: #e2e8f0;
-            --white: #ffffff;
+            /* Palette Coca-Cola */
+            --coca-red: #E41E2B;         /* Rosso iconico Coca-Cola */
+            --coca-dark: #111111;        /* Antracite / Nero brand */
+            --coca-brown: #2D140D;       /* Marrone tipico della bevanda */
+            --coca-brown-light: #52271C; /* Marrone chiaro sfumato */
+            --bg-sidebar: #2D140D;       /* Sidebar marrone Coca-Cola */
+            --text-sidebar: #F8FAFC;     /* Testo chiaro su sidebar scura */
+            --text-main: #1E293B;        /* Testo principale corpo */
+            --text-muted: #64748B;       /* Testo secondario */
+            --border-subtle: #E2E8F0;   /* Bordi leggeri */
+            --white: #FFFFFF;
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            color: var(--main-text);
-            background-color: #cbd5e1;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            color: var(--text-main);
+            background-color: #E2E8F0;
             font-size: 8.8pt;
             line-height: 1.4;
             -webkit-print-color-adjust: exact;
@@ -42,35 +44,79 @@
         }
 
         /* ==========================================================================
-           2. A4 PAGE CONTAINER
+           2. PAGE STRUCTURE (A4 SPECS)
            ========================================================================== */
         .page {
             width: 210mm;
             height: 297mm;
             margin: 20px auto;
             background: var(--white);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
+        /* Bordo superiore rosso iconico */
+        .page-top-accent {
+            height: 5mm;
+            width: 100%;
+            background: var(--coca-red);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
         /* ==========================================================================
-           3. CV GRID LAYOUT (PAGE 1)
+           3. BUBBLE GRAPHICS (BOLLICINE COCA-COLA)
+           ========================================================================== */
+        .bubbles-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70mm; /* Copre la sidebar */
+            height: 120mm;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+            opacity: 0.35;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -20px;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(82, 39, 28, 0.4));
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+        }
+
+        /* Posizionamento e dimensioni varie bollicine */
+        .bubble-1 { left: 10%; width: 14px; height: 14px; bottom: 10px; }
+        .bubble-2 { left: 25%; width: 22px; height: 22px; bottom: 35px; }
+        .bubble-3 { left: 45%; width: 10px; height: 10px; bottom: 15px; }
+        .bubble-4 { left: 60%; width: 18px; height: 18px; bottom: 50px; }
+        .bubble-5 { left: 75%; width: 12px; height: 12px; bottom: 25px; }
+        .bubble-6 { left: 35%; width: 28px; height: 28px; bottom: 80px; }
+        .bubble-7 { left: 80%; width: 16px; height: 16px; bottom: 95px; }
+        .bubble-8 { left: 15%; width: 8px;  height: 8px;  bottom: 70px; }
+
+        /* ==========================================================================
+           4. CV GRID & SIDEBAR (LEFT)
            ========================================================================== */
         .cv-grid {
             display: grid;
-            grid-template-columns: 72mm 1fr;
+            grid-template-columns: 70mm 1fr;
             height: 100%;
-            width: 100%;
+            padding-top: 5mm;
         }
 
-        /* SIDEBAR SCURA (Sinistra) */
+        /* Sidebar a Sinistra Colorata */
         .sidebar {
-            background-color: var(--sidebar-bg);
-            color: var(--sidebar-text);
-            padding: 10mm 7mm 8mm 8mm;
+            background: linear-gradient(180deg, var(--coca-brown) 0%, #1A0B07 100%);
+            color: var(--text-sidebar);
+            padding: 12mm 8mm 10mm 10mm;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -78,150 +124,163 @@
             z-index: 2;
         }
 
-        /* Avatar Profilo Circolare con Anello Teal */
-        .profile-container {
-            text-align: center;
-            margin-bottom: 12px;
+        .sidebar-content {
+            position: relative;
+            z-index: 3;
         }
 
-        .avatar-ring {
+        /* Foto Profilo in Sidebar */
+        .photo-frame {
             width: 32mm;
             height: 32mm;
             border-radius: 50%;
-            border: 3px solid var(--accent-teal);
-            margin: 0 auto 10px auto;
+            border: 3px solid var(--coca-red);
+            background-color: var(--coca-brown-light);
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #1e293b;
-            color: var(--sidebar-muted);
+            color: #FFFFFF;
             font-size: 8pt;
-            font-weight: 600;
+            text-align: center;
+            font-weight: 700;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            margin: 0 auto 15px auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         }
 
-        .avatar-ring img {
+        .photo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .sidebar-title {
-            font-size: 8.5pt;
+        /* Titoli Sidebar */
+        .sidebar .section-title {
+            font-size: 9.5pt;
             font-weight: 800;
-            color: var(--accent-teal-light);
+            color: #FFFFFF;
             text-transform: uppercase;
             letter-spacing: 0.8px;
-            border-bottom: 1px solid #334155;
+            border-bottom: 2px solid var(--coca-red);
             padding-bottom: 3px;
-            margin-top: 10px;
+            margin-top: 14px;
             margin-bottom: 8px;
         }
 
-        .sidebar-block {
+        .sidebar-group {
             margin-bottom: 10px;
         }
 
-        .sidebar-block-label {
-            font-size: 8pt;
+        .sidebar-group-title {
+            font-size: 8.2pt;
             font-weight: 700;
-            color: var(--sidebar-text);
-            margin-bottom: 3px;
+            color: var(--coca-red);
+            margin-bottom: 4px;
         }
 
         .sidebar-list {
             list-style: none;
-            padding: 0;
+            padding-left: 0;
         }
 
         .sidebar-list li {
-            font-size: 7.6pt;
-            color: #cbd5e1;
+            font-size: 7.8pt;
             margin-bottom: 4px;
-            line-height: 1.3;
-            position: relative;
-            padding-left: 10px;
+            line-height: 1.35;
+            color: #E2E8F0;
         }
 
-        .sidebar-list li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--accent-teal-light);
-            font-weight: bold;
+        .sidebar-list li strong {
+            color: #FFFFFF;
         }
 
         .footer-legal {
-            font-size: 6.5pt;
-            color: var(--sidebar-muted);
-            line-height: 1.2;
-            border-top: 1px solid #334155;
-            padding-top: 6px;
+            font-size: 6.8pt;
+            color: #A0AEC0;
+            line-height: 1.25;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 8px;
+            position: relative;
+            z-index: 3;
         }
 
-        /* MAIN CONTENT (Destra) */
+        /* ==========================================================================
+           5. MAIN CONTENT (RIGHT)
+           ========================================================================== */
         .main-content {
-            padding: 10mm 12mm 10mm 10mm;
-            position: relative;
+            padding: 12mm 12mm 10mm 10mm;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
         .main-header {
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 8px;
-            margin-bottom: 10px;
+            border-bottom: 2px solid var(--border-subtle);
+            padding-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .main-header h1 {
             font-size: 22pt;
             font-weight: 800;
-            color: var(--main-text);
-            text-transform: uppercase;
+            color: var(--coca-dark);
             letter-spacing: -0.5px;
+            text-transform: uppercase;
             line-height: 1;
         }
 
-        .main-header .contact-info {
-            font-size: 8.2pt;
-            color: var(--main-muted);
-            margin-top: 6px;
-            font-weight: 500;
+        .main-header h1 span {
+            color: var(--coca-red);
         }
 
-        .section-title {
-            font-size: 9.5pt;
+        .contact-info {
+            margin-top: 8px;
+            font-size: 8.2pt;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            font-weight: 600;
+            flex-wrap: wrap;
+        }
+
+        .main-content .section-title {
+            font-size: 10pt;
             font-weight: 800;
-            color: var(--sidebar-bg);
+            color: var(--coca-dark);
             text-transform: uppercase;
-            letter-spacing: 0.6px;
+            letter-spacing: 0.8px;
             display: flex;
             align-items: center;
-            gap: 6px;
-            margin-top: 8px;
-            margin-bottom: 6px;
+            gap: 8px;
+            margin-top: 10px;
+            margin-bottom: 8px;
         }
 
-        .section-title::before {
+        .main-content .section-title::before {
             content: "";
             width: 4px;
-            height: 11px;
-            background-color: var(--accent-teal);
+            height: 13px;
+            background-color: var(--coca-red);
             border-radius: 2px;
+            display: inline-block;
+        }
+
+        .main-content .section-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background-color: var(--border-subtle);
         }
 
         p {
-            font-size: 8.3pt;
-            color: #334155;
-            text-align: justify;
             margin-bottom: 6px;
+            text-align: justify;
+            color: var(--text-main);
+            font-size: 8.5pt;
         }
 
-        /* Job Blocks */
+        /* Job Experience Blocks */
         .job-block {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .job-header {
@@ -231,22 +290,22 @@
         }
 
         .job-title {
-            font-size: 9pt;
+            font-size: 9.2pt;
             font-weight: 700;
-            color: var(--main-text);
+            color: var(--coca-dark);
         }
 
         .job-company {
-            font-size: 8.2pt;
+            font-size: 8.5pt;
             font-weight: 700;
-            color: var(--accent-teal);
-            margin-bottom: 2px;
+            color: var(--coca-red);
+            margin-bottom: 3px;
         }
 
         .job-date {
             font-size: 7.8pt;
             font-weight: 600;
-            color: var(--main-muted);
+            color: var(--text-muted);
         }
 
         .job-bullets {
@@ -256,105 +315,79 @@
 
         .job-bullets li {
             position: relative;
-            padding-left: 11px;
+            padding-left: 12px;
             margin-bottom: 3px;
-            font-size: 8pt;
-            color: #334155;
+            font-size: 8.2pt;
+            color: var(--text-main);
         }
 
         .job-bullets li::before {
             content: "•";
             position: absolute;
             left: 0;
-            color: var(--accent-teal);
+            color: var(--coca-red);
             font-weight: bold;
-            font-size: 9pt;
+            font-size: 10pt;
+            line-height: 8.2pt;
         }
 
         /* ==========================================================================
-           4. GRAPHIC ELEMENT: BUBBLES (Sottile rimando frizzante)
-           ========================================================================== */
-        .bubbles-container {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 120px;
-            height: 180px;
-            pointer-events: none;
-            opacity: 0.35;
-            z-index: 1;
-        }
-
-        .bubble {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(13, 148, 136, 0.4), rgba(228, 30, 43, 0.2));
-            border: 1px solid rgba(228, 30, 43, 0.3);
-        }
-
-        .b1 { width: 14px; height: 14px; bottom: 10px; right: 20px; }
-        .b2 { width: 8px; height: 8px; bottom: 35px; right: 45px; }
-        .b3 { width: 22px; height: 22px; bottom: 50px; right: 15px; }
-        .b4 { width: 10px; height: 10px; bottom: 90px; right: 30px; }
-        .b5 { width: 16px; height: 16px; bottom: 120px; right: 10px; }
-        .b6 { width: 6px; height: 6px; bottom: 150px; right: 25px; }
-
-        /* ==========================================================================
-           5. COVER LETTER LAYOUT (PAGE 2)
+           6. COVER LETTER PAGE (PAGE 2)
            ========================================================================== */
         .cover-letter-page {
-            padding: 12mm 15mm 12mm 15mm;
+            padding: 0;
             justify-content: space-between;
         }
 
-        .letter-header {
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
+        .cover-container {
+            display: grid;
+            grid-template-columns: 70mm 1fr;
+            height: 100%;
+            padding-top: 5mm;
+        }
+
+        .cover-sidebar {
+            background: linear-gradient(180deg, var(--coca-brown) 0%, #1A0B07 100%);
+            color: var(--text-sidebar);
+            padding: 15mm 8mm 10mm 10mm;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover-main {
+            padding: 15mm 15mm 15mm 12mm;
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .letter-header h1 {
-            font-size: 20pt;
-            font-weight: 800;
-            color: var(--main-text);
-            text-transform: uppercase;
-        }
-
-        .letter-subtitle {
-            font-size: 9pt;
-            font-weight: 700;
-            color: var(--accent-teal);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .recipient-box {
-            margin-top: 18px;
-            margin-bottom: 18px;
-            background-color: #f8fafc;
-            padding: 10px 14px;
-            border-left: 3px solid var(--accent-teal);
+            margin-top: 15px;
+            margin-bottom: 20px;
+            background-color: #F8FAFC;
+            padding: 12px 16px;
+            border-left: 4px solid var(--coca-red);
+            border-radius: 0 6px 6px 0;
             font-weight: 700;
-            color: var(--main-text);
-            font-size: 9pt;
+            color: var(--coca-dark);
+            font-size: 9.5pt;
         }
 
         .letter-body p {
             font-size: 9pt;
             line-height: 1.5;
             margin-bottom: 12px;
-            color: #1e293b;
+            color: #1E293B;
         }
 
         .signature {
-            border-top: 1px solid var(--border-color);
+            margin-top: 20px;
+            border-top: 1px solid var(--border-subtle);
             padding-top: 10px;
         }
 
         /* ==========================================================================
-           6. PRINT MEDIA QUERIES
+           7. PRINT MEDIA QUERIES
            ========================================================================== */
         @media print {
             body {
@@ -382,147 +415,148 @@
        PAGINA 1: CURRICULUM VITAE
        ========================================================================== -->
     <div class="page">
+        <div class="page-top-accent"></div>
+
         <div class="cv-grid">
-            
-            <!-- SIDEBAR SCURA (Sinistra) -->
+            <!-- SIDEBAR A SINISTRA (COLORATA COCA-COLA) -->
             <aside class="sidebar">
-                <div>
-                    <!-- Foto con anello colorato -->
-                    <div class="profile-container">
-                        <div class="avatar-ring">
-                            FOTO
-                        </div>
+                <!-- Bollicine di Coca-Cola -->
+                <div class="bubbles-container">
+                    <div class="bubble bubble-1"></div>
+                    <div class="bubble bubble-2"></div>
+                    <div class="bubble bubble-3"></div>
+                    <div class="bubble bubble-4"></div>
+                    <div class="bubble bubble-5"></div>
+                    <div class="bubble bubble-6"></div>
+                    <div class="bubble bubble-7"></div>
+                    <div class="bubble bubble-8"></div>
+                </div>
+
+                <div class="sidebar-content">
+                    <!-- Spazio Foto -->
+                    <div class="photo-frame">
+                        FOTO
                     </div>
 
-                    <div class="sidebar-title">Competenze e Strumenti</div>
-
-                    <div class="sidebar-block">
-                        <div class="sidebar-block-label">Processo & Business Transformation:</div>
+                    <h2 class="section-title">Competenze e Strumenti</h2>
+                    
+                    <div class="sidebar-group">
+                        <div class="sidebar-group-title">Competenze di Processo & Business Transformation:</div>
                         <ul class="sidebar-list">
-                            <li>Process Mapping & Optimization (Interviste agli utenti, rilevamento pain points, eliminazione colli di bottiglia)</li>
-                            <li>Change Management & User Enablement (Stesura guide operative, formazione e affiancamento utenti)</li>
-                            <li>Business Analysis & Data Reconciliation (Supporto a HR, Amministrazione e Controllo di Gestione)</li>
+                            <li>Process Mapping & Optimization (Interviste agli utenti, rilevamento pain points, eliminazione colli di bottiglia)[span_0](start_span)[span_0](end_span)</li>
+                            <li>Change Management & User Enablement (Stesura guide operative, formazione e affiancamento utenti)[span_1](start_span)[span_1](end_span)</li>
+                            <li>Business Analysis & Data Reconciliation (Supporto a HR, Amministrazione e Controllo di Gestione)[span_2](start_span)[span_2](end_span)</li>
                         </ul>
                     </div>
 
-                    <div class="sidebar-block">
-                        <div class="sidebar-block-label">Tecniche & Digital Tools:</div>
+                    <div class="sidebar-group">
+                        <div class="sidebar-group-title">Competenze Tecniche & Digital Tools:</div>
                         <ul class="sidebar-list">
-                            <li><strong>Process Automation & Low-Code:</strong> Power Automate, SharePoint, Google AppScript, Macro VBA (Excel)</li>
-                            <li><strong>AI Prompting & Adoption:</strong> Utilizzo integrato e Prompt Chaining con LLM (Copilot, Gemini) per sintesi dati, validazione logica e refactoring di codice</li>
-                            <li><strong>Digital Support & CMS:</strong> Gestione LMS, WordPress backend, Troubleshooting</li>
-                            <li><strong>Linguaggi & IoT:</strong> Fondamenti di Python (Data Analysis e Automation), Arduino IDE, LoRa/LoRaWAN</li>
+                            <li><strong>Process Automation & Low-Code:</strong> Power Automate, SharePoint, Google AppScript, Macro VBA (Excel)[span_3](start_span)[span_3](end_span)</li>
+                            <li><strong>AI Prompting & Adoption:</strong> Utilizzo integrato e Prompt Chaining con LLM (Copilot, Gemini) per sintesi dati, validazione logica e refactoring di codice[span_4](start_span)[span_4](end_span)</li>
+                            <li><strong>Digital Support & CMS:</strong> Gestione LMS, WordPress backend, Troubleshooting[span_5](start_span)[span_5](end_span)</li>
+                            <li><strong>Linguaggi & IoT:</strong> Fondamenti di Python (Data Analysis e Automation), Arduino IDE, LoRa/LoRaWAN[span_6](start_span)[span_6](end_span)</li>
                         </ul>
                     </div>
 
-                    <div class="sidebar-block">
-                        <div class="sidebar-block-label">Competenze Trasversali:</div>
+                    <div class="sidebar-group">
+                        <div class="sidebar-group-title">Competenze Trasversali:</div>
                         <ul class="sidebar-list">
-                            <li>Comunicazione interfunzionale e capacità di fare da "bridge" tra utenti di business e interlocutori tecnici</li>
-                            <li>Pensiero analitico, approccio logico e orientamento alla risoluzione sistematica dei problemi</li>
-                            <li>Autonomia, rigore gestionale e orientamento al miglioramento continuo</li>
+                            <li>Comunicazione interfunzionale e capacità di fare da "bridge" tra utenti di business e interlocutori tecnici[span_7](start_span)[span_7](end_span)</li>
+                            <li>Pensiero analitico, approccio logico e orientamento alla risoluzione sistematica dei problemi[span_8](start_span)[span_8](end_span)</li>
+                            <li>Autonomia, rigore gestionale e orientamento al miglioramento continuo[span_9](start_span)[span_9](end_span)</li>
                         </ul>
                     </div>
 
-                    <div class="sidebar-title">Formazione e Lingue</div>
+                    <h2 class="section-title">Formazione e Lingue</h2>
                     <ul class="sidebar-list">
-                        <li><strong>Laurea in Ingegneria Gestionale</strong><br>Università Mercatorum (In corso)</li>
-                        <li style="margin-top: 4px;"><strong>Corso di Formazione in Python (80 ore)</strong><br>Focus: API Backend, Data Analysis, Automation</li>
-                        <li style="margin-top: 4px;"><strong>Frequenza e studi in Ingegneria Fisica</strong><br>Politecnico di Torino</li>
-                        <li style="margin-top: 4px;"><strong>Lingue:</strong><br>Italiano (Madrelingua)<br>Inglese (Livello Professionale - Certificazione B2 First)</li>
+                        <li><strong>Laurea in Ingegneria Gestionale</strong><br>Università Mercatorum (In corso)[span_10](start_span)[span_10](end_span)</li>
+                        <li style="margin-top: 4px;"><strong>Corso di Formazione in Python (80 ore)</strong><br>Focus: API Backend, Data Analysis, Automation[span_11](start_span)[span_11](end_span)</li>
+                        <li style="margin-top: 4px;"><strong>Frequenza e studi in Ingegneria Fisica</strong><br>Politecnico di Torino[span_12](start_span)[span_12](end_span)</li>
+                        <li style="margin-top: 4px;"><strong>Lingue:</strong><br>Italiano (Madrelingua)<br>Inglese (Livello Professionale - Certificazione B2 First)[span_13](start_span)[span_13](end_span)</li>
                     </ul>
                 </div>
 
                 <footer class="footer-legal">
-                    Autorizzo il trattamento dei dati personali contenuti nel presente curriculum vitae ai sensi del D.Lgs.196/2003.
+                    Autorizzo il trattamento dei dati personali contenuti nel presente curriculum vitae ai sensi del D.Lgs.196/2003.[span_14](start_span)[span_14](end_span)
                 </footer>
             </aside>
 
-            <!-- CONTENUTO PRINCIPALE (Destra) -->
+            <!-- COLONNA PRINCIPALE (DESTRO) -->
             <main class="main-content">
-                <div>
-                    <header class="main-header">
-                        <h1>Nadia Provenza</h1>
-                        <div class="contact-info">
-                            Torino, Italia | nadia.provenza94@gmail.com | linkedin.com/in/nadia-provenza
+                <header class="main-header">
+                    <h1>Nadia <span>Provenza</span></h1>
+                    <div class="contact-info">
+                        <span>Torino, Italia</span> | 
+                        <span>nadia.provenza94@gmail.com</span> | 
+                        <span>linkedin.com/in/nadia-provenza</span>[span_15](start_span)[span_15](end_span)
+                    </div>
+                </header>
+
+                <section>
+                    <h2 class="section-title">Profilo Professionale</h2>
+                    <p>
+                        Ingegnera Gestionale in formazione con background in Ingegneria Fisica e oltre 5 anni di esperienza nell'analisi dei processi, digital transformation e automazione dei flussi operativi. Specializzata nell'identificazione delle inefficienze aziendali e nella loro risoluzione tramite soluzioni Low-Code (Power Automate, AppScript), automazione (VBA) e AI Prompting. Abile nell'agire come punto di raccordo tra le esigenze degli utenti di business (HR, Amministrazione, Controllo di Gestione) e l'implementazione tecnologica, curando l'intero ciclo: dall'analisi dello status quo, alla prototipazione, fino alla redazione di documentazione tecnica e all'affiancamento per l'adozione da parte degli utenti.[span_16](start_span)[span_16](end_span)
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="section-title">Esperienza Professionale</h2>
+                    
+                    <!-- Job 1 -->
+                    <div class="job-block">
+                        <div class="job-header">
+                            <span class="job-title">Operations & Automation Specialist</span>
+                            <span class="job-date">Ottobre 2023 – Oggi</span>[span_17](start_span)[span_17](end_span)
                         </div>
-                    </header>
+                        <div class="job-company">CWS S.R.L. – Torino</div>[span_18](start_span)[span_18](end_span)
+                        <ul class="job-bullets">
+                            <li><strong>Process Mapping & Semplificazione:</strong> Analisi e riprogettazione del flusso di controllo delle note spese mensili, riducendo il tempo di gestione da 30 ore a circa 6 ore al mese (-80% del lavoro manuale).[span_19](start_span)[span_19](end_span)</li>
+                            <li><strong>Automazione Financial & Operations:</strong> Sviluppo di strumenti strutturati per controllo di gestione, forecast, budget e cash flow. Scrittura di codici VBA per il controllo automatico delle scadenze clienti, riducendo le verifiche da diverse ore a pochi secondi.[span_20](start_span)[span_20](end_span)</li>
+                            <li><strong>Platform & Cloud Automation:</strong> Ideazione e sviluppo di un sistema LMS integrato tramite Power Automate e SharePoint con notifiche automatiche via Teams (Adaptive Cards), reportistica automatizzata per l'HR e solleciti personalizzati.[span_21](start_span)[span_21](end_span)</li>
+                            <li><strong>User Enablement & Documentazione:</strong> Attività di discovery tramite interviste agli utenti per mappare le criticità dei processi; redazione di guide operative e affiancamento diretto ai colleghi per facilitare l'adozione delle automazioni.[span_22](start_span)[span_22](end_span)</li>
+                            <li><strong>Project Monitoring:</strong> Gestione della documentazione tecnica e monitoraggio dei KPI operativi per progetti di R&S&I e Formazione 4.0.[span_23](start_span)[span_23](end_span)</li>
+                        </ul>
+                    </div>
 
-                    <section>
-                        <h2 class="section-title">Profilo Professionale</h2>
-                        <p>
-                            Ingegnera Gestionale in formazione con background in Ingegneria Fisica e oltre 5 anni di esperienza nell'analisi dei processi, digital transformation e automazione dei flussi operativi. Specializzata nell'identificazione delle inefficienze aziendali e nella loro risoluzione tramite soluzioni Low-Code (Power Automate, AppScript), automazione (VBA) e AI Prompting. Abile nell'agire come punto di raccordo tra lesigenze degli utenti di business (HR, Amministrazione, Controllo di Gestione) e l'implementazione tecnologica, curando l'intero ciclo: dall'analisi dello status quo, alla prototipazione, fino alla redazione di documentazione tecnica e all'affiancamento per l'adozione da parte degli utenti.
-                        </p>
-                    </section>
-
-                    <section>
-                        <h2 class="section-title">Esperienza Professionale</h2>
-
-                        <!-- Job 1 -->
-                        <div class="job-block">
-                            <div class="job-header">
-                                <span class="job-title">Operations & Automation Specialist</span>
-                                <span class="job-date">Ottobre 2023 – Oggi</span>
-                            </div>
-                            <div class="job-company">CWS S.R.L. – Torino</div>
-                            <ul class="job-bullets">
-                                <li><strong>Process Mapping & Semplificazione:</strong> Analisi e riprogettazione del flusso di controllo delle note spese mensili, riducendo il tempo di gestione da 30 ore a circa 6 ore al mese (-80% del lavoro manuale).</li>
-                                <li><strong>Automazione Financial & Operations:</strong> Sviluppo di strumenti strutturati per controllo di gestione, forecast, budget e cash flow. Scrittura di codici VBA per il controllo automatico delle scadenze clienti, riducendo le verifiche da diverse ore a pochi secondi.</li>
-                                <li><strong>Platform & Cloud Automation:</strong> Ideazione e sviluppo di un sistema LMS integrato tramite Power Automate e SharePoint con notifiche automatiche via Teams (Adaptive Cards), reportistica automatizzata per l'HR e solleciti personalizzati.</li>
-                                <li><strong>User Enablement & Documentazione:</strong> Attività di discovery tramite interviste agli utenti per mappare le criticità dei processi; redazione di guide operative e affiancamento diretto ai colleghi per facilitare l'adozione delle automazioni.</li>
-                                <li><strong>Project Monitoring:</strong> Gestione della documentazione tecnica e monitoraggio dei KPI operativi per progetti di R&S&I e Formazione 4.0.</li>
-                            </ul>
+                    <!-- Job 2 -->
+                    <div class="job-block">
+                        <div class="job-header">
+                            <span class="job-title">Referente Team Innovazione & Consulente R&S</span>
+                            <span class="job-date">Aprile 2022 – Settembre 2023</span>[span_24](start_span)[span_24](end_span)
                         </div>
-
-                        <!-- Job 2 -->
-                        <div class="job-block">
-                            <div class="job-header">
-                                <span class="job-title">Referente Team Innovazione & Consulente R&S</span>
-                                <span class="job-date">Aprile 2022 – Settembre 2023</span>
-                            </div>
-                            <div class="job-company">Giotto S.R.L. – Torino</div>
-                            <ul class="job-bullets">
-                                <li><strong>Consulenza di Processo:</strong> Interfaccia diretta con clienti aziendali per analizzare e mappare la struttura logica di progetti di ricerca, sviluppo tecnologico e finanza agevolata.</li>
-                                <li><strong>Cloud Automation:</strong> Sviluppo di script in Google AppScript per automatizzare lo scambio dati interfunzionale e i flussi di lavoro interni.</li>
-                            </ul>
-                        </div>
+                        <div class="job-company">Giotto S.R.L. – Torino</div>[span_25](start_span)[span_25](end_span)
+                        <ul class="job-bullets">
+                            <li><strong>Consulenza di Processo:</strong> Interfaccia diretta con clienti aziendali per analizzare e mappare la struttura logica di progetti di ricerca, sviluppo tecnologico e finanza agevolata.[span_26](start_span)[span_26](end_span)</li>
+                            <li><strong>Cloud Automation:</strong> Sviluppo di script in Google AppScript per automatizzare lo scambio dati interfunzionale e i flussi di lavoro interni.[span_27](start_span)[span_27](end_span)</li>
+                        </ul>
+                    </div>
 
                     <!-- Job 3 -->
-                        <div class="job-block">
-                            <div class="job-header">
-                                <span class="job-title">Consulente Junior R&S (Apprendistato di Ricerca)</span>
-                                <span class="job-date">Marzo 2021 – Marzo 2022</span>
-                            </div>
-                            <div class="job-company">T4B - Technology For Business S.R.L. – Torino</div>
-                            <ul class="job-bullets">
-                                <li><strong>Prototipazione & Testing Data:</strong> Prototipazione e test su microcontrollori (Arduino) per l'acquisizione di dati industriali tramite protocolli wireless LoRa/LoRaWAN.</li>
-                                <li><strong>Documentazione Tecnica:</strong> Redazione di reportistica di progetto e rendicontazione tecnica finale.</li>
-                            </ul>
+                    <div class="job-block">
+                        <div class="job-header">
+                            <span class="job-title">Consulente Junior R&S (Apprendistato di Ricerca)</span>
+                            <span class="job-date">Marzo 2021 – Marzo 2022</span>[span_28](start_span)[span_28](end_span)
                         </div>
+                        <div class="job-company">T4B - Technology For Business S.R.L. – Torino</div>[span_29](start_span)[span_29](end_span)
+                        <ul class="job-bullets">
+                            <li><strong>Prototipazione & Testing Data:</strong> Prototipazione e test su microcontrollori (Arduino) per l'acquisizione di dati industriali tramite protocolli wireless LoRa/LoRaWAN.[span_30](start_span)[span_30](end_span)</li>
+                            <li><strong>Documentazione Tecnica:</strong> Redazione di reportistica di progetto e rendicontazione tecnica finale.[span_31](start_span)[span_31](end_span)</li>
+                        </ul>
+                    </div>
 
-                        <!-- Job 4 -->
-                        <div class="job-block">
-                            <div class="job-header">
-                                <span class="job-title">Customer Care & Digital Support Specialist</span>
-                                <span class="job-date">Gennaio 2020 – Marzo 2022</span>
-                            </div>
-                            <div class="job-company">Sin Tesi Forma S.R.L. – Torino</div>
-                            <ul class="job-bullets">
-                                <li><strong>Gestione Sistemi & Digital Support:</strong> Gestione e manutenzione backend di piattaforme e-learning (LMS) e siti WordPress, erogazione contenuti e supporto utenti di primo livello.</li>
-                            </ul>
+                    <!-- Job 4 -->
+                    <div class="job-block">
+                        <div class="job-header">
+                            <span class="job-title">Customer Care & Digital Support Specialist</span>
+                            <span class="job-date">Gennaio 2020 – Marzo 2022</span>[span_32](start_span)[span_32](end_span)
                         </div>
-                    </section>
-                </div>
-
-                <!-- Elemento Bollicine Vettoriali -->
-                <div class="bubbles-container">
-                    <div class="bubble b1"></div>
-                    <div class="bubble b2"></div>
-                    <div class="bubble b3"></div>
-                    <div class="bubble b4"></div>
-                    <div class="bubble b5"></div>
-                    <div class="bubble b6"></div>
-                </div>
+                        <div class="job-company">Sin Tesi Forma S.R.L. – Torino</div>[span_33](start_span)[span_33](end_span)
+                        <ul class="job-bullets">
+                            <li><strong>Gestione Sistemi & Digital Support:</strong> Gestione e manutenzione backend di piattaforme e-learning (LMS) e siti WordPress, erogazione contenuti e supporto utenti di primo livello.[span_34](start_span)[span_34](end_span)</li>
+                        </ul>
+                    </div>
+                </section>
             </main>
         </div>
     </div>
@@ -531,56 +565,64 @@
        PAGINA 2: LETTERA DI PRESENTAZIONE
        ========================================================================== -->
     <div class="page cover-letter-page">
-        <div>
-            <header class="letter-header">
+        <div class="page-top-accent"></div>
+
+        <div class="cover-container">
+            <!-- SIDEBAR COERENTE PER LA LETTERA -->
+            <aside class="cover-sidebar">
+                <div class="bubbles-container">
+                    <div class="bubble bubble-1"></div>
+                    <div class="bubble bubble-3"></div>
+                    <div class="bubble bubble-5"></div>
+                    <div class="bubble bubble-7"></div>
+                </div>
+                <h2 class="section-title" style="margin-top: 0;">Contatti</h2>
+                <ul class="sidebar-list">
+                    <li><strong>Sede:</strong><br>Torino, Italia</li>[span_35](start_span)[span_35](end_span)
+                    <li style="margin-top: 6px;"><strong>Email:</strong><br>nadia.provenza94@gmail.com</li>[span_36](start_span)[span_36](end_span)
+                    <li style="margin-top: 6px;"><strong>LinkedIn:</strong><br>linkedin.com/in/nadia-provenza</li>[span_37](start_span)[span_37](end_span)
+                </ul>
+            </aside>
+
+            <!-- CONTENUTO LETTERA -->
+            <main class="cover-main">
                 <div>
-                    <h1>Nadia Provenza</h1>
-                    <div class="letter-subtitle">Lettera di Presentazione</div>
-                </div>
-                <div style="font-size: 8.2pt; color: var(--main-muted); text-align: right;">
-                    Torino, Italia<br>
-                    nadia.provenza94@gmail.com<br>
-                    linkedin.com/in/nadia-provenza
-                </div>
-            </header>
+                    <header class="main-header">
+                        <h1>Nadia <span>Provenza</span></h1>
+                        <div style="font-size: 9.5pt; font-weight: 700; color: var(--coca-red); text-transform: uppercase; margin-top: 4px;">
+                            LETTERA DI PRESENTAZIONE[span_38](start_span)[span_38](end_span)
+                        </div>
+                    </header>
 
-            <div class="recipient-box">
-                Alla cortese attenzione del Team di Selezione di Coca-Cola HBC
-            </div>
+                    <div class="recipient-box">
+                        Alla cortese attenzione del Team di Selezione di Coca-Cola HBC[span_39](start_span)[span_39](end_span)
+                    </div>
 
-            <main class="letter-body">
-                <p>Buongiorno,</p>
-                <p>
-                    Vi scrivo perché sono alla ricerca di nuovi stimoli e, leggendo l'annuncio per il ruolo di Digital & Technology Platform Expert, ho pensato subito che ci fosse una certa affinità con quello che faccio e con come mi piace lavorare.
-                </p>
-                <p>
-                    Nell'annuncio fate riferimento al concetto di "secret ingredient"; se dovessi definire il mio, direi che sta proprio nel mio percorso ibrido. Non sono un'amministrativa pura e nemmeno un profilo puramente tecnico: capisco il linguaggio del business e della gestione aziendale, ma so tradurlo in pratica con strumenti come Power Automate, VBA, AppScript e l'integrazione di strumenti di IA. Questo mi permette di guardare i processi senza limitarmi a un'unica prospettiva, facendo da ponte tra chi vive i problemi operativi ogni giorno e le soluzioni tecnologiche per risolverli.
-                </p>
-                <p>
-                    Per me la curiosità verso ciò che è segreto o non ancora noto è il vero motore dell'apprendimento: c'è qualcosa di estremamente stimolante nel prendere un processo complesso, capirne la logica nascosta e scoprire come semplificarlo per far risparmiare tempo e risorse alle persone. È un approccio che ho applicato ovunque sia stata, lasciando sempre un'impronta concreta, che si trattasse di ridurre un flusso manuale sulle note spese da 30 a 6 ore mensili, di automatizzare i controlli sul cash flow in pochi secondi o di realizzare un sistema LMS integrato per la formazione.
-                </p>
-                <p>
-                    Potendo scegliere dove portare questo entusiasmo, fare parte di una realtà grande e inimitabile come Coca-Cola avrebbe per me un significato speciale. Significherebbe sentire di appartenere a un marchio che c'est sempre stato nella mia vita e che fa parte dei ricordi di tutti noi; in questo c'è qualcosa di magico a cui mi piacerebbe molto contribuire con il mio lavoro quotidiano.
-                </p>
-                <p>
-                    Vi ringrazio per il tempo e l'attenzione. Sarei davvero felice di poter raccontare qualcosa in più su di me e sul mio percorso in un colloquio conoscitivo.
-                </p>
+                    <article class="letter-body">
+                        <p>Buongiorno,</p>[span_40](start_span)[span_40](end_span)
+                        <p>
+                            Vi scrivo perché sono alla ricerca di nuovi stimoli e, leggendo l'annuncio per il ruolo di Digital & Technology Platform Expert, ho pensato subito che ci fosse una certa affinità con quello che faccio e con come mi piace lavorare.[span_41](start_span)[span_41](end_span)
+                        </p>
+                        <p>
+                            Nell'annuncio fate riferimento al concetto di "secret ingredient"; se dovessi definire il mio, direi che sta proprio nel mio percorso ibrido. Non sono un'amministrativa pura e nemmeno un profilo puramente tecnico: capisco il linguaggio del business e della gestione aziendale, ma so tradurlo in pratica con strumenti come Power Automate, VBA, AppScript e l'integrazione di strumenti di IA. Questo mi permette di guardare i processi senza limitarmi a un'unica prospettiva, facendo da ponte tra chi vive i problemi operativi ogni giorno e le soluzioni tecnologiche per risolverli.[span_42](start_span)[span_42](end_span)
+                        </p>
+                        <p>
+                            Per me la curiosità verso ciò che è segreto o non ancora noto è il vero motore dell'apprendimento: c'è qualcosa di estremamente stimolante nel prendere un processo complesso, capirne la logica nascosta e scoprire come semplificarlo per far risparmiare tempo e risorse alle persone. È un approccio che ho applicato ovunque sia stata, lasciando sempre un'impronta concreta, che si trattasse di ridurre un flusso manuale sulle note spese da 30 a 6 ore mensili, di automatizzare i controlli sul cash flow in pochi secondi o di realizzare un sistema LMS integrato per la formazione.[span_43](start_span)[span_43](end_span)
+                        </p>
+                        <p>
+                            Potendo scegliere dove portare questo entusiasmo, fare parte di una realtà grande e inimitabile come Coca-Cola avrebbe per me un significato speciale. Significherebbe sentire di appartenere a un marchio che c'è sempre stato nella mia vita e che fa parte dei ricordi di tutti noi; in questo c'è qualcosa di magico a cui mi piacerebbe molto contribuire con il mio lavoro quotidiano.[span_44](start_span)[span_44](end_span)
+                        </p>
+                        <p>
+                            Vi ringrazio per il tempo e l'attenzione. Sarei davvero felice di poter raccontare qualcosa in più su di me e sul mio percorso in un colloquio conoscitivo.[span_45](start_span)[span_45](end_span)
+                        </p>
+                    </article>
+                </div>
+
+                <footer class="signature">
+                    <p>Cordialmente,</p>[span_46](start_span)[span_46](end_span)
+                    <p><strong style="color: var(--coca-red); font-size: 11pt;">Nadia Provenza</strong></p>[span_47](start_span)[span_47](end_span)
+                </footer>
             </main>
-        </div>
-
-        <footer class="signature">
-            <p>Cordialmente,</p>
-            <p><strong style="color: var(--accent-teal); font-size: 10.5pt;">Nadia Provenza</strong></p>
-        </footer>
-
-        <!-- Elemento Bollicine Vettoriali Lettera -->
-        <div class="bubbles-container">
-            <div class="bubble b1"></div>
-            <div class="bubble b2"></div>
-            <div class="bubble b3"></div>
-            <div class="bubble b4"></div>
-            <div class="bubble b5"></div>
-            <div class="bubble b6"></div>
         </div>
     </div>
 
