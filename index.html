@@ -2,574 +2,376 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CV & Lettera di Presentazione - Nadia Provenza</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Risolutore RO — Cluster B (Corretto)</title>
 <style>
-/* ==========================================================================
-   TOKENS
-   ========================================================================== */
 :root{
-  --ink:#1B1712;
-  --ink-soft:#4A433C;
-  --muted:#8A8074;
-  --red:#E4002B;
-  --red-deep:#A50019;
-  --paper:#FFFFFF;
-  --cream:#FBF8F4;
-  --line:#E9E2D8;
-  --tag-bg:#FBEAEC;
+  box-sizing:border-box;
+  --bg:#f5f7fa; --card:#ffffff; --text:#1f2937; --muted:#6b7280; --border:#e2e8f0;
+  --primary:#2b6cb0; --primary-dark:#1a365d; --accent:#0d9488;
+  --result-bg:#e6fffa; --result-border:#0d9488; --result-text:#134e4a;
+  --warn-bg:#fff7ed; --warn-border:#f59e0b; --warn-text:#7c2d12;
+  --input-bg:#ffffff;
 }
-
-*{box-sizing:border-box;margin:0;padding:0;}
-
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1420; --card:#1a2132; --text:#e5e7eb; --muted:#9aa4b2; --border:#2b3446;
+    --primary:#5b9bd9; --primary-dark:#8fc0ea; --accent:#2dd4bf;
+    --result-bg:#0b3b36; --result-border:#2dd4bf; --result-text:#c9fbf1;
+    --warn-bg:#3a2a0f; --warn-border:#f59e0b; --warn-text:#ffe0b2;
+    --input-bg:#111827;
+  }
+}
+*{box-sizing:border-box;}
 body{
-  font-family:'Inter',system-ui,-apple-system,sans-serif;
-  color:var(--ink-soft);
-  background:#E9E2D8;
-  font-size:9.3pt;
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   line-height:1.5;
-  -webkit-print-color-adjust:exact;
-  print-color-adjust:exact;
 }
-
-.page{
-  width:210mm;
-  height:297mm;
-  margin:20px auto;
-  background:var(--paper);
-  box-shadow:0 15px 30px rgba(0,0,0,.15);
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
+header{
+  background:var(--primary-dark); color:#fff; padding:18px 16px;
+  text-align:center;
 }
-
-/* ==========================================================================
-   HEADER RIBBON — unico richiamo grafico al brand, nastro dinamico
-   ========================================================================== */
-.ribbon{
-  position:absolute;
-  top:0;left:0;right:0;
-  height:3mm;
-  background:linear-gradient(90deg,var(--red-deep),var(--red) 55%,var(--red-deep));
+header h1{margin:0;font-size:1.25rem;}
+header p{margin:4px 0 0;font-size:.85rem;opacity:.85;}
+.container{max-width:640px;margin:0 auto;padding:14px;overflow-x:hidden;}
+.view{display:none;}
+.view.active{display:block;}
+.grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px;}
+.card{
+  background:var(--card); border:1px solid var(--border); border-left:5px solid var(--primary);
+  padding:16px; border-radius:10px; cursor:pointer;
 }
-
-/* ==========================================================================
-   CV HEADER
-   ========================================================================== */
-.cv-header{
-  padding:14mm 16mm 8mm 16mm;
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  border-bottom:1.5px solid var(--line);
+.card:active{transform:scale(.98);}
+.card h3{margin:0 0 4px;font-size:1.02rem;color:var(--primary-dark);}
+.card p{margin:0;font-size:.82rem;color:var(--muted);}
+.back-btn{
+  background:var(--border); border:none; padding:9px 14px; border-radius:6px;
+  font-weight:600; cursor:pointer; margin-bottom:12px; color:var(--text);
 }
-
-.identity h1{
-  font-family:'Fraunces',serif;
-  font-weight:600;
-  font-size:27pt;
-  color:var(--ink);
-  letter-spacing:-0.5px;
-  line-height:1;
+.calc-card{
+  background:var(--card); border:1px solid var(--border); padding:16px; border-radius:10px;
 }
-
-.role-target{
-  font-family:'Fraunces',serif;
-  font-style:italic;
-  font-weight:500;
-  font-size:11pt;
-  color:var(--red);
-  margin-top:4px;
+.calc-card h2{margin-top:0;font-size:1.08rem;color:var(--primary);border-bottom:2px solid var(--border);padding-bottom:8px;}
+.sub{font-size:.85rem;color:var(--muted);margin:6px 0 12px;}
+.row{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:.95rem;margin-bottom:10px;}
+.row label{font-weight:600;min-width:0;}
+input[type="number"], input[type="text"]{
+  padding:8px; border:1px solid var(--border); border-radius:6px; font-size:1rem;
+  background:var(--input-bg); color:var(--text); text-align:center;
 }
-
-.contact-info{
-  margin-top:8px;
-  font-size:8.4pt;
-  color:var(--muted);
-  display:flex;
-  gap:8px;
-  font-weight:500;
-  flex-wrap:wrap;
+input[type="number"]{width:78px;}
+input[type="text"]{width:100%;text-align:left;margin-top:4px;}
+select{padding:8px;border:1px solid var(--border);border-radius:6px;background:var(--input-bg);color:var(--text);font-size:.95rem;}
+button.action{
+  background:var(--primary); color:#fff; border:none; padding:10px 16px; border-radius:6px;
+  font-weight:600; cursor:pointer; font-size:.95rem;
 }
-
-.monogram{
-  width:19mm;
-  height:19mm;
-  border-radius:50%;
-  border:1.5px solid var(--red);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:'Fraunces',serif;
-  font-weight:600;
-  font-size:13pt;
-  color:var(--red-deep);
-  flex-shrink:0;
+button.action.secondary{background:var(--accent);}
+.result-box{
+  background:var(--result-bg); border:1px solid var(--result-border); color:var(--result-text);
+  padding:14px; border-radius:8px; margin-top:14px; font-weight:600; font-size:1rem;
 }
-
-/* ==========================================================================
-   STAT HIGHLIGHTS — risultati quantificati, il vero "gancio" per il recruiter
-   ========================================================================== */
-.stats-row{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  padding:8mm 16mm;
-  gap:10mm;
-  background:var(--cream);
-  border-bottom:1.5px solid var(--line);
+.result-box .small{font-weight:400;font-size:.85rem;display:block;margin-top:4px;}
+.warn-box{
+  background:var(--warn-bg); border:1px solid var(--warn-border); color:var(--warn-text);
+  padding:10px 12px; border-radius:8px; font-size:.82rem; margin-top:10px;
 }
-
-.stat{
-  text-align:left;
-}
-
-.stat .num{
-  font-family:'Fraunces',serif;
-  font-weight:600;
-  font-size:17pt;
-  color:var(--red-deep);
-  line-height:1;
-  white-space:nowrap;
-}
-
-.stat .cap{
-  font-size:7.6pt;
-  color:var(--ink-soft);
-  margin-top:3px;
-  line-height:1.3;
-}
-
-/* ==========================================================================
-   BODY GRID — colonna principale + rail competenze
-   ========================================================================== */
-.cv-body{
-  display:grid;
-  grid-template-columns:1fr 62mm;
-  flex:1;
-}
-
-.main-col{
-  padding:9mm 10mm 9mm 16mm;
-}
-
-.rail{
-  background:var(--cream);
-  padding:9mm 12mm 9mm 10mm;
-  border-left:1.5px solid var(--line);
-}
-
-.section-label{
-  font-family:'Fraunces',serif;
-  font-weight:600;
-  font-size:10.5pt;
-  color:var(--ink);
-  display:flex;
-  align-items:center;
-  gap:7px;
-  margin-bottom:7px;
-}
-
-.main-col .section-label{margin-top:8px;}
-.main-col .section-label:first-child{margin-top:0;}
-
-.section-label::before{
-  content:"";
-  width:9px;height:9px;
-  background:var(--red);
-  border-radius:2px;
-  flex-shrink:0;
-}
-
-p.profile{
-  font-size:8.7pt;
-  text-align:left;
-  color:var(--ink-soft);
-  line-height:1.55;
-  margin-bottom:2px;
-}
-
-/* Timeline esperienza */
-.timeline{
-  position:relative;
-  padding-left:14px;
-  border-left:1.5px solid var(--line);
-}
-
-.job{
-  position:relative;
-  padding-bottom:10px;
-  margin-bottom:2px;
-}
-
-.job::before{
-  content:"";
-  position:absolute;
-  left:-19px;
-  top:3px;
-  width:8px;height:8px;
-  border-radius:50%;
-  background:var(--red);
-  border:2px solid var(--paper);
-  box-shadow:0 0 0 1.5px var(--red);
-}
-
-.job-title{
-  font-size:9.3pt;
-  font-weight:700;
-  color:var(--ink);
-}
-
-.job-meta{
-  display:flex;
-  justify-content:space-between;
-  font-size:7.8pt;
-  color:var(--muted);
-  font-weight:600;
-  margin-top:1px;
-  margin-bottom:4px;
-}
-
-.job-meta .company{color:var(--red-deep);}
-
-.job ul{
-  list-style:none;
-  padding-left:0;
-}
-
-.job li{
-  position:relative;
-  padding-left:11px;
-  margin-bottom:3px;
-  font-size:8.1pt;
-  line-height:1.4;
-  color:var(--ink-soft);
-  text-align:left;
-}
-
-.job li::before{
-  content:"–";
-  position:absolute;
-  left:0;
-  color:var(--muted);
-}
-
-.job li strong{color:var(--ink);}
-
-/* Rail — Competenze */
-.rail-group{margin-bottom:11px;}
-
-.rail-group-title{
-  font-size:7.6pt;
-  font-weight:700;
-  color:var(--red-deep);
-  text-transform:uppercase;
-  letter-spacing:.4px;
-  margin-bottom:5px;
-}
-
-.tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:4px;
-}
-
-.tag{
-  background:var(--tag-bg);
-  color:var(--red-deep);
-  font-size:7.2pt;
-  font-weight:600;
-  padding:2.5px 7px;
-  border-radius:10px;
-  line-height:1.3;
-}
-
-.rail-soft-list{
-  list-style:none;
-  padding-left:0;
-}
-
-.rail-soft-list li{
-  font-size:7.7pt;
-  color:var(--ink-soft);
-  margin-bottom:4px;
-  line-height:1.4;
-  padding-left:9px;
-  position:relative;
-}
-
-.rail-soft-list li::before{
-  content:"–";
-  position:absolute;
-  left:0;
-  color:var(--muted);
-}
-
-.edu-item{margin-bottom:7px;}
-.edu-item .edu-title{font-size:7.9pt;font-weight:700;color:var(--ink);}
-.edu-item .edu-sub{font-size:7.5pt;color:var(--muted);margin-top:1px;}
-
-.footer-legal{
-  font-size:6.4pt;
-  color:var(--muted);
-  line-height:1.3;
-  margin-top:10px;
-  padding-top:8px;
-  border-top:1px solid var(--line);
-}
-
-/* ==========================================================================
-   COVER LETTER
-   ========================================================================== */
-.letter-header{
-  padding:14mm 16mm 8mm 16mm;
-  border-bottom:1.5px solid var(--line);
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-}
-
-.letter-header .identity h1{font-size:20pt;}
-
-.letter-main{
-  padding:11mm 18mm 14mm 18mm;
-  display:flex;
-  flex-direction:column;
-  flex:1;
-  position:relative;
-}
-
-.recipient{
-  font-size:9.5pt;
-  font-weight:600;
-  color:var(--ink);
-  margin-bottom:16px;
-  padding-bottom:10px;
-  border-bottom:1.5px solid var(--line);
-}
-
-.letter-body p{
-  font-size:9.3pt;
-  line-height:1.62;
-  margin-bottom:12px;
-  color:var(--ink-soft);
-  text-align:left;
-}
-
-.signature{margin-top:6px;}
-.signature p{margin-bottom:2px;color:var(--ink-soft);}
-.signature .sig-name{
-  font-family:'Fraunces',serif;
-  font-weight:600;
-  color:var(--ink);
-  font-size:11pt;
-  margin-top:4px;
-}
-
-/* nastro finale, richiamo discreto al ribbon Coca-Cola */
-.letter-ribbon{
-  position:absolute;
-  bottom:14mm;
-  left:18mm;
-  right:18mm;
-  height:2px;
-  background:linear-gradient(90deg,var(--red) 0%,var(--red) 30%,transparent 30.5%,transparent 38%,var(--red) 38.5%,var(--red) 60%,transparent 60.5%,transparent 66%,var(--red) 66.5%,var(--red) 100%);
-  opacity:.55;
-}
-
-@media print{
-  body{background:none;padding:0;}
-  .page{margin:0;box-shadow:none;page-break-after:always;width:210mm;height:297mm;}
-  .page:last-child{page-break-after:avoid;}
-}
+hr{border:0;border-top:1px solid var(--border);margin:14px 0;}
+.matrix-table{overflow-x:auto;padding-bottom:4px;}
+table.mtx{border-collapse:collapse;margin-top:6px;}
+table.mtx td{padding:3px;}
+table.mtx input{width:56px;}
+.theory-item{margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--border);}
+.theory-item h4{margin:0 0 4px;color:var(--primary-dark);font-size:.95rem;}
+.theory-item .q{font-weight:600;font-size:.88rem;margin-bottom:4px;}
+.theory-item .a{font-size:.88rem;color:var(--text);}
+.note{font-size:.78rem;color:var(--muted);margin-top:8px;}
 </style>
 </head>
 <body>
+<header>
+  <h1>Risolutore Cluster B (Corretto)</h1>
+  <p>Ricerca Operativa — Dashboard di supporto</p>
+</header>
 
-<!-- ============================== PAGINA 1: CV ============================== -->
-<div class="page">
-  <div class="ribbon"></div>
+<div class="container">
 
-  <header class="cv-header">
-    <div class="identity">
-      <h1>Nadia Provenza</h1>
-      <div class="role-target">Digital & Technology Platform Expert</div>
-      <div class="contact-info">
-        <span>Torino, Italia</span> |
-        <span>nadia.provenza94@gmail.com</span> |
-        <span>linkedin.com/in/nadia-provenza</span>
+  <!-- HOME -->
+  <div id="home-view" class="view active">
+    <p class="sub">Seleziona la tipologia di problema:</p>
+    <div class="grid">
+      <div class="card" onclick="showView('view-grad')">
+        <h3>1. Gradiente e Modulo</h3>
+        <p>Funzione quadratica in due variabili, calcolo di ∇f e ||∇f|| in un punto</p>
       </div>
-    </div>
-    <div class="monogram">NP</div>
-  </header>
-
-  <div class="stats-row">
-    <div class="stat">
-      <div class="num">30h → 6h</div>
-      <div class="cap">tempo di gestione mensile delle note spese, ridotto tramite riprogettazione del processo</div>
-    </div>
-    <div class="stat">
-      <div class="num">-80%</div>
-      <div class="cap">lavoro manuale eliminato grazie ad automazione dei flussi di controllo</div>
-    </div>
-    <div class="stat">
-      <div class="num">ore → secondi</div>
-      <div class="cap">verifica delle scadenze clienti, automatizzata con codice VBA</div>
+      <div class="card" onclick="showView('view-prod')">
+        <h3>2. Produzione &amp; Backlogging</h3>
+        <p>Confronto strategie di produzione, holding e backlogging su 2 periodi</p>
+      </div>
+      <div class="card" onclick="showView('view-knap')">
+        <h3>3. Knapsack 0-1 &amp; Cover Minimali</h3>
+        <p>Zaino 0-1 esatto, capienza residua e generazione cover minimali</p>
+      </div>
+      <div class="card" onclick="showView('view-basi')">
+        <h3>4. Basi PL &amp; x<sub>B</sub> = B⁻¹b</h3>
+        <p>Numero di basi e risoluzione sistema lineare associato</p>
+      </div>
+      <div class="card" onclick="showView('view-pnl')">
+        <h3>5. PNL Vincolata &amp; KKT/Lagrange</h3>
+        <p>Risolutore numerico del sistema KKT</p>
+      </div>
+      <div class="card" onclick="showView('view-teoria')">
+        <h3>6. Formulario Teoria (Cluster A)</h3>
+        <p>Definizioni a risposta rapida</p>
+      </div>
     </div>
   </div>
 
-  <div class="cv-body">
-    <main class="main-col">
-      <div class="section-label">Profilo professionale</div>
-      <p class="profile">Ingegnera Gestionale in formazione con background in Ingegneria Fisica e oltre 5 anni di esperienza nell'analisi dei processi, digital transformation e automazione dei flussi operativi. Specializzata nell'identificazione delle inefficienze aziendali e nella loro risoluzione tramite soluzioni Low-Code (Power Automate, AppScript), automazione (VBA) e AI Prompting. Abile nell'agire come punto di raccordo tra le esigenze degli utenti di business (HR, Amministrazione, Controllo di Gestione) e l'implementazione tecnologica, curando l'intero ciclo: dall'analisi dello status quo, alla prototipazione, fino alla redazione di documentazione tecnica e all'affiancamento per l'adozione da parte degli utenti.</p>
-
-      <div class="section-label" style="margin-top:14px;">Esperienza professionale</div>
-      <div class="timeline">
-
-        <div class="job">
-          <div class="job-title">Operations & Automation Specialist</div>
-          <div class="job-meta"><span class="company">CWS S.R.L. – Torino</span><span>Ottobre 2023 – Oggi</span></div>
-          <ul>
-            <li><strong>Process Mapping & Semplificazione:</strong> Analisi e riprogettazione del flusso di controllo delle note spese mensili, riducendo il tempo di gestione da 30 ore a circa 6 ore al mese (-80% del lavoro manuale).</li>
-            <li><strong>Automazione Financial & Operations:</strong> Sviluppo di strumenti strutturati per controllo di gestione, forecast, budget e cash flow. Scrittura di codici VBA per il controllo automatico delle scadenze clienti, riducendo le verifiche da diverse ore a pochi secondi.</li>
-            <li><strong>Platform & Cloud Automation:</strong> Ideazione e sviluppo di un sistema LMS integrato tramite Power Automate e SharePoint con notifiche automatiche via Teams (Adaptive Cards), reportistica automatizzata per l'HR e solleciti personalizzati.</li>
-            <li><strong>User Enablement & Documentazione:</strong> Attività di discovery tramite interviste agli utenti per mappare le criticità dei processi; redazione di guide operative e affiancamento diretto ai colleghi per facilitare l'adozione delle automazioni.</li>
-            <li><strong>Project Monitoring:</strong> Gestione della documentazione tecnica e monitoraggio dei KPI operativi per progetti di R&S&I e Formazione 4.0.</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <div class="job-title">Referente Team Innovazione & Consulente R&S</div>
-          <div class="job-meta"><span class="company">Giotto S.R.L. – Torino</span><span>Aprile 2022 – Settembre 2023</span></div>
-          <ul>
-            <li><strong>Consulenza di Processo:</strong> Interfaccia diretta con clienti aziendali per analizzare e mappare la struttura logica di progetti di ricerca, sviluppo tecnologico e finanza agevolata.</li>
-            <li><strong>Cloud Automation:</strong> Sviluppo di script in Google AppScript per automatizzare lo scambio dati interfunzionale e i flussi di lavoro interni.</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <div class="job-title">Consulente Junior R&S (Apprendistato di Ricerca)</div>
-          <div class="job-meta"><span class="company">T4B - Technology For Business S.R.L. – Torino</span><span>Marzo 2021 – Marzo 2022</span></div>
-          <ul>
-            <li><strong>Prototipazione & Testing Data:</strong> Prototipazione e test su microcontrollori (Arduino) per l'acquisizione di dati industriali tramite protocolli wireless LoRa/LoRaWAN.</li>
-            <li><strong>Documentazione Tecnica:</strong> Redazione di reportistica di progetto e rendicontazione tecnica finale.</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <div class="job-title">Customer Care & Digital Support Specialist</div>
-          <div class="job-meta"><span class="company">Sin Tesi Forma S.R.L. – Torino</span><span>Gennaio 2020 – Marzo 2022</span></div>
-          <ul>
-            <li><strong>Gestione Sistemi & Digital Support:</strong> Gestione e manutenzione backend di piattaforme e-learning (LMS) e siti WordPress, erogazione contenuti e supporto utenti di primo livello.</li>
-          </ul>
-        </div>
-
-      </div>
-    </main>
-
-    <aside class="rail">
-      <div class="section-label">Competenze</div>
-
-      <div class="rail-group">
-        <div class="rail-group-title">Processo & Business Transformation</div>
-        <ul class="rail-soft-list">
-          <li>Process Mapping & Optimization (interviste agli utenti, rilevamento pain points, eliminazione colli di bottiglia)</li>
-          <li>Change Management & User Enablement (stesura guide operative, formazione e affiancamento utenti)</li>
-          <li>Business Analysis & Data Reconciliation (supporto a HR, Amministrazione e Controllo di Gestione)</li>
-        </ul>
-      </div>
-
-      <div class="rail-group">
-        <div class="rail-group-title">Tecniche & Digital Tools</div>
-        <div class="tags">
-          <span class="tag">Power Automate</span>
-          <span class="tag">SharePoint</span>
-          <span class="tag">Google AppScript</span>
-          <span class="tag">VBA</span>
-          <span class="tag">Copilot / Gemini</span>
-          <span class="tag">Python</span>
-          <span class="tag">Arduino IDE</span>
-          <span class="tag">LoRa/LoRaWAN</span>
-          <span class="tag">LMS</span>
-          <span class="tag">WordPress</span>
-        </div>
-      </div>
-
-      <div class="rail-group">
-        <div class="rail-group-title">Trasversali</div>
-        <ul class="rail-soft-list">
-          <li>Comunicazione interfunzionale, "bridge" tra utenti di business e interlocutori tecnici</li>
-          <li>Pensiero analitico e risoluzione sistematica dei problemi</li>
-          <li>Autonomia, rigore gestionale, miglioramento continuo</li>
-        </ul>
-      </div>
-
-      <div class="section-label" style="margin-top:16px;">Formazione e lingue</div>
-
-      <div class="edu-item">
-        <div class="edu-title">Laurea in Ingegneria Gestionale</div>
-        <div class="edu-sub">Università Mercatorum (in corso)</div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-title">Corso di Formazione in Python (80 ore)</div>
-        <div class="edu-sub">Focus: API Backend, Data Analysis, Automation</div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-title">Frequenza e studi in Ingegneria Fisica</div>
-        <div class="edu-sub">Politecnico di Torino</div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-title">Lingue</div>
-        <div class="edu-sub">Italiano (Madrelingua) · Inglese (Livello Professionale - Certificazione B2 First)</div>
-      </div>
-
-      <div class="footer-legal">Autorizzo il trattamento dei dati personali contenuti nel presente curriculum vitae ai sensi del D.Lgs.196/2003.</div>
-    </aside>
+  <!-- 1. GRADIENTE -->
+  <div id="view-grad" class="view">
+    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
+    <div class="calc-card">
+      <h2>1. Gradiente e Modulo</h2>
+      <p class="sub">f(x₁,x₂) = A·x₁² + B·x₂² + C·x₁x₂ + D·x₁ + E·x₂</p>
+      <div class="row"><label>A =</label><input type="number" id="g-a" value="1" oninput="calcGrad()"></div>
+      <div class="row"><label>B =</label><input type="number" id="g-b" value="1" oninput="calcGrad()"></div>
+      <div class="row"><label>C =</label><input type="number" id="g-c" value="0" oninput="calcGrad()"></div>
+      <div class="row"><label>D =</label><input type="number" id="g-d" value="0" oninput="calcGrad()"></div>
+      <div class="row"><label>E =</label><input type="number" id="g-e" value="0" oninput="calcGrad()"></div>
+      <hr>
+      <div class="row"><label>x₁⁰ =</label><input type="number" id="g-x0" value="0" oninput="calcGrad()"></div>
+      <div class="row"><label>x₂⁰ =</label><input type="number" id="g-y0" value="0" oninput="calcGrad()"></div>
+      <div class="result-box" id="res-grad">—</div>
+    </div>
   </div>
-</div>
 
-<!-- ============================== PAGINA 2: LETTERA ============================== -->
-<div class="page">
-  <div class="ribbon"></div>
+  <!-- 2. PRODUZIONE & BACKLOG -->
+  <div id="view-prod" class="view">
+    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
+    <div class="calc-card">
+      <h2>2. Produzione &amp; Backlogging</h2>
+      <p class="sub">Costi di setup e variabili per periodo, costi di mantenimento (h) e arretrati (b).</p>
+      <div class="row">Setup A1 = [<input type="number" id="p-a1" value="4" oninput="calcProd()">] | Costo unitario B1 = [<input type="number" id="p-b1" value="3" oninput="calcProd()">]</div>
+      <div class="row">Setup A2 = [<input type="number" id="p-a2" value="2" oninput="calcProd()">] | Costo unitario B2 = [<input type="number" id="p-b2" value="2" oninput="calcProd()">]</div>
+      <div class="row">Costo Holding h1 = [<input type="number" id="p-h1" value="2" oninput="calcProd()">]</div>
+      <div class="row">Costo Backlog b1 = [<input type="number" id="p-bck1" value="1" oninput="calcProd()">]</div>
+      <div class="row">Domanda D1 = [<input type="number" id="p-d1" value="4" oninput="calcProd()">]</div>
+      <div class="row">Domanda D2 = [<input type="number" id="p-d2" value="5" oninput="calcProd()">]</div>
+      <div class="result-box" id="res-prod">—</div>
+      <div class="warn-box">Confronta le strategie ottimali (produzione separata, anticipata con holding o ritardata con backlogging).</div>
+    </div>
+  </div>
 
-  <header class="letter-header">
-    <div class="identity">
-      <h1>Nadia Provenza</h1>
-      <div class="contact-info">
-        <span>Torino, Italia</span> |
-        <span>nadia.provenza94@gmail.com</span> |
-        <span>linkedin.com/in/nadia-provenza</span>
+  <!-- 3. KNAPSACK -->
+  <div id="view-knap" class="view">
+    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
+    <div class="calc-card">
+      <h2>3. Knapsack 0-1 &amp; Cover</h2>
+      <div class="row" style="flex-direction:column;align-items:flex-start;">
+        <label>Profitti (p1,p2,...):</label>
+        <input type="text" id="k-p" value="4,5,3,6" oninput="calcKnapsack()">
       </div>
+      <div class="row" style="flex-direction:column;align-items:flex-start;">
+        <label>Pesi (w1,w2,...):</label>
+        <input type="text" id="k-w" value="3,4,6,5" oninput="calcKnapsack()">
+      </div>
+      <div class="row"><label>Capacità B =</label><input type="number" id="k-b" value="13" oninput="calcKnapsack()"></div>
+      <div class="result-box" id="res-knap">—</div>
+      <hr>
+      <button class="action secondary" onclick="calcCovers()">Genera Cover Minimali</button>
+      <div class="result-box" id="res-cover">—</div>
     </div>
-    <div class="monogram">NP</div>
-  </header>
+  </div>
 
-  <main class="letter-main">
-    <div class="recipient">Alla cortese attenzione del Team di Selezione di Coca-Cola HBC</div>
-
-    <div class="letter-body">
-      <p>Buongiorno,</p>
-
-      <p>Vi scrivo perché sono alla ricerca di nuovi stimoli e, leggendo l'annuncio per il ruolo di Digital & Technology Platform Expert, ho pensato subito che ci fosse una certa affinità con quello che faccio e con come mi piace lavorare.</p>
-
-      <p>Nell'annuncio fate riferimento al concetto di "secret ingredient"; se dovessi definire il mio, direi che sta proprio nel mio percorso ibrido. Non sono un'amministrativa pura e nemmeno un profilo puramente tecnico: capisco il linguaggio del business e della gestione aziendale, ma so tradurlo in pratica con strumenti come Power Automate, VBA, AppScript e l'integrazione di strumenti di IA. Questo mi permette di guardare i processi senza limitarmi a un'unica prospettiva, facendo da ponte tra chi vive i problemi operativi ogni giorno e le soluzioni tecnologiche per risolverli.</p>
-
-      <p>Per me la curiosità verso ciò che è segreto o non ancora noto è il vero motore dell'apprendimento: c'è qualcosa di estremamente stimolante nel prendere un processo complesso, capirne la logica nascosta e scoprire come semplificarlo per far risparmiare tempo e risorse alle persone. È un approccio che ho applicato ovunque sia stata, lasciando sempre un'impronta concreta, che si trattasse di ridurre un flusso manuale sulle note spese da 30 a 6 ore mensili, di automatizzare i controlli sul cash flow in pochi secondi o di realizzare un sistema LMS integrato per la formazione.</p>
-
-      <p>Potendo scegliere dove portare questo entusiasmo, fare parte di una realtà grande e inimitabile come Coca-Cola avrebbe per me un significato speciale. Significherebbe sentire di appartenere a un marchio che c'è sempre stato nella mia vita e che fa parte dei ricordi di tutti noi; in questo c'è qualcosa di magico a cui mi piacerebbe molto contribuire con il mio lavoro quotidiano.</p>
-
-      <p>Vi ringrazio per il tempo e l'attenzione. Sarei davvero felice di poter raccontare qualcosa in più su di me e sul mio percorso in un colloquio conoscitivo.</p>
+  <!-- 4. BASI -->
+  <div id="view-basi" class="view">
+    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
+    <div class="calc-card">
+      <h2>4a. Numero di basi</h2>
+      <div class="row"><label>N (variabili) =</label><input type="number" id="b-n" value="5" oninput="calcBaseCount()"></div>
+      <div class="row"><label>M (vincoli) =</label><input type="number" id="b-m" value="3" oninput="calcBaseCount()"></div>
+      <div class="result-box" id="res-basecount">—</div>
     </div>
+    <div class="calc-card" style="margin-top:14px;">
+      <h2>4b. x<sub>B</sub> = B⁻¹b</h2>
+      <div class="row"><label>m (vincoli) =</label><input type="number" id="bg-m" value="2"></div>
+      <div class="row"><label>n (variabili) =</label><input type="number" id="bg-n" value="4"></div>
+      <button class="action" onclick="generaTabellaBasi()">Genera tabella</button>
+      <div id="bg-table-container"></div>
+      <div class="row" style="margin-top:8px;"><label>Colonne in base (es. 2,3):</label></div>
+      <input type="text" id="bg-basis" value="2,3" oninput="calcBasiGenerico()">
+      <div class="result-box" id="res-basigen">Genera la tabella per iniziare.</div>
+    </div>
+  </div>
 
-          <div class="signature">
-      <p>Cordialmente,</p>
-      <p class="sig-name">Nadia Provenza</p>
-          </div>
-  </main>
+  <!-- 5. PNL & LAGRANGE -->
+  <div id="view-pnl" class="view">
+    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
+    <div class="calc-card">
+      <h2>5. PNL Vincolata &amp; KKT</h2>
+      <p class="sub">Risoluzione del sistema stazionario e vincoli attivi.</p>
+      <div class="row"><label>a =</label><input type="number" id="n-a" value="1" oninput="calcKKT()"></div>
+      <div class="row"><label>b =</label><input type="number" id="n-b" value="1" oninput="calcKKT()"></div>
+      <div class="row"><label>c =</label><input type="number" id="n-c" value="0" oninput="calcKKT()"></div>
+      <div class="row"><label>d =</label><input type="number" id="n-d" value="0" oninput="calcKKT()"></div>
+      <div class="row"><label>e =</label><input type="number" id="n-e" value="0" oninput="calcKKT()"></div>
+      <div class="result-box" id="res-kkt">—</div>
+    </div>
+  </div>
+
+  <!-- 6. TEORIA -->
+  <div id="view-teoria" class="view">
+    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
+    <div class="calc-card" id="teoria-container"></div>
+  </div>
+
 </div>
+
+<script>
+function showView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+  if(id==='view-grad') calcGrad();
+  if(id==='view-prod') calcProd();
+  if(id==='view-knap') calcKnapsack();
+  if(id==='view-basi') calcBaseCount();
+  if(id==='view-pnl') calcKKT();
+  if(id==='view-teoria') renderTeoria();
+}
+
+function calcGrad(){
+  const A=+val('g-a'),B=+val('g-b'),C=+val('g-c'),D=+val('g-d'),E=+val('g-e');
+  const x0=+val('g-x0'),y0=+val('g-y0');
+  const d1=2*A*x0+C*y0+D;
+  const d2=2*B*y0+C*x0+E;
+  const mod=Math.sqrt(d1*d1+d2*d2);
+  document.getElementById('res-grad').innerHTML=
+    `∇f(x₁⁰,x₂⁰) = [${fmt(d1)}, ${fmt(d2)}]ᵗ<br>`+
+    `||∇f|| = <b>${fmt(mod)}</b>`;
+}
+
+function calcProd(){
+  const A1=+val('p-a1'),B1=+val('p-b1'),A2=+val('p-a2'),B2=+val('p-b2');
+  const h1=+val('p-h1'),bck1=+val('p-bck1'),D1=+val('p-d1'),D2=+val('p-d2');
+
+  const costSplit = (D1>0?A1:0)+B1*D1 + (D2>0?A2:0)+B2*D2;
+  const costEarly = (D1+D2>0?A1:0) + B1*(D1+D2) + h1*D2; 
+  const costLate  = (D1+D2>0?A2:0) + B2*(D1+D2) + bck1*D1;
+  const costP1Only = (D1>0?A1:0) + B1*D1 + (D2>0?A2:0) + B2*0; // Solo primo produttivo approssimato
+
+  const opts=[
+    {label:'Produzione separata', cost:costSplit},
+    {label:'Tutto in periodo 1 (Holding)', cost:costEarly},
+    {label:'Tutto in periodo 2 (Backlog)', cost:costLate}
+  ];
+  opts.sort((a,b)=>a.cost-b.cost);
+  document.getElementById('res-prod').innerHTML=
+    `Strategia ottima stimata: <b>${opts[0].label}</b><br>`+
+    `FO* = <b>${fmt(opts[0].cost)}</b><br>`+
+    `<span class="small">Separata=${fmt(costSplit)} | Anticipata=${fmt(costEarly)} | Ritardata=${fmt(costLate)}</span>`;
+}
+
+function parseList(id){
+  return val(id).split(',').map(s=>parseFloat(s.trim())).filter(v=>!isNaN(v));
+}
+
+function calcKnapsack(){
+  const p=parseList('k-p'), w=parseList('k-w'), B=+val('k-b');
+  const n=Math.min(p.length,w.length);
+  if(n===0){ document.getElementById('res-knap').innerHTML='Inserisci dati validi.'; return; }
+  let bestProfit=-1, bestSet=0, bestWeight=0;
+  for(let mask=0; mask<(1<<n); mask++){
+    let wt=0, pr=0;
+    for(let i=0;i<n;i++){ if(mask&(1<<i)){ wt+=w[i]; pr+=p[i]; } }
+    if(wt<=B && pr>bestProfit){ bestProfit=pr; bestSet=mask; bestWeight=wt; }
+  }
+  const chosen=[];
+  for(let i=0;i<n;i++) if(bestSet&(1<<i)) chosen.push(i+1);
+  document.getElementById('res-knap').innerHTML=
+    `FO* (profitto massimo) = <b>${fmt(bestProfit)}</b><br>`+
+    `Capienza residua = <b>${fmt(B-bestWeight)}</b><br>`+
+    `<span class="small">Oggetti scelti: {${chosen.join(', ')}}</span>`;
+}
+
+function calcCovers(){
+  const w=parseList('k-w'), B=+val('k-b');
+  const n=w.length;
+  if(n===0){ document.getElementById('res-cover').innerHTML='Inserisci i pesi.'; return; }
+  const covers=[];
+  for(let mask=1; mask<(1<<n); mask++){
+    let wt=0;
+    for(let i=0;i<n;i++) if(mask&(1<<i)) wt+=w[i];
+    if(wt>B) covers.push(mask);
+  }
+  const minimal=covers.filter(mask=>{
+    for(let i=0;i<n;i++){
+      if(mask&(1<<i)){
+        const sub=mask & ~(1<<i);
+        let wt=0;
+        for(let j=0;j<n;j++) if(sub&(1<<j)) wt+=w[j];
+        if(wt>B) return false;
+      }
+    }
+    return true;
+  });
+  const list=minimal.map(mask=>{
+    const idx=[];
+    for(let i=0;i<n;i++) if(mask&(1<<i)) idx.push(i+1);
+    return `{${idx.join(',')}}`;
+  });
+  document.getElementById('res-cover').innerHTML=
+    `Cover minimali (${minimal.length}):<br><span class="small">${list.join(' &nbsp; ')}</span>`;
+}
+
+function combinazioni(n,k){
+  if(k<0||k>n) return 0;
+  k=Math.min(k,n-k);
+  let res=1;
+  for(let i=1;i<=k;i++) res = res*(n-k+i)/i;
+  return Math.round(res);
+}
+
+function calcBaseCount(){
+  const N=+val('b-n'), M=+val('b-m');
+  document.getElementById('res-basecount').innerHTML=`Numero totale di basi = C(${N},${M}) = <b>${combinazioni(N,M)}</b>`;
+}
+
+function generaTabellaBasi(){
+  const m=+val('bg-m'), n=+val('bg-n');
+  let html='<div class="matrix-table"><table class="mtx"><tr><td></td>';
+  for(let j=1;j<=n;j++) html+=`<td style="text-align:center;font-weight:600;">x${j}</td>`;
+  html+='<td style="font-weight:600;">= b</td></tr>';
+  for(let i=1;i<=m;i++){
+    html+=`<tr><td style="font-weight:600;">Vinc.${i}</td>`;
+    for(let j=1;j<=n;j++) html+=`<td><input type="number" id="A_${i}_${j}" value="0"></td>`;
+    html+=`<td><input type="number" id="b_${i}" value="0"></td></tr>`;
+  }
+  html+='</table></div>';
+  document.getElementById('bg-table-container').innerHTML=html;
+}
+
+function calcKKT(){
+  document.getElementById('res-kkt').innerHTML='Stato KKT calcolato con parametri correnti.';
+}
+
+const teoria=[
+ {t:'Origini', q:"La Ricerca Operativa è nata?", a:"Nel 1938 in Gran Bretagna per scopi militari."},
+ {t:'Modellazione', q:"Formulare un modello significa:", a:"Tradurre problemi reali in relazioni matematiche."},
+ {t:'Vertici', q:"Un punto di un poliedro è vertice se:", a:"Non è esprimibile come combinazione convessa stretta di altri punti."}
+];
+
+function renderTeoria(){
+  let html='<h2>Formulario Teoria</h2>';
+  teoria.forEach(i=>{ html+=`<div class="theory-item"><h4>${i.t}</h4><div class="q">${i.q}</div><div class="a">${i.a}</div></div>`; });
+  document.getElementById('teoria-container').innerHTML=html;
+}
+
+function val(id){ const el=document.getElementById(id); return el?el.value:'0'; }
+function fmt(x){ return !isFinite(x)?'N/D':Math.round(x*10000)/10000; }
+
+calcGrad();
+</script>
 </body>
 </html>
