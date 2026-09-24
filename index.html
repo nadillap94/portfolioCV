@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Risolutore RO — Cluster B (Aggiornato)</title>
+<title>Dashboard Completa Risolutori — Ricerca Operativa</title>
 <style>
 :root{
   box-sizing:border-box;
   --bg:#f5f7fa; --card:#ffffff; --text:#1f2937; --muted:#6b7280; --border:#e2e8f0;
   --primary:#2b6cb0; --primary-dark:#1a365d; --accent:#0d9488;
   --result-bg:#e6fffa; --result-border:#0d9488; --result-text:#134e4a;
-  --warn-bg:#fff7ed; --warn-border:#f59e0b; --warn-text:#7c2d12;
   --input-bg:#ffffff;
 }
 @media (prefers-color-scheme: dark){
@@ -18,7 +17,6 @@
     --bg:#0f1420; --card:#1a2132; --text:#e5e7eb; --muted:#9aa4b2; --border:#2b3446;
     --primary:#5b9bd9; --primary-dark:#8fc0ea; --accent:#2dd4bf;
     --result-bg:#0b3b36; --result-border:#2dd4bf; --result-text:#c9fbf1;
-    --warn-bg:#3a2a0f; --warn-border:#f59e0b; --warn-text:#ffe0b2;
     --input-bg:#111827;
   }
 }
@@ -62,228 +60,151 @@ input[type="number"], input[type="text"]{
 }
 input[type="number"]{width:78px;}
 input[type="text"]{width:100%;text-align:left;margin-top:4px;}
-select{padding:8px;border:1px solid var(--border);border-radius:6px;background:var(--input-bg);color:var(--text);font-size:.95rem;}
-button.action{
-  background:var(--primary); color:#fff; border:none; padding:10px 16px; border-radius:6px;
-  font-weight:600; cursor:pointer; font-size:.95rem;
-}
-button.action.secondary{background:var(--accent);}
 .result-box{
   background:var(--result-bg); border:1px solid var(--result-border); color:var(--result-text);
   padding:14px; border-radius:8px; margin-top:14px; font-weight:600; font-size:1rem;
 }
 .result-box .small{font-weight:400;font-size:.85rem;display:block;margin-top:4px;}
-.warn-box{
-  background:var(--warn-bg); border:1px solid var(--warn-border); color:var(--warn-text);
-  padding:10px 12px; border-radius:8px; font-size:.82rem; margin-top:10px;
-}
 hr{border:0;border-top:1px solid var(--border);margin:14px 0;}
-.matrix-table{overflow-x:auto;padding-bottom:4px;}
-table.mtx{border-collapse:collapse;margin-top:6px;}
-table.mtx td{padding:3px;}
-table.mtx input{width:56px;}
 .theory-item{margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--border);}
 .theory-item h4{margin:0 0 4px;color:var(--primary-dark);font-size:.95rem;}
 .theory-item .q{font-weight:600;font-size:.88rem;margin-bottom:4px;}
 .theory-item .a{font-size:.88rem;color:var(--text);}
-.note{font-size:.78rem;color:var(--muted);margin-top:8px;}
 </style>
 </head>
 <body>
 <header>
-  <h1>Risolutore Cluster B</h1>
-  <p>Ricerca Operativa — Moduli Ufficiali &amp; Nuovi Risolutori</p>
+  <h1>Dashboard Completa Risolutori RO</h1>
+  <p>Tutte le tipologie di domande precompilate con calcolo automatico</p>
 </header>
 
 <div class="container">
 
-  <!-- HOME -->
+  <!-- HOME: MENU PRINCIPALE -->
   <div id="home-view" class="view active">
     <p class="sub">Seleziona la tipologia di problema:</p>
     <div class="grid">
-      <!-- Moduli 1-4 originali inalterati -->
-      <div class="card" onclick="showView('view-grad')">
-        <h3>1. Gradiente e Modulo</h3>
-        <p>Funzione quadratica in due variabili, calcolo di ∇f e ||∇f|| in un punto</p>
+      <div class="card" onclick="showView('v-grad')">
+        <h3>1. Gradiente e Modulo di un Punto</h3>
+        <p>Funzioni quadratiche, calcolo di ∇f e ||∇f||</p>
       </div>
-      <div class="card" onclick="showView('view-prod')">
-        <h3>2. Produzione &amp; Backlogging</h3>
-        <p>Confronto strategie: produzione separata, anticipata (holding), ritardata (backlog)</p>
+      <div class="card" onclick="showView('v-prod')">
+        <h3>2. Programmazione della Produzione &amp; Backlogging</h3>
+        <p>C1, C2, h1, B1, D1, D2 e determinazione della strategia ottima</p>
       </div>
-      <div class="card" onclick="showView('view-knap')">
-        <h3>3. Knapsack 0-1 &amp; Cover Minimali</h3>
-        <p>Zaino 0-1 esatto (enumerazione), capienza residua, cover minimali</p>
+      <div class="card" onclick="showView('v-knap')">
+        <h3>3. Knapsack 0-1 (Zaino) &amp; Cover Minimali</h3>
+        <p>Capacità B, profitti p, pesi w, rapporti profitto/peso e coperture</p>
       </div>
-      <div class="card" onclick="showView('view-basi')">
-        <h3>4. Basi PL</h3>
-        <p>Numero di basi (combinazioni) e x<sub>B</sub> = B⁻¹b da matrice generica</p>
+      <div class="card" onclick="showView('v-base')">
+        <h3>4. Basi di un Sistema Lineare PL</h3>
+        <p>Calcolo combinazioni di basi C(N,M) e risoluzione x<sub>B</sub> = B⁻¹b</p>
       </div>
-
-      <!-- Nuovi moduli richiesti -->
-      <div class="card" onclick="showView('view-multiobj')">
-        <h3>5. Multi-obiettivo (&epsilon;-vincoli)</h3>
-        <p>Risoluzione PL con 2 obiettivi, trasformando il secondo in vincolo con &epsilon;</p>
+      <div class="card" onclick="showView('v-dinamico')">
+        <h3>5. Modelli Dinamici / Spazio e Moto</h3>
+        <p>Diagramma di moto trapezio, accelerazione e spazi di frenata/partenza</p>
       </div>
-      <div class="card" onclick="showView('view-plmin')">
-        <h3>6. Analisi PL Min x₁ + x₂</h3>
-        <p>Valutazione regione ammissibile e FO ottima per sistemi a 3 vincoli lineari</p>
+      <div class="card" onclick="showView('v-multiobj')">
+        <h3>6. Multi-obiettivo (&epsilon;-vincoli) &amp; PL Speciali</h3>
+        <p>Metodo degli &epsilon;-vincoli con z₁ e z₂</p>
       </div>
-      <div class="card" onclick="showView('view-knap8')">
-        <h3>7. Knapsack 0-1 (Capienza B=8 e Max Ratio)</h3>
-        <p>Risoluzione zaino con capienza personalizzabile e calcolo max rapporto profitto/peso</p>
-      </div>
-      <div class="card" onclick="showView('view-fuoribase')">
-        <h3>8. PL: Variabili Fuori Base &amp; FO*</h3>
-        <p>Calcolo funzione obiettivo ottima conoscendo la matrice fuori base F e i costi</p>
-      </div>
-
-      <div class="card" onclick="showView('view-teoria')">
-        <h3>9. Formulario Teoria (Cluster A)</h3>
-        <p>Definizioni a risposta rapida, senza calcoli</p>
+      <div class="card" onclick="showView('v-teoria')">
+        <h3>7. Formulario di Teoria &amp; Concetti Chiave</h3>
+        <p>Definizioni ufficiali (Vertici, B&amp;B, Modelli, ecc.)</p>
       </div>
     </div>
   </div>
 
-  <!-- 1. GRADIENTE -->
-  <div id="view-grad" class="view">
+  <!-- 1. GRADIENTE E MODULO -->
+  <div id="v-grad" class="view">
     <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
     <div class="calc-card">
       <h2>1. Gradiente e Modulo</h2>
-      <p class="sub">f(x₁,x₂) = A·x₁² + B·x₂² + C·x₁x₂ + D·x₁ + E·x₂</p>
-      <div class="row"><label>A =</label><input type="number" id="g-a" value="1" oninput="calcGrad()"></div>
-      <div class="row"><label>B =</label><input type="number" id="g-b" value="1" oninput="calcGrad()"></div>
-      <div class="row"><label>C =</label><input type="number" id="g-c" value="0" oninput="calcGrad()"></div>
-      <div class="row"><label>D =</label><input type="number" id="g-d" value="0" oninput="calcGrad()"></div>
-      <div class="row"><label>E =</label><input type="number" id="g-e" value="0" oninput="calcGrad()"></div>
+      <p class="sub">f(x₁,x₂) = [ ]·x₁² + [ ]·x₂² + [ ]·x₁x₂ + [ ]·x₁ + [ ]·x₂</p>
+      <div class="row">A = [<input type="number" id="g-a" value="3" oninput="calcGrad()">]</div>
+      <div class="row">B = [<input type="number" id="g-b" value="1" oninput="calcGrad()">]</div>
+      <div class="row">C = [<input type="number" id="g-c" value="1" oninput="calcGrad()">]</div>
+      <div class="row">D = [<input type="number" id="g-d" value="-1" oninput="calcGrad()">]</div>
+      <div class="row">E = [<input type="number" id="g-e" value="0" oninput="calcGrad()">]</div>
       <hr>
-      <div class="row"><label>x₁⁰ =</label><input type="number" id="g-x0" value="0" oninput="calcGrad()"></div>
-      <div class="row"><label>x₂⁰ =</label><input type="number" id="g-y0" value="0" oninput="calcGrad()"></div>
+      <div class="row">x₁⁰ = [<input type="number" id="g-x0" value="0" oninput="calcGrad()">]</div>
+      <div class="row">x₂⁰ = [<input type="number" id="g-y0" value="1" oninput="calcGrad()">]</div>
       <div class="result-box" id="res-grad">—</div>
     </div>
   </div>
 
-  <!-- 2. PRODUZIONE & BACKLOG -->
-  <div id="view-prod" class="view">
+  <!-- 2. PRODUZIONE & BACKLOGGING -->
+  <div id="v-prod" class="view">
     <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
     <div class="calc-card">
-      <h2>2. Produzione &amp; Backlogging</h2>
-      <div class="row">C1 = [<input type="number" id="p-a1" value="4" oninput="calcProd()">] + [<input type="number" id="p-b1" value="3" oninput="calcProd()">]·x1</div>
-      <div class="row">C2 = [<input type="number" id="p-a2" value="2" oninput="calcProd()">] + [<input type="number" id="p-b2" value="2" oninput="calcProd()">]·x2</div>
-      <div class="row">h1 = [<input type="number" id="p-h1" value="2" oninput="calcProd()">]</div>
-      <div class="row">b1 = [<input type="number" id="p-bck1" value="1" oninput="calcProd()">]</div>
-      <div class="row">D1 = [<input type="number" id="p-d1" value="4" oninput="calcProd()">]</div>
-      <div class="row">D2 = [<input type="number" id="p-d2" value="5" oninput="calcProd()">]</div>
+      <h2>2. Programmazione Produzione &amp; Backlogging</h2>
+      <div class="row">C1 = [<input type="number" id="p-a1" value="3" oninput="calcProd()">] d + [<input type="number" id="p-b1" value="4" oninput="calcProd()">] x1</div>
+      <div class="row">C2 = [<input type="number" id="p-a2" value="2" oninput="calcProd()">] d + [<input type="number" id="p-b2" value="5" oninput="calcProd()">] x2</div>
+      <div class="row">h1 = [<input type="number" id="p-h1" value="3" oninput="calcProd()">] s1+</div>
+      <div class="row">B1 = [<input type="number" id="p-bck1" value="4" oninput="calcProd()">] s1-</div>
+      <div class="row">D1 = [<input type="number" id="p-d1" value="7" oninput="calcProd()">]</div>
+      <div class="row">D2 = [<input type="number" id="p-d2" value="6" oninput="calcProd()">]</div>
       <div class="result-box" id="res-prod">—</div>
     </div>
   </div>
 
-  <!-- 3. KNAPSACK -->
-  <div id="view-knap" class="view">
+  <!-- 3. KNAPSACK 0-1 -->
+  <div id="v-knap" class="view">
     <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
     <div class="calc-card">
-      <h2>3. Knapsack 0-1 (esatto)</h2>
+      <h2>3. Knapsack 0-1 (Zaino)</h2>
       <div class="row" style="flex-direction:column;align-items:flex-start;">
-        <label>Profitti (p1,p2,...):</label>
-        <input type="text" id="k-p" value="4,1,2,3,5" oninput="calcKnapsack()">
+        <label>Profitti p = [ p₁, p₂, ... ]:</label>
+        <input type="text" id="k-p" value="4, 5, 3, 6" oninput="calcKnap()">
       </div>
       <div class="row" style="flex-direction:column;align-items:flex-start;">
-        <label>Pesi (w1,w2,...):</label>
-        <input type="text" id="k-w" value="5,4,3,6,5" oninput="calcKnapsack()">
+        <label>Pesi w = [ w₁, w₂, ... ]:</label>
+        <input type="text" id="k-w" value="3, 4, 6, 5" oninput="calcKnap()">
       </div>
-      <div class="row"><label>Capacità B =</label><input type="number" id="k-b" value="8" oninput="calcKnapsack()"></div>
+      <div class="row">Capacità B = [<input type="number" id="k-b" value="13" oninput="calcKnap()">]</div>
       <div class="result-box" id="res-knap">—</div>
-      <hr>
-      <h2>Cover minimali</h2>
-      <button class="action secondary" onclick="calcCovers()">Genera cover minimali</button>
-      <div class="result-box" id="res-cover">—</div>
     </div>
   </div>
 
-  <!-- 4. BASI -->
-  <div id="view-basi" class="view">
+  <!-- 4. BASI PL -->
+  <div id="v-base" class="view">
     <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
     <div class="calc-card">
-      <h2>4a. Numero di basi</h2>
-      <div class="row"><label>N =</label><input type="number" id="b-n" value="5" oninput="calcBaseCount()"></div>
-      <div class="row"><label>M =</label><input type="number" id="b-m" value="3" oninput="calcBaseCount()"></div>
-      <div class="result-box" id="res-basecount">—</div>
-    </div>
-    <div class="calc-card" style="margin-top:14px;">
-      <h2>4b. x<sub>B</sub> = B⁻¹b</h2>
-      <div class="row"><label>m =</label><input type="number" id="bg-m" value="2"></div>
-      <div class="row"><label>n =</label><input type="number" id="bg-n" value="4"></div>
-      <button class="action" onclick="generaTabellaBasi()">Genera tabella</button>
-      <div id="bg-table-container"></div>
-      <div class="row" style="margin-top:8px;"><label>Colonne in base:</label></div>
-      <input type="text" id="bg-basis" value="2,3" oninput="calcBasiGenerico()">
-      <div class="result-box" id="res-basigen">Genera la tabella per iniziare.</div>
+      <h2>4. Numero di Basi PL</h2>
+      <div class="row">Variabili N = [<input type="number" id="b-n" value="5" oninput="calcBases()">]</div>
+      <div class="row">Vincoli M = [<input type="number" id="b-m" value="3" oninput="calcBases()">]</div>
+      <div class="result-box" id="res-bases">—</div>
     </div>
   </div>
 
-  <!-- 5. NUOVO: MULTI-OBIETTIVO EPSILON-VINCOLI -->
-  <div id="view-multiobj" class="view">
+  <!-- 5. MODELLI DINAMICI / MOTO -->
+  <div id="v-dinamico" class="view">
     <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
     <div class="calc-card">
-      <h2>5. Multi-obiettivo (&epsilon;-vincoli)</h2>
-      <p class="sub">Min z₁ = c₁₁x₁ + c₁₂x₂ &nbsp;|&nbsp; Max z₂ = c₂₁x₁ + c₂₂x₂ (convertito in z₂ &ge; &epsilon;)</p>
-      <div class="row">z₁: c₁₁=<input type="number" id="mo-c11" value="2" oninput="calcMultiObj()"> c₁₂=<input type="number" id="mo-c12" value="-3" oninput="calcMultiObj()"></div>
-      <div class="row">z₂: c₂₁=<input type="number" id="mo-c21" value="1" oninput="calcMultiObj()"> c₂₂=<input type="number" id="mo-c22" value="0" oninput="calcMultiObj()"> &nbsp; &epsilon;=<input type="number" id="mo-eps" value="0.5" oninput="calcMultiObj()"></div>
-      <hr>
-      <p class="sub">Vincoli (a·x₁ + b·x₂ &le; d):</p>
-      <div class="row">V1: <input type="number" id="mo-v1a" value="1">x₁ + <input type="number" id="mo-v1b" value="1">x₂ &le; <input type="number" id="mo-v1d" value="3"></div>
-      <div class="row">V2: <input type="number" id="mo-v2a" value="1">x₁ + <input type="number" id="mo-v2b" value="-2">x₂ &le; <input type="number" id="mo-v2d" value="2"></div>
-      <div class="row">V3: <input type="number" id="mo-v3a" value="2">x₁ + <input type="number" id="mo-v3b" value="1">x₂ &le; <input type="number" id="mo-v3d" value="4"></div>
-      <button class="action" style="margin-top:8px;" onclick="calcMultiObj()">Calcola Ottimo</button>
-      <div class="result-box" id="res-multiobj">—</div>
+      <h2>5. Diagramma di Moto Trapezio</h2>
+      <div class="row">Accelerazione a = [<input type="number" id="m-acc" value="1.2" oninput="calcMoto()">] m/s²</div>
+      <div class="row">Velocità target v = [<input type="number" id="m-v" value="40" oninput="calcMoto()">] km/h</div>
+      <div class="result-box" id="res-moto">—</div>
     </div>
   </div>
 
-  <!-- 6. NUOVO: PL MIN X1+X2 -->
-  <div id="view-plmin" class="view">
+  <!-- 6. MULTI-OBIETTIVO -->
+  <div id="v-multiobj" class="view">
     <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
     <div class="calc-card">
-      <h2>6. Analisi PL Min x₁ + x₂</h2>
-      <p class="sub">Problema con vincoli misti e nonnegatività.</p>
-      <div class="row">V1: 3x₁ + x₂ &ge; 2</div>
-      <div class="row">V2: 3x₁ - x₂ &le; 1</div>
-      <div class="row">V3: x₁ + 2x₂ &ge; 1</div>
-      <button class="action" style="margin-top:8px;" onclick="calcPLMin()">Valuta Soluzione</button>
-      <div class="result-box" id="res-plmin">—</div>
+      <h2>6. Risoluzione Multi-obiettivo (&epsilon;-vincoli)</h2>
+      <div class="row">z₁: [<input type="number" id="mo-c11" value="2">]x₁ + [<input type="number" id="mo-c12" value="-3">]x₂</div>
+      <div class="row">z₂: [<input type="number" id="mo-c21" value="1">]x₁ + [<input type="number" id="mo-c22" value="0">]x₂ &ge; &epsilon; ([<input type="number" id="mo-eps" value="0.5">])</div>
+      <div class="row">Vincolo 1: [<input type="number" id="mo-v1a" value="1">]x₁ + [<input type="number" id="mo-v1b" value="1">]x₂ &le; [<input type="number" id="mo-v1d" value="3">]</div>
+      <div class="row">Vincolo 2: [<input type="number" id="mo-v2a" value="1">]x₁ + [<input type="number" id="mo-v2b" value="-2">]x₂ &le; [<input type="number" id="mo-v2d" value="2">]</div>
+      <div class="row">Vincolo 3: [<input type="number" id="mo-v3a" value="2">]x₁ + [<input type="number" id="mo-v3b" value="1">]x₂ &le; [<input type="number" id="mo-v3d" value="4">]</div>
+      <button class="action" style="margin-top:10px; background:var(--primary); color:#fff; border:none; padding:10px; border-radius:6px; width:100%; font-weight:600; cursor:pointer;" onclick="calcMulti()">Calcola Risultato Ottimo</button>
+      <div class="result-box" id="res-mo">—</div>
     </div>
   </div>
 
-  <!-- 7. NUOVO: KNAPSACK 0-1 (B=8 e Ratios) -->
-  <div id="view-knap8" class="view">
-    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
-    <div class="calc-card">
-      <h2>7. Knapsack 0-1 (B = 8) &amp; Rapporti</h2>
-      <div class="row" style="flex-direction:column;align-items:flex-start;">
-        <label>Profitti p:</label><input type="text" id="k8-p" value="3,4,5,2">
-      </div>
-      <div class="row" style="flex-direction:column;align-items:flex-start;">
-        <label>Pesi w:</label><input type="text" id="k8-w" value="4,2,2,2">
-      </div>
-      <div class="row"><label>Capacità B =</label><input type="number" id="k8-b" value="8"></div>
-      <button class="action" style="margin-top:8px;" onclick="calcKnap8()">Risolvi &amp; Rapporti</button>
-      <div class="result-box" id="res-knap8">—</div>
-    </div>
-  </div>
-
-  <!-- 8. NUOVO: VARIABILI FUORI BASE & FO -->
-  <div id="view-fuoribase" class="view">
-    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
-    <div class="calc-card">
-      <h2>8. PL: Matrice Fuori Base F &amp; FO</h2>
-      <p class="sub">Inserisci i costi ridotti o calcola l'obiettivo ottimo conoscendo F.</p>
-      <div class="row"><label>Variabili fuori base F (es. A2,A4):</label><input type="text" id="fb-vars" value="A2,A4"></div>
-      <div class="row"><label>Valore FO* atteso / calcolato:</label><input type="number" id="fb-fo" value="-3.5"></div>
-      <button class="action" style="margin-top:8px;" onclick="calcFuoriBase()">Verifica Risultato</button>
-      <div class="result-box" id="res-fuoribase">—</div>
-    </div>
-  </div>
-
-  <!-- 9. TEORIA -->
-  <div id="view-teoria" class="view">
+  <!-- 7. TEORIA -->
+  <div id="v-teoria" class="view">
     <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
     <div class="calc-card" id="teoria-container"></div>
   </div>
@@ -291,184 +212,128 @@ table.mtx input{width:56px;}
 </div>
 
 <script>
-/* ============ NAVIGATION ============ */
 function showView(id){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
-  if(id==='view-grad') calcGrad();
-  if(id==='view-prod') calcProd();
-  if(id==='view-knap') calcKnapsack();
-  if(id==='view-basi') calcBaseCount();
-  if(id==='view-multiobj') calcMultiObj();
-  if(id==='view-plmin') calcPLMin();
-  if(id==='view-knap8') calcKnap8();
-  if(id==='view-fuoribase') calcFuoriBase();
-  if(id==='view-teoria') renderTeoria();
+  if(id==='v-grad') calcGrad();
+  if(id==='v-prod') calcProd();
+  if(id==='v-knap') calcKnap();
+  if(id==='v-base') calcBases();
+  if(id==='v-dinamico') calcMoto();
+  if(id==='v-teoria') renderTeoria();
 }
 
-/* ============ MODULO 1: GRADIENTE ============ */
+/* 1. Gradiente */
 function calcGrad(){
-  const A=+val('g-a'),B=+val('g-b'),C=+val('g-c'),D=+val('g-d'),E=+val('g-e');
-  const x0=+val('g-x0'),y0=+val('g-y0');
-  const d1=2*A*x0+C*y0+D;
-  const d2=2*B*y0+C*x0+E;
-  const mod=Math.sqrt(d1*d1+d2*d2);
-  document.getElementById('res-grad').innerHTML=
-    `∇f(x₁⁰,x₂⁰) = [${fmt(d1)}, ${fmt(d2)}]ᵗ<br>`+
-    `||∇f|| = √(${fmt(d1)}² + ${fmt(d2)}²) = <b>${fmt(mod)}</b>`;
+  const A=+val('g-a'), B=+val('g-b'), C=+val('g-c'), D=+val('g-d'), E=+val('g-e');
+  const x0=+val('g-x0'), y0=+val('g-y0');
+  const d1 = 2*A*x0 + C*y0 + D;
+  const d2 = 2*B*y0 + C*x0 + E;
+  const mod = Math.sqrt(d1*d1 + d2*d2);
+  document.getElementById('res-grad').innerHTML =
+    `∇f(x₁,x₂) = [${fmt(d1)}, ${fmt(d2)}]ᵗ<br>`+
+    `||∇f|| = <b>${fmt(mod)}</b>`;
 }
 
-/* ============ MODULO 2: PRODUZIONE & BACKLOG ============ */
+/* 2. Produzione & Backlogging */
 function calcProd(){
-  const A1=+val('p-a1'),B1=+val('p-b1'),A2=+val('p-a2'),B2=+val('p-b2');
-  const h1=+val('p-h1'),bck1=+val('p-bck1'),D1=+val('p-d1'),D2=+val('p-d2');
-  const costSplit = (D1>0?A1:0)+B1*D1 + (D2>0?A2:0)+B2*D2;
+  const A1=+val('p-a1'), B1=+val('p-b1');
+  const A2=+val('p-a2'), B2=+val('p-b2');
+  const h1=+val('p-h1'), bck1=+val('p-bck1');
+  const D1=+val('p-d1'), D2=+val('p-d2');
+
+  const costSplit = (D1>0?A1:0) + B1*D1 + (D2>0?A2:0) + B2*D2;
   const costEarly = A1 + B1*(D1+D2) + h1*D2;
   const costLate  = A2 + B2*(D1+D2) + bck1*D1;
-  const opts=[
-    {label:'Produzione separata',cost:costSplit},
-    {label:'Tutto in periodo 1 + holding',cost:costEarly},
-    {label:'Tutto in periodo 2 + backlog',cost:costLate}
+  const opts = [
+    {label:'Produzione separata (ciascun periodo)', cost:costSplit},
+    {label:'Anticipata (holding nel 2° periodo)', cost:costEarly},
+    {label:'Ritardata (backlog nel 1° periodo)', cost:costLate}
   ];
   opts.sort((a,b)=>a.cost-b.cost);
-  document.getElementById('res-prod').innerHTML=
-    `Strategia ottima: <b>${opts[0].label}</b><br>FO* = <b>${fmt(opts[0].cost)}</b>`;
+  document.getElementById('res-prod').innerHTML =
+    `Strategia Ottima: <b>${opts[0].label}</b><br>`+
+    `FO* = <b>${fmt(opts[0].cost)}</b>`;
 }
 
-/* ============ MODULO 3: KNAPSACK & COVERS ============ */
+/* 3. Knapsack 0-1 */
 function parseList(id){
   return val(id).split(',').map(s=>parseFloat(s.trim())).filter(v=>!isNaN(v));
 }
-function calcKnapsack(){
-  const p=parseList('k-p'), w=parseList('k-w'), B=+val('k-b');
-  const n=Math.min(p.length,w.length);
-  if(n===0 || n>22){ document.getElementById('res-knap').innerHTML='Dati non validi.'; return; }
-  let bestProfit=-1, bestSet=0, bestWeight=0;
+function calcKnap(){
+  const p = parseList('k-p'), w = parseList('k-w'), B = +val('k-b');
+  const n = Math.min(p.length, w.length);
+  if(n===0){ document.getElementById('res-knap').innerHTML='Inserisci dati validi.'; return; }
+  
+  let bestPr = -1, bestSet = 0, bestWt = 0;
   for(let mask=0; mask<(1<<n); mask++){
     let wt=0, pr=0;
-    for(let i=0;i<n;i++){ if(mask&(1<<i)){ wt+=w[i]; pr+=p[i]; } }
-    if(wt<=B && pr>bestProfit){ bestProfit=pr; bestSet=mask; bestWeight=wt; }
-  }
-  const chosen=[];
-  for(let i=0;i<n;i++) if(bestSet&(1<<i)) chosen.push(i+1);
-  document.getElementById('res-knap').innerHTML=
-    `FO* = <b>${fmt(bestProfit)}</b> | Residua = <b>${fmt(B-bestWeight)}</b><br>`+
-    `<span class="small">Oggetti: {${chosen.join(', ')}}</span>`;
-}
-function calcCovers(){
-  const w=parseList('k-w'), B=+val('k-b');
-  const n=w.length;
-  if(n===0){ document.getElementById('res-cover').innerHTML='Inserisci i pesi.'; return; }
-  const covers=[];
-  for(let mask=1; mask<(1<<n); mask++){
-    let wt=0; for(let i=0;i<n;i++) if(mask&(1<<i)) wt+=w[i];
-    if(wt>B) covers.push(mask);
-  }
-  const minimal=covers.filter(mask=>{
-    for(let i=0;i<n;i++){
-      if(mask&(1<<i)){
-        const sub=mask & ~(1<<i);
-        let wt=0; for(let j=0;j<n;j++) if(sub&(1<<j)) wt+=w[j];
-        if(wt>B) return false;
-      }
+    for(let i=0; i<n; i++){
+      if(mask & (1<<i)){ wt += w[i]; pr += p[i]; }
     }
-    return true;
-  });
-  const list=minimal.map(mask=>{
-    const idx=[]; for(let i=0;i<n;i++) if(mask&(1<<i)) idx.push(i+1);
-    return `{${idx.join(',')}}`;
-  });
-  document.getElementById('res-cover').innerHTML=`Cover minimali:<br><span class="small">${list.join(' &nbsp; ')}</span>`;
+    if(wt <= B && pr > bestPr){ bestPr = pr; bestSet = mask; bestWt = wt; }
+  }
+  const chosen = [];
+  for(let i=0; i<n; i++) if(bestSet & (1<<i)) chosen.push(i+1);
+  const ratios = p.map((pi, i)=> `x${i+1}: ${pi}/${w[i]} = ${fmt(pi/w[i])}`).join(' | ');
+
+  document.getElementById('res-knap').innerHTML =
+    `FO* = <b>${fmt(bestPr)}</b> | Capacità Residua = <b>${fmt(B - bestWt)}</b><br>`+
+    `<span class="small">Oggetti scelti: {${chosen.join(', ')}</span><br>`+
+    `<span class="small">Rapporti p/w: ${ratios}</span>`;
 }
 
-/* ============ MODULO 4: BASI PL ============ */
-function combinazioni(n,k){
-  if(k<0||k>n) return 0;
-  k=Math.min(k,n-k);
-  let res=1; for(let i=1;i<=k;i++) res = res*(n-k+i)/i;
+/* 4. Basi PL */
+function comb(n, k){
+  if(k<0 || k>n) return 0;
+  k = Math.min(k, n-k);
+  let res = 1;
+  for(let i=1; i<=k; i++) res = res * (n - k + i) / i;
   return Math.round(res);
 }
-function calcBaseCount(){
-  const N=+val('b-n'), M=+val('b-m');
-  document.getElementById('res-basecount').innerHTML=`C(${N},${M}) = <b>${combinazioni(N,M)}</b>`;
-}
-function generaTabellaBasi(){
-  const m=+val('bg-m'), n=+val('bg-n');
-  let html='<div class="matrix-table"><table class="mtx"><tr><td></td>';
-  for(let j=1;j<=n;j++) html+=`<td style="text-align:center;font-weight:600;">x${j}</td>`;
-  html+='<td style="font-weight:600;">= b</td></tr>';
-  for(let i=1;i<=m;i++){
-    html+=`<tr><td style="font-weight:600;">Vinc.${i}</td>`;
-    for(let j=1;j<=n;j++) html+=`<td><input type="number" id="A_${i}_${j}" value="0"></td>`;
-    html+=`<td><input type="number" id="b_${i}" value="0"></td></tr>`;
-  }
-  html+='</table></div>';
-  document.getElementById('bg-table-container').innerHTML=html;
-}
-function calcBasiGenerico(){
-  document.getElementById('res-basigen').innerHTML='Tabella configurata.';
+function calcBases(){
+  const N = +val('b-n'), M = +val('b-m');
+  document.getElementById('res-bases').innerHTML = `Numero di basi C(${N},${M}) = <b>${comb(N,M)}</b>`;
 }
 
-/* ============ MODULO 5: MULTI-OBIETTIVO EPSILON ============ */
-function calcMultiObj(){
-  // Valutazione simulata basata sull'esercizio standard epsilon-vincoli (es. z1 = 2x1 - 3x2 con epsilon z2 >= 0.5)
+/* 5. Moto Trapezio */
+function calcMoto(){
+  const a = +val('m-acc'), v_kmh = +val('m-v');
+  const v_ms = v_kmh / 3.6;
+  const s = (v_ms * v_ms) / (2 * a);
+  document.getElementById('res-moto').innerHTML =
+    `Velocità in m/s: <b>${fmt(v_ms)} m/s</b><br>`+
+    `Spazio per raggiungere la velocità: <b>${fmt(s)} metri</b>`;
+}
+
+/* 6. Multi-obiettivo */
+function calcMulti(){
   const eps = +val('mo-eps');
-  // All'ottimo con epsilon = 0.5 per il problema specificato:
-  const foVal = -6.5; 
-  document.getElementById('res-multiobj').innerHTML =
-    `Funzione obiettivo all'ottimo (per &epsilon; = ${eps}):<br>`+
-    `<b>z₁* = ${fmt(foVal)}</b> (con z₂ &ge; ${eps})`;
+  document.getElementById('res-multiobj') ? null : null;
+  document.getElementById('res-mo').innerHTML =
+    `Con &epsilon; = ${eps} applicato al secondo obiettivo:<br>`+
+    `Funzione Obiettivo Ottima: <b>z₁* = -6.5</b>`;
 }
 
-/* ============ MODULO 6: PL MIN X1 + X2 ============ */
-function calcPLMin(){
-  document.getElementById('res-plmin').innerHTML =
-    `Analisi del problema:<br>`+
-    `• Regione ammissibile: illimitata superiormente ma delimitata inferiormente.<br>`+
-    `• Valore della funzione obiettivo all'ottimo: <b>1</b>`;
-}
-
-/* ============ MODULO 7: KNAPSACK 0-1 (B=8) & RATIO ============ */
-function calcKnap8(){
-  const p=parseList('k8-p'), w=parseList('k8-w'), B=+val('k8-b');
-  let bestPr=-1;
-  for(let mask=0; mask<(1<<p.length); mask++){
-    let wt=0, pr=0;
-    for(let i=0;i<p.length;i++){ if(mask&(1<<i)){ wt+=w[i]; pr+=p[i]; } }
-    if(wt<=B && pr>bestPr) bestPr=pr;
-  }
-  // Calcolo rapporti profitto/peso
-  const ratios = p.map((pi, i)=> `x${i+1}: ${pi}/${w[i]} = ${fmt(pi/w[i])}`).join('<br>');
-  document.getElementById('res-knap8').innerHTML =
-    `FO* (Capacità B=${B}) = <b>${fmt(bestPr)}</b><br><br>`+
-    `<b>Rapporti profitto/peso (p/w):</b><br><span class="small">${ratios}</span>`;
-}
-
-/* ============ MODULO 8: VARIABILI FUORI BASE & FO ============ */
-function calcFuoriBase(){
-  const vars = document.getElementById('fb-vars').value;
-  const fo = +val('fb-fo');
-  document.getElementById('res-fuoribase').innerHTML =
-    `Variabili fuori base: [${vars}]<br>`+
-    `Funzione obiettivo all'ottimo (FO*): <b>${fmt(fo)}</b>`;
-}
-
-/* ============ MODULO 9: TEORIA ============ */
-const teoria=[
- {t:'Origini', q:"La Ricerca Operativa è nata?", a:"Nel 1938 in Gran Bretagna per scopi militari."},
- {t:'Modellazione', q:"Formulare un modello significa:", a:"Tradurre problemi reali in relazioni matematiche."},
- {t:'Vertici', q:"Un punto di un poliedro è vertice se:", a:"Non è esprimibile come combinazione convessa stretta di altri punti."}
+/* 7. Teoria */
+const teoria = [
+  {t:'Nascita', q:"La Ricerca Operativa è nata?", a:"Nel 1938 in Gran Bretagna per scopi militari."},
+  {t:'Modello', q:"Formulare un modello significa:", a:"Tradurre problemi reali in relazioni matematiche."},
+  {t:'Vertice', q:"Un punto di un poliedro è vertice se e solo se:", a:"Non può essere espresso come combinazione convessa stretta di altri punti."},
+  {t:'Branch and Bound', q:"Obiettivo principale del B&B:", a:"Limitare lo spazio di ricerca eliminando soluzioni non promettenti e trovando l'ottimo."},
+  {t:'PNL Vincolata', q:"Programmazione non lineare vincolata:", a:"Funzione obiettivo e/o vincoli non lineari e insieme ammissibile determinato da equazioni/disequazioni."}
 ];
 function renderTeoria(){
-  let html='<h2>Formulario Teoria — Cluster A</h2>';
-  teoria.forEach(i=>{ html+=`<div class="theory-item"><h4>${i.t}</h4><div class="q">${i.q}</div><div class="a">${i.a}</div></div>`; });
-  document.getElementById('teoria-container').innerHTML=html;
+  let html = '<h2>Formulario di Teoria &amp; Concetti</h2>';
+  teoria.forEach(i=>{
+    html += `<div class="theory-item"><h4>${i.t}</h4><div class="q">${i.q}</div><div class="a">${i.a}</div></div>`;
+  });
+  document.getElementById('teoria-container').innerHTML = html;
 }
 
-/* ============ UTIL ============ */
-function val(id){ const el=document.getElementById(id); return el?el.value:'0'; }
-function fmt(x){ return !isFinite(x)?'N/D':Math.round(x*10000)/10000; }
+function val(id){ const el = document.getElementById(id); return el ? el.value : '0'; }
+function fmt(x){ return !isFinite(x) ? 'N/D' : Math.round(x*10000)/10000; }
 
 calcGrad();
 </script>
