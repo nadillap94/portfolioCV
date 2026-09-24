@@ -155,6 +155,10 @@ table.mtx input{width:52px;}
         <h3>10. PNL Vincolata &amp; Moltiplicatori KKT</h3>
         <p>Risoluzione problemi non lineari con vincoli attivi e calcolo di x* e &lambda;</p>
       </div>
+      <div class="card" onclick="showView('view-knap-test')">
+        <h3>Zaino 0-1 (Knapsack Test)</h3>
+        <p>Calcolo rapido di FO* e capienza residua per i problemi con vincoli di capacità</p>
+      </div>
     </div>
   </div>
 
@@ -308,7 +312,26 @@ table.mtx input{width:52px;}
       <div class="result-box" id="res-pnl">—</div>
     </div>
   </div>
-
+  
+<!-- KNAPSACK SPECIFICO PER I TEST -->
+  <div id="view-knap-test" class="view">
+    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
+    <div class="calc-card">
+      <h2>Risolutore Knapsack 0-1 (Test)</h2>
+      <p class="sub">Inserisci i profitti p, i pesi w e la capacità B del problema.</p>
+      <div class="row" style="flex-direction:column;align-items:flex-start;">
+        <label>Profitti (es. 4,5,3,6):</label>
+        <input type="text" id="kp-p" value="4,5,3,6" oninput="calcKnapTest()">
+      </div>
+      <div class="row" style="flex-direction:column;align-items:flex-start;">
+        <label>Pesi (es. 3,4,6,5):</label>
+        <input type="text" id="kp-w" value="3,4,6,5" oninput="calcKnapTest()">
+      </div>
+      <div class="row"><label>Capacità B =</label><input type="number" id="kp-b" value="13" oninput="calcKnapTest()"></div>
+      <div class="result-box" id="res-kp-test">—</div>
+    </div>
+  </div>
+  
   <!-- 10. TEORIA -->
   <div id="view-teoria" class="view">
     <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
@@ -645,6 +668,31 @@ function calcPNL(){
       `• Impostando il sistema KKT &nabla;f = &lambda;₁&nabla;g₁ + &lambda;₂&nabla;g₂:<br>`+
       `Il moltiplicatore lagrangiano <b>&lambda;₂</b> associato al secondo vincolo vale: <b>(valore analitico da sistema KKT)</b>`;
   }
+}
+
+  /* ============ RISOLUTORE KNAPSACK TEST ============ */
+function calcKnapTest(){
+  const p = parseList('kp-p');
+  const w = parseList('kp-w');
+  const B = +val('kp-b');
+  const n = Math.min(p.length, w.length);
+  if(n === 0){ document.getElementById('res-kp-test').innerHTML = 'Dati non validi.'; return; }
+  
+  let bestPr = -1, bestSet = 0, bestWt = 0;
+  for(let mask=0; mask<(1<<n); mask++){
+    let wt=0, pr=0;
+    for(let i=0; i<n; i++){
+      if(mask & (1<<i)){ wt += w[i]; pr += p[i]; }
+    }
+    if(wt <= B && pr > bestPr){ bestPr = pr; bestSet = mask; bestWt = wt; }
+  }
+  const chosen = [];
+  for(let i=0; i<n; i++) if(bestSet & (1<<i)) chosen.push(i+1);
+  
+  document.getElementById('res-kp-test').innerHTML =
+    `Funzione Obiettivo all'ottimo (FO*) = <b>${fmt(bestPr)}</b><br>`+
+    `Capacità Residua = <b>${fmt(B - bestWt)}</b><br>`+
+    `<span class="small">Variabili a 1 (oggetti scelti): {${chosen.join(', ')}}</span>`;
 }
   
 /* ============ MODULO 10: TEORIA ============ */
