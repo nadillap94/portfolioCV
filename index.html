@@ -238,71 +238,25 @@ table.mtx input{width:52px;}
     </div>
   </div>
 
-/* ============ MODULO 6 AGGIORNATO: TROVA AUTOMATICAMENTE LA BASE OTTIMA ============ */
-function calcStandard(){
-  const m=+val('st-m'), n=+val('st-n');
-  const resBox=document.getElementById('res-standard');
-  const A=[]; for(let i=1;i<=m;i++){ const row=[]; for(let j=1;j<=n;j++) row.push(+val(`stA_${i}_${j}`)); A.push(row); }
-  const b=[]; for(let i=1;i<=m;i++) b.push(+val(`stb_${i}`));
-  const c=[]; for(let j=1;j<=n;j++) c.push(+val(`stc_${j}`));
-  if(A.some(row=>row.some(v=>isNaN(v)))){ resBox.innerHTML='Compila la tabella.'; return; }
-
-  // Genera tutte le combinazioni possibili di m elementi su n
-  function getCombinations(arr, k) {
-    if (k === 0) return [[]];
-    if (arr.length === 0) return [];
-    const head = arr[0], tail = arr.slice(1);
-    const withHead = getCombinations(tail, k - 1).map(c => [head, ...c]);
-    const withoutHead = getCombinations(tail, k);
-    return [...withHead, ...withoutHead];
-  }
-
-  const vars = Array.from({length: n}, (_, i) => i + 1);
-  const allBases = getCombinations(vars, m);
-  
-  let bestFO = Infinity;
-  let optimalBase = null;
-  let optimalX = null;
-  let ammissibiliTrovate = 0;
-
-  allBases.forEach(basisIdx => {
-    const B_mat = [];
-    for(let i=0; i<m; i++){
-      const row = [];
-      for(const j of basisIdx) row.push(A[i][j-1]);
-      B_mat.push(row);
-    }
-    const xB = solveLinearSystem(B_mat, b);
-    if(!xB) return; // Matrice singolare
-    
-    // Verifica non-negatività (ammissibilità)
-    const isFeasible = xB.every(v => v >= -1e-6);
-    if(isFeasible){
-      ammissibiliTrovate++;
-      const x = new Array(n).fill(0);
-      basisIdx.forEach((j, idx) => { x[j-1] = xB[idx]; });
-      const FO = x.reduce((sum, xi, idx) => sum + xi * c[idx], 0);
-      
-      if(FO < bestFO){
-        bestFO = FO;
-        optimalBase = basisIdx;
-        optimalX = x;
-      }
-    }
-  });
-
-  if(!optimalBase){
-    resBox.innerHTML = 'Nessuna base ammissibile trovata per questo sistema.';
-    return;
-  }
-
-  let html = `<b style="color:var(--accent);">★ BASE OTTIMA TROVATA: {${optimalBase.map(j=>'A'+j).join(', ')}}</b><br>`;
-  html += optimalX.map((xi, idx)=>`x${idx+1} = <b>${fmt(xi)}</b>`).join(' &nbsp; ') + '<br>';
-  html += `FO* ottima = <b>${fmt(bestFO)}</b><br>`;
-  html += `<span class="small">(Analizzate ${allBases.length} basi totali, di cui ${ammissibiliTrovate} ammissibili)</span>`;
-  
-  resBox.innerHTML = html;
-}
+  <!-- 6. PL FORMA STANDARD: SOLUZIONE DI BASE -->
+  <div id="view-standard" class="view">
+    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
+    <div class="calc-card">
+      <h2>6. PL Forma Standard — Soluzione di Base</h2>
+      <p class="sub">Ax = b, min/max cᵀx, x ≥ 0. Genera la tabella, inserisci A, b, c e le colonne in base (indici separati da virgola, es. 2,3). Se conosci le colonne <b>fuori</b> base, spunta la casella corrispondente.</p>
+      <div class="row"><label>m (vincoli) =</label><input type="number" id="st-m" value="2"></div>
+      <div class="row"><label>n (variabili) =</label><input type="number" id="st-n" value="4"></div>
+      <button class="action" onclick="generaTabellaStandard()">Genera tabella</button>
+      <div id="st-table-container"></div>
+      <div class="row" style="margin-top:8px;flex-direction:column;align-items:flex-start;">
+        <label>Colonne indicate (es. 2,3):</label>
+        <input type="text" id="st-basis" value="2,3" oninput="calcStandard()">
+      </div>
+      <div class="row"><label class="chk"><input type="checkbox" id="st-fuori" onchange="calcStandard()"> Le colonne indicate sono <b>fuori</b> base (quindi la base è tutto il resto)</label></div>
+      <div class="result-box" id="res-standard">Genera la tabella per iniziare.</div>
+      <div class="note">FO* = Σ cⱼ·xⱼ (le variabili non in base valgono 0). Se la base è singolare il sistema non ha soluzione unica.</div>
+    </div>
+  </div>
 
   <!-- 7. PL GRAFICO 2 VARIABILI -->
   <div id="view-lp2d" class="view">
@@ -465,44 +419,7 @@ function calcBaseCount(){
   document.getElementById('res-basecount').innerHTML=`C(${N},${M}) = <b>${combinazioni(N,M)}</b> possibili basi`;
 }
 
-/* ============ MODULO 6: PL FORMA STANDARD — SOLUZIONE DI BASE ============ */
-function generaTabellaStandard(){
-  const m=+val('st-m'), n=+val('st-n');
-  let html='<div class="matrix-table"><table class="mtx"><tr><td></td>';
-  for(let j=1;j<=n;j++) html+=`<td style="text-align:center;font-weight:600;">x${j}</td>`;
-  html+='<td style="font-weight:600;">= b</td></tr>';
-  for(let i=1;i<=m;i++){
-    html+=`<tr><td style="font-weight:600;">Vinc.${i}</td>`;
-    for(let j=1;j<=n;j++) html+=`<td><input type="number" id="stA_${i}_${j}" value="0" step="any" oninput="calcStandard()"></td>`;
-    html+=`<td><input type="number" id="stb_${i}" value="0" step="any" oninput="calcStandard()"></td></tr>`;
-  }
-  html+=`<tr><td style="font-weight:600;">c (costi)</td>`;
-  for(let j=1;j<=n;j++) html+=`<td><input type="number" id="stc_${j}" value="0" step="any" oninput="calcStandard()"></td>`;
-  html+='<td></td></tr></table></div>';
-  document.getElementById('st-table-container').innerHTML=html;
-  calcStandard();
-}
-function solveLinearSystem(mat, vec){
-  const n=mat.length;
-  let M = mat.map((row,i)=>[...row, vec[i]]);
-  for(let i=0;i<n;i++){
-    let maxRow=i;
-    for(let k=i+1;k<n;k++) if(Math.abs(M[k][i])>Math.abs(M[maxRow][i])) maxRow=k;
-    [M[i],M[maxRow]]=[M[maxRow],M[i]];
-    if(Math.abs(M[i][i])<1e-9) return null;
-    for(let k=i+1;k<n;k++){
-      const f=M[k][i]/M[i][i];
-      for(let j=i;j<=n;j++) M[k][j]-=f*M[i][j];
-    }
-  }
-  const x=new Array(n).fill(0);
-  for(let i=n-1;i>=0;i--){
-    let sum=M[i][n];
-    for(let j=i+1;j<n;j++) sum-=M[i][j]*x[j];
-    x[i]=sum/M[i][i];
-  }
-  return x;
-}
+/* ============ MODULO 6 AGGIORNATO: TROVA AUTOMATICAMENTE LA BASE OTTIMA ============ */
 function calcStandard(){
   const m=+val('st-m'), n=+val('st-n');
   const resBox=document.getElementById('res-standard');
@@ -510,26 +427,61 @@ function calcStandard(){
   const b=[]; for(let i=1;i<=m;i++) b.push(+val(`stb_${i}`));
   const c=[]; for(let j=1;j<=n;j++) c.push(+val(`stc_${j}`));
   if(A.some(row=>row.some(v=>isNaN(v)))){ resBox.innerHTML='Compila la tabella.'; return; }
-  let indicated=val('st-basis').split(',').map(s=>parseInt(s.trim())).filter(v=>!isNaN(v));
-  let basisIdx;
-  if(checked('st-fuori')){
-    const all=[]; for(let j=1;j<=n;j++) all.push(j);
-    basisIdx = all.filter(j=>!indicated.includes(j));
-  } else {
-    basisIdx = indicated;
+
+  // Genera tutte le combinazioni possibili di m elementi su n
+  function getCombinations(arr, k) {
+    if (k === 0) return [[]];
+    if (arr.length === 0) return [];
+    const head = arr[0], tail = arr.slice(1);
+    const withHead = getCombinations(tail, k - 1).map(c => [head, ...c]);
+    const withoutHead = getCombinations(tail, k);
+    return [...withHead, ...withoutHead];
   }
-  if(basisIdx.length!==m){ resBox.innerHTML=`<span class="small">Le colonne in base devono essere ${m} (attualmente ${basisIdx.length}).</span>`; return; }
-  const B=[]; for(let i=0;i<m;i++){ const row=[]; for(const j of basisIdx) row.push(A[i][j-1]); B.push(row); }
-  const xB=solveLinearSystem(B,b);
-  if(!xB){ resBox.innerHTML='<span class="small">La matrice di base è singolare: colonne scelte non indipendenti.</span>'; return; }
-  const x=new Array(n).fill(0);
-  basisIdx.forEach((j,idx)=>{ x[j-1]=xB[idx]; });
-  const negativa = xB.some(v=>v< -1e-6);
-  const FO = x.reduce((s,xi,idx)=>s+xi*c[idx],0);
-  let html = `Base = {${basisIdx.map(j=>'A'+j).join(', ')}}<br>`;
-  html += x.map((xi,idx)=>`x${idx+1} = <b>${fmt(xi)}</b>`).join(' &nbsp; ') + '<br>';
-  html += `FO* = &Sigma; cⱼxⱼ = <b>${fmt(FO)}</b>`;
-  if(negativa) html += `<div class="warn-box">Attenzione: alcune variabili di base risultano negative &rarr; soluzione non ammissibile (x deve essere &ge; 0).</div>`;
+
+  const vars = Array.from({length: n}, (_, i) => i + 1);
+  const allBases = getCombinations(vars, m);
+  
+  let bestFO = Infinity;
+  let optimalBase = null;
+  let optimalX = null;
+  let ammissibiliTrovate = 0;
+
+  allBases.forEach(basisIdx => {
+    const B_mat = [];
+    for(let i=0; i<m; i++){
+      const row = [];
+      for(const j of basisIdx) row.push(A[i][j-1]);
+      B_mat.push(row);
+    }
+    const xB = solveLinearSystem(B_mat, b);
+    if(!xB) return; // Matrice singolare
+    
+    // Verifica non-negatività (ammissibilità)
+    const isFeasible = xB.every(v => v >= -1e-6);
+    if(isFeasible){
+      ammissibiliTrovate++;
+      const x = new Array(n).fill(0);
+      basisIdx.forEach((j, idx) => { x[j-1] = xB[idx]; });
+      const FO = x.reduce((sum, xi, idx) => sum + xi * c[idx], 0);
+      
+      if(FO < bestFO){
+        bestFO = FO;
+        optimalBase = basisIdx;
+        optimalX = x;
+      }
+    }
+  });
+
+  if(!optimalBase){
+    resBox.innerHTML = 'Nessuna base ammissibile trovata per questo sistema.';
+    return;
+  }
+
+  let html = `<b style="color:var(--accent);">★ BASE OTTIMA TROVATA: {${optimalBase.map(j=>'A'+j).join(', ')}}</b><br>`;
+  html += optimalX.map((xi, idx)=>`x${idx+1} = <b>${fmt(xi)}</b>`).join(' &nbsp; ') + '<br>';
+  html += `FO* ottima = <b>${fmt(bestFO)}</b><br>`;
+  html += `<span class="small">(Analizzate ${allBases.length} basi totali, di cui ${ammissibiliTrovate} ammissibili)</span>`;
+  
   resBox.innerHTML = html;
 }
 
