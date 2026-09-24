@@ -140,7 +140,7 @@ table.mtx input{width:52px;}
         <p>Dato A, b, c e le colonne in base (o fuori base), calcola x<sub>B</sub> e la FO*</p>
       </div>
       <div class="card" onclick="showView('view-lp2d')">
-        <h3>7. PL con 2 Variabili (Min e Max)</h3>
+        <h3>7. PL Grafico — 2 Variabili</h3>
         <p>Min/Max con vincoli generici: calcola tutti i vertici e la soluzione ottima</p>
       </div>
       <div class="card" onclick="showView('view-multiobj')">
@@ -150,14 +150,6 @@ table.mtx input{width:52px;}
       <div class="card" onclick="showView('view-teoria')">
         <h3>9. Formulario Teoria</h3>
         <p>Definizioni e concetti a risposta rapida (senza calcoli numerici)</p>
-      </div>
-      <div class="card" onclick="showView('view-pnl')">
-        <h3>10. PNL Vincolata &amp; Moltiplicatori KKT</h3>
-        <p>Risoluzione problemi non lineari con vincoli attivi e calcolo di x* e &lambda;</p>
-      </div>
-      <div class="card" onclick="showView('view-knap-test')">
-        <h3>Zaino 0-1 (Knapsack Test)</h3>
-        <p>Calcolo rapido di FO* e capienza residua per i problemi con vincoli di capacità</p>
       </div>
     </div>
   </div>
@@ -215,11 +207,11 @@ table.mtx input{width:52px;}
       <h2>4. Knapsack 0-1 (esatto)</h2>
       <p class="sub">Inserisci le liste separate da virgola (0 se un oggetto non è presente).</p>
       <div class="row" style="flex-direction:column;align-items:flex-start;">
-        <label>Pesi:</label>
+        <label>Profitti (p1,p2,...):</label>
         <input type="text" id="k-p" value="4,1,2,3,5" oninput="calcKnapsack()">
       </div>
       <div class="row" style="flex-direction:column;align-items:flex-start;">
-        <label>Profitti:</label>
+        <label>Pesi (w1,w2,...):</label>
         <input type="text" id="k-w" value="5,4,3,6,5" oninput="calcKnapsack()">
       </div>
       <div class="row"><label>Capacità B =</label><input type="number" id="k-b" value="8" oninput="calcKnapsack()"></div>
@@ -295,44 +287,7 @@ table.mtx input{width:52px;}
     </div>
   </div>
 
-  <!-- 9. PNL VINCOLATA & KKT -->
-  <div id="view-pnl" class="view">
-    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
-    <div class="calc-card">
-      <h2>9. PNL Vincolata &amp; Moltiplicatori KKT</h2>
-      <p class="sub">Risoluzione di problemi non lineari con vincoli attivi (es. f(x) e calcolo di &lambda; o x*).</p>
-      <div class="row"><label>Tipo esercizio:</label>
-        <select id="pnl-type" onchange="calcPNL()">
-          <option value="pnl1">Min 3x₁ - 4x₂² (Vincoli attivi: 1°)</option>
-          <option value="pnl2">Min x₁ + x₂² (Vincoli attivi: 1°)</option>
-          <option value="pnl3">Min 2x₁⁻³x₂² - 4x₁ - x₂ (Attivi: 1° e 2°)</option>
-        </select>
-      </div>
-      <button class="action" style="margin-top:10px;" onclick="calcPNL()">Calcola Risultato PNL</button>
-      <div class="result-box" id="res-pnl">—</div>
-    </div>
-  </div>
-  
-<!-- KNAPSACK SPECIFICO PER I TEST -->
-  <div id="view-knap-test" class="view">
-    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
-    <div class="calc-card">
-      <h2>Risolutore Knapsack 0-1 (Test)</h2>
-      <p class="sub">Inserisci i profitti p, i pesi w e la capacità B del problema.</p>
-      <div class="row" style="flex-direction:column;align-items:flex-start;">
-        <label>Profitti (es. 4,5,3,6):</label>
-        <input type="text" id="kp-p" value="4,5,3,6" oninput="calcKnapTest()">
-      </div>
-      <div class="row" style="flex-direction:column;align-items:flex-start;">
-        <label>Pesi (es. 3,4,6,5):</label>
-        <input type="text" id="kp-w" value="3,4,6,5" oninput="calcKnapTest()">
-      </div>
-      <div class="row"><label>Capacità B =</label><input type="number" id="kp-b" value="13" oninput="calcKnapTest()"></div>
-      <div class="result-box" id="res-kp-test">—</div>
-    </div>
-  </div>
-  
-  <!-- 10. TEORIA -->
+  <!-- 9. TEORIA -->
   <div id="view-teoria" class="view">
     <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
     <div class="calc-card" id="teoria-container"></div>
@@ -643,59 +598,7 @@ function calcMultiObj(){
     `<div class="vlist">Vertici ammissibili:<br>${result.verts.map(v=>`(x1=${fmt(v.x1)}, x2=${fmt(v.x2)}) &rarr; z1=${fmt(v.z)}`).join('<br>')}</div>`;
 }
 
-  /* ============ MODULO 9: PNL VINCOLATA ============ */
-function calcPNL(){
-  const type = document.getElementById('pnl-type').value;
-  const res = document.getElementById('res-pnl');
-  if(type === 'pnl1'){
-    // Problema: Min 3x1 - 4x2^2 s.t. 4 - x1^2 - x2^2 >= 0, x1 + x2 - 1 >= 0 (attivo solo 1°)
-    // Con vincolo 1 attivo: x1^2 + x2^2 = 4 => x1 = sqrt(4 - x2^2). Lagrangiana: L = 3x1 - 4x2^2 - lambda(4 - x1^2 - x2^2)
-    // Sostituendo e derivando rispetto a x2 si ottiene x2 circirca 2.87 o simili, portando a FO = -15.8 (o -14.5 in base alle opzioni)
-    res.innerHTML = `Analisi Problema 1 (Min 3x₁ - 4x₂²):<br>`+
-      `• Vincolo 1 attivo: x₁² + x₂² = 4<br>`+
-      `• Risoluzione KKT / sostituzione:<br>`+
-      `Valore della funzione obiettivo all'ottimo: <b>-15,8</b> (Opzione corretta tra le scelte)`;
-  } else if(type === 'pnl2'){
-    // Problema: Min x1 + x2^2 s.t. 9 - x1^2 - x2^2 >= 0, -x2 - x1 + 1 >= 0 (attivo solo 1°)
-    res.innerHTML = `Analisi Problema 2 (Min x₁ + x₂²):<br>`+
-      `• Vincolo 1 attivo: x₁² + x₂² = 9<br>`+
-      `• Condizione di stazionarietà &nabla;f = &lambda;&nabla;g:<br>`+
-      `Valore della variabile x₁ all'ottimo: <b>-1,56</b> (o 3 a seconda del ramo, verifica opzione -1,56)`;
-  } else if(type === 'pnl3'){
-    // Problema con lambda2
-    res.innerHTML = `Analisi Problema 3 (Moltiplicatore &lambda;₂):<br>`+
-      `• Vincoli 1 e 2 attivi simultaneamente.<br>`+
-      `• Impostando il sistema KKT &nabla;f = &lambda;₁&nabla;g₁ + &lambda;₂&nabla;g₂:<br>`+
-      `Il moltiplicatore lagrangiano <b>&lambda;₂</b> associato al secondo vincolo vale: <b>(valore analitico da sistema KKT)</b>`;
-  }
-}
-
-  /* ============ RISOLUTORE KNAPSACK TEST ============ */
-function calcKnapTest(){
-  const p = parseList('kp-p');
-  const w = parseList('kp-w');
-  const B = +val('kp-b');
-  const n = Math.min(p.length, w.length);
-  if(n === 0){ document.getElementById('res-kp-test').innerHTML = 'Dati non validi.'; return; }
-  
-  let bestPr = -1, bestSet = 0, bestWt = 0;
-  for(let mask=0; mask<(1<<n); mask++){
-    let wt=0, pr=0;
-    for(let i=0; i<n; i++){
-      if(mask & (1<<i)){ wt += w[i]; pr += p[i]; }
-    }
-    if(wt <= B && pr > bestPr){ bestPr = pr; bestSet = mask; bestWt = wt; }
-  }
-  const chosen = [];
-  for(let i=0; i<n; i++) if(bestSet & (1<<i)) chosen.push(i+1);
-  
-  document.getElementById('res-kp-test').innerHTML =
-    `Funzione Obiettivo all'ottimo (FO*) = <b>${fmt(bestPr)}</b><br>`+
-    `Capacità Residua = <b>${fmt(B - bestWt)}</b><br>`+
-    `<span class="small">Variabili a 1 (oggetti scelti): {${chosen.join(', ')}}</span>`;
-}
-  
-/* ============ MODULO 10: TEORIA ============ */
+/* ============ MODULO 9: TEORIA ============ */
 const teoria=[
  {t:'Nascita della Ricerca Operativa', q:"La Ricerca Operativa è nata?", a:"Durante la Seconda Guerra Mondiale (fine anni '30 - anni '40) in Gran Bretagna, per scopi militari (ottimizzare l'uso di risorse belliche); si è poi estesa alle applicazioni civili/industriali."},
  {t:'Vincolo attivo', q:"Un vincolo di disuguaglianza g(x) ≥ 0 è attivo nel punto y se:", a:"g(y) = 0, cioè il vincolo è soddisfatto con il segno di uguaglianza (y si trova sulla frontiera dell'insieme ammissibile individuato da quel vincolo)."},
