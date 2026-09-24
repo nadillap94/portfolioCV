@@ -12,6 +12,7 @@
   --result-bg:#e6fffa; --result-border:#0d9488; --result-text:#134e4a;
   --warn-bg:#fff7ed; --warn-border:#f59e0b; --warn-text:#7c2d12;
   --input-bg:#ffffff;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -22,14 +23,22 @@
     --input-bg:#111827;
   }
 }
+:root[data-theme="dark"]{
+  --bg:#0f1420; --card:#1a2132; --text:#e5e7eb; --muted:#9aa4b2; --border:#2b3446;
+  --primary:#5b9bd9; --primary-dark:#8fc0ea; --accent:#2dd4bf;
+  --result-bg:#0b3b36; --result-border:#2dd4bf; --result-text:#c9fbf1;
+  --warn-bg:#3a2a0f; --warn-border:#f59e0b; --warn-text:#ffe0b2;
+  --input-bg:#111827;
+}
 *{box-sizing:border-box;}
+html,body{height:100%;}
 body{
   margin:0; background:var(--bg); color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   line-height:1.5;
 }
 header{
-  background:var(--primary-dark); color:#fff; padding:18px 16px;
+  background:var(--primary-dark); color:#fff; padding:calc(18px + env(safe-area-inset-top,0px)) 16px 18px;
   text-align:center;
 }
 header h1{margin:0;font-size:1.25rem;}
@@ -60,9 +69,10 @@ input[type="number"], input[type="text"]{
   padding:8px; border:1px solid var(--border); border-radius:6px; font-size:1rem;
   background:var(--input-bg); color:var(--text); text-align:center;
 }
-input[type="number"]{width:78px;}
+input[type="number"]{width:74px;}
 input[type="text"]{width:100%;text-align:left;margin-top:4px;}
-select{padding:8px;border:1px solid var(--border);border-radius:6px;background:var(--input-bg);color:var(--text);font-size:.95rem;}
+select{padding:8px;border:1px solid var(--border);border-radius:6px;background:var(--input-bg);color:var(--text);font-size:.9rem;}
+label.chk{display:inline-flex;align-items:center;gap:4px;font-weight:400;font-size:.85rem;}
 button.action{
   background:var(--primary); color:#fff; border:none; padding:10px 16px; border-radius:6px;
   font-weight:600; cursor:pointer; font-size:.95rem;
@@ -80,19 +90,23 @@ button.action.secondary{background:var(--accent);}
 hr{border:0;border-top:1px solid var(--border);margin:14px 0;}
 .matrix-table{overflow-x:auto;padding-bottom:4px;}
 table.mtx{border-collapse:collapse;margin-top:6px;}
-table.mtx td{padding:3px;}
-table.mtx input{width:56px;}
+table.mtx td{padding:3px;font-size:.85rem;}
+table.mtx input{width:52px;}
 .theory-item{margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--border);}
 .theory-item h4{margin:0 0 4px;color:var(--primary-dark);font-size:.95rem;}
 .theory-item .q{font-weight:600;font-size:.88rem;margin-bottom:4px;}
 .theory-item .a{font-size:.88rem;color:var(--text);}
 .note{font-size:.78rem;color:var(--muted);margin-top:8px;}
+.constraint-row{display:flex;align-items:center;flex-wrap:wrap;gap:5px;font-size:.9rem;margin-bottom:8px;padding:6px;background:var(--bg);border-radius:6px;}
+.constraint-row input[type="number"]{width:60px;}
+.vlist{font-size:.82rem;margin-top:6px;}
+.vlist .opt{font-weight:700;color:var(--result-text);}
 </style>
 </head>
 <body>
 <header>
-  <h1>Risolutore RO — Dashboard</h1>
-  <p>Ricerca Operativa — Moduli Originali &amp; Risolutori Aggiuntivi</p>
+  <h1>Risolutore RO</h1>
+  <p>Ricerca Operativa — Dashboard di calcolo</p>
 </header>
 
 <div class="container">
@@ -101,86 +115,97 @@ table.mtx input{width:56px;}
   <div id="home-view" class="view active">
     <p class="sub">Seleziona la tipologia di problema:</p>
     <div class="grid">
-      <!-- Moduli 1-4 originali preferiti -->
+      <div class="card" onclick="showView('view-cinem')">
+        <h3>1. Cinematica — Moto Trapezio</h3>
+        <p>Spazio percorso in accelerazione da fermo per raggiungere una velocità data</p>
+      </div>
       <div class="card" onclick="showView('view-grad')">
-        <h3>1. Gradiente e Modulo</h3>
-        <p>Funzione quadratica in due variabili, calcolo di ∇f e ||∇f|| in un punto</p>
+        <h3>2. Gradiente e Modulo</h3>
+        <p>Funzione quadratica in due variabili, calcolo di &nabla;f e ||&nabla;f|| in un punto</p>
       </div>
       <div class="card" onclick="showView('view-prod')">
-        <h3>2. Produzione &amp; Backlogging</h3>
-        <p>Confronto strategie: produzione separata, anticipata (holding), ritardata (backlog)</p>
+        <h3>3. Programmazione Produzione &amp; Backlogging</h3>
+        <p>Confronto tra produzione separata, anticipata (holding) e ritardata (backlog)</p>
       </div>
       <div class="card" onclick="showView('view-knap')">
-        <h3>3. Knapsack 0-1 &amp; Cover Minimali</h3>
-        <p>Zaino 0-1 esatto (enumerazione), capienza residua, cover minimali</p>
+        <h3>4. Knapsack 0-1 &amp; Cover Minimali</h3>
+        <p>Zaino 0-1 esatto (enumerazione), capienza residua, cover minimali di un vincolo</p>
       </div>
       <div class="card" onclick="showView('view-basi')">
-        <h3>4. Basi PL</h3>
-        <p>Numero di basi (combinazioni) e x<sub>B</sub> = B⁻¹b da matrice generica</p>
+        <h3>5. Numero di Basi di un PL</h3>
+        <p>Numero di basi possibili C(n,m) dato un problema in forma standard</p>
       </div>
-
-      <!-- Moduli aggiuntivi -->
+      <div class="card" onclick="showView('view-standard')">
+        <h3>6. PL Forma Standard — Soluzione di Base</h3>
+        <p>Dato A, b, c e le colonne in base (o fuori base), calcola x<sub>B</sub> e la FO*</p>
+      </div>
+      <div class="card" onclick="showView('view-lp2d')">
+        <h3>7. PL Grafico — 2 Variabili</h3>
+        <p>Min/Max con vincoli generici: calcola tutti i vertici e la soluzione ottima</p>
+      </div>
       <div class="card" onclick="showView('view-multiobj')">
-        <h3>5. Multi-obiettivo (&epsilon;-vincoli)</h3>
-        <p>Risoluzione PL con 2 obiettivi, trasformando il secondo in vincolo con &epsilon;</p>
-      </div>
-      <div class="card" onclick="showView('view-plmin')">
-        <h3>6. Analisi PL Min x₁ + x₂</h3>
-        <p>Valutazione regione ammissibile e FO ottima per sistemi a 3 vincoli lineari</p>
-      </div>
-      <div class="card" onclick="showView('view-knap8')">
-        <h3>7. Knapsack 0-1 (Capienza B=8 e Max Ratio)</h3>
-        <p>Risoluzione zaino con capienza personalizzabile e calcolo max rapporto profitto/peso</p>
-      </div>
-      <div class="card" onclick="showView('view-fuoribase')">
-        <h3>8. PL: Variabili Fuori Base &amp; FO*</h3>
-        <p>Calcolo funzione obiettivo ottima conoscendo la matrice fuori base F e i costi</p>
+        <h3>8. Multi-obiettivo (&epsilon;-vincoli)</h3>
+        <p>Trasforma il secondo obiettivo in vincolo con &epsilon; e risolve il PL risultante</p>
       </div>
       <div class="card" onclick="showView('view-teoria')">
-        <h3>9. Formulario Teoria (Cluster A)</h3>
-        <p>Definizioni a risposta rapida, senza calcoli</p>
+        <h3>9. Formulario Teoria</h3>
+        <p>Definizioni e concetti a risposta rapida (senza calcoli numerici)</p>
       </div>
     </div>
   </div>
 
-  <!-- 1. GRADIENTE -->
+  <!-- 1. CINEMATICA -->
+  <div id="view-cinem" class="view">
+    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
+    <div class="calc-card">
+      <h2>1. Moto Trapezio — Spazio in Accelerazione</h2>
+      <p class="sub">Veicolo che parte da fermo con accelerazione costante a fino a raggiungere la velocità v. Spazio: s = v² / (2a)</p>
+      <div class="row">Accelerazione a = [<input type="number" id="ci-a" value="1.2" step="0.1" oninput="calcCinem()">] m/s²</div>
+      <div class="row">Velocità da raggiungere v = [<input type="number" id="ci-v" value="40" oninput="calcCinem()">] km/h</div>
+      <div class="result-box" id="res-cinem">—</div>
+    </div>
+  </div>
+
+  <!-- 2. GRADIENTE -->
   <div id="view-grad" class="view">
     <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
     <div class="calc-card">
-      <h2>1. Gradiente e Modulo</h2>
+      <h2>2. Gradiente e Modulo</h2>
       <p class="sub">f(x₁,x₂) = A·x₁² + B·x₂² + C·x₁x₂ + D·x₁ + E·x₂</p>
-      <div class="row"><label>A =</label><input type="number" id="g-a" value="1" oninput="calcGrad()"></div>
-      <div class="row"><label>B =</label><input type="number" id="g-b" value="1" oninput="calcGrad()"></div>
-      <div class="row"><label>C =</label><input type="number" id="g-c" value="0" oninput="calcGrad()"></div>
-      <div class="row"><label>D =</label><input type="number" id="g-d" value="0" oninput="calcGrad()"></div>
-      <div class="row"><label>E =</label><input type="number" id="g-e" value="0" oninput="calcGrad()"></div>
+      <div class="row"><label>A =</label><input type="number" id="g-a" value="1" step="any" oninput="calcGrad()"></div>
+      <div class="row"><label>B =</label><input type="number" id="g-b" value="1" step="any" oninput="calcGrad()"></div>
+      <div class="row"><label>C =</label><input type="number" id="g-c" value="0" step="any" oninput="calcGrad()"></div>
+      <div class="row"><label>D =</label><input type="number" id="g-d" value="0" step="any" oninput="calcGrad()"></div>
+      <div class="row"><label>E =</label><input type="number" id="g-e" value="0" step="any" oninput="calcGrad()"></div>
       <hr>
-      <div class="row"><label>x₁⁰ =</label><input type="number" id="g-x0" value="0" oninput="calcGrad()"></div>
-      <div class="row"><label>x₂⁰ =</label><input type="number" id="g-y0" value="0" oninput="calcGrad()"></div>
+      <div class="row"><label>x₁⁰ =</label><input type="number" id="g-x0" value="0" step="any" oninput="calcGrad()"></div>
+      <div class="row"><label>x₂⁰ =</label><input type="number" id="g-y0" value="0" step="any" oninput="calcGrad()"></div>
       <div class="result-box" id="res-grad">—</div>
     </div>
   </div>
 
-  <!-- 2. PRODUZIONE & BACKLOG -->
+  <!-- 3. PRODUZIONE & BACKLOG -->
   <div id="view-prod" class="view">
     <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
     <div class="calc-card">
-      <h2>2. Produzione &amp; Backlogging</h2>
-      <div class="row">C1 = [<input type="number" id="p-a1" value="4" oninput="calcProd()">] + [<input type="number" id="p-b1" value="3" oninput="calcProd()">]·x1</div>
-      <div class="row">C2 = [<input type="number" id="p-a2" value="2" oninput="calcProd()">] + [<input type="number" id="p-b2" value="2" oninput="calcProd()">]·x2</div>
-      <div class="row">h1 = [<input type="number" id="p-h1" value="2" oninput="calcProd()">]</div>
-      <div class="row">b1 = [<input type="number" id="p-bck1" value="1" oninput="calcProd()">]</div>
-      <div class="row">D1 = [<input type="number" id="p-d1" value="4" oninput="calcProd()">]</div>
+      <h2>3. Produzione &amp; Backlogging</h2>
+      <p class="sub">Ci = Ai (costo fisso, se produci nel periodo i) + Bi·xi (costo variabile). h1 = costo holding/unità, B1 = costo backlog/unità.</p>
+      <div class="row">C1 = [<input type="number" id="p-a1" value="4" oninput="calcProd()">] d + [<input type="number" id="p-b1" value="3" oninput="calcProd()">] x1</div>
+      <div class="row">C2 = [<input type="number" id="p-a2" value="2" oninput="calcProd()">] d + [<input type="number" id="p-b2" value="2" oninput="calcProd()">] x2</div>
+      <div class="row">h1 = [<input type="number" id="p-h1" value="2" oninput="calcProd()">] s1+</div>
+      <div class="row">B1 = [<input type="number" id="p-bck1" value="1" oninput="calcProd()">] s1-</div>
+      <div class="row">d1 = [<input type="number" id="p-d1" value="4" oninput="calcProd()">]</div>
       <div class="row">D2 = [<input type="number" id="p-d2" value="5" oninput="calcProd()">]</div>
       <div class="result-box" id="res-prod">—</div>
     </div>
   </div>
 
-  <!-- 3. KNAPSACK -->
+  <!-- 4. KNAPSACK -->
   <div id="view-knap" class="view">
     <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
     <div class="calc-card">
-      <h2>3. Knapsack 0-1 (esatto)</h2>
+      <h2>4. Knapsack 0-1 (esatto)</h2>
+      <p class="sub">Inserisci le liste separate da virgola (0 se un oggetto non è presente).</p>
       <div class="row" style="flex-direction:column;align-items:flex-start;">
         <label>Profitti (p1,p2,...):</label>
         <input type="text" id="k-p" value="4,1,2,3,5" oninput="calcKnapsack()">
@@ -192,88 +217,73 @@ table.mtx input{width:56px;}
       <div class="row"><label>Capacità B =</label><input type="number" id="k-b" value="8" oninput="calcKnapsack()"></div>
       <div class="result-box" id="res-knap">—</div>
       <hr>
-      <h2>Cover minimali</h2>
-      <button class="action secondary" onclick="calcCovers()">Genera cover minimali</button>
+      <h2>Cover minimali (Σ wi xi &le; B)</h2>
+      <p class="sub">Usa gli stessi pesi e la stessa capacità B inseriti sopra.</p>
       <div class="result-box" id="res-cover">—</div>
+      <hr>
+      <h2>Rapporti profitto/peso</h2>
+      <div class="result-box" id="res-ratio">—</div>
     </div>
   </div>
 
-  <!-- 4. BASI -->
+  <!-- 5. BASI -->
   <div id="view-basi" class="view">
     <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
     <div class="calc-card">
-      <h2>4a. Numero di basi</h2>
-      <div class="row"><label>N =</label><input type="number" id="b-n" value="5" oninput="calcBaseCount()"></div>
-      <div class="row"><label>M =</label><input type="number" id="b-m" value="3" oninput="calcBaseCount()"></div>
+      <h2>5. Numero di basi di un PL</h2>
+      <p class="sub">PL in forma standard con n variabili e m vincoli (equazioni indipendenti).</p>
+      <div class="row"><label>n (variabili) =</label><input type="number" id="b-n" value="5" oninput="calcBaseCount()"></div>
+      <div class="row"><label>m (vincoli) =</label><input type="number" id="b-m" value="3" oninput="calcBaseCount()"></div>
       <div class="result-box" id="res-basecount">—</div>
-    </div>
-    <div class="calc-card" style="margin-top:14px;">
-      <h2>4b. x<sub>B</sub> = B⁻¹b</h2>
-      <div class="row"><label>m =</label><input type="number" id="bg-m" value="2"></div>
-      <div class="row"><label>n =</label><input type="number" id="bg-n" value="4"></div>
-      <button class="action" onclick="generaTabellaBasi()">Genera tabella</button>
-      <div id="bg-table-container"></div>
-      <div class="row" style="margin-top:8px;"><label>Colonne in base:</label></div>
-      <input type="text" id="bg-basis" value="2,3" oninput="calcBasiGenerico()">
-      <div class="result-box" id="res-basigen">Genera la tabella per iniziare.</div>
     </div>
   </div>
 
-  <!-- 5. MULTI-OBIETTIVO EPSILON-VINCOLI -->
+  <!-- 6. PL FORMA STANDARD: SOLUZIONE DI BASE -->
+  <div id="view-standard" class="view">
+    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
+    <div class="calc-card">
+      <h2>6. PL Forma Standard — Soluzione di Base</h2>
+      <p class="sub">Ax = b, min/max cᵀx, x ≥ 0. Genera la tabella, inserisci A, b, c e le colonne in base (indici separati da virgola, es. 2,3). Se conosci le colonne <b>fuori</b> base, spunta la casella corrispondente.</p>
+      <div class="row"><label>m (vincoli) =</label><input type="number" id="st-m" value="2"></div>
+      <div class="row"><label>n (variabili) =</label><input type="number" id="st-n" value="4"></div>
+      <button class="action" onclick="generaTabellaStandard()">Genera tabella</button>
+      <div id="st-table-container"></div>
+      <div class="row" style="margin-top:8px;flex-direction:column;align-items:flex-start;">
+        <label>Colonne indicate (es. 2,3):</label>
+        <input type="text" id="st-basis" value="2,3" oninput="calcStandard()">
+      </div>
+      <div class="row"><label class="chk"><input type="checkbox" id="st-fuori" onchange="calcStandard()"> Le colonne indicate sono <b>fuori</b> base (quindi la base è tutto il resto)</label></div>
+      <div class="result-box" id="res-standard">Genera la tabella per iniziare.</div>
+      <div class="note">FO* = Σ cⱼ·xⱼ (le variabili non in base valgono 0). Se la base è singolare il sistema non ha soluzione unica.</div>
+    </div>
+  </div>
+
+  <!-- 7. PL GRAFICO 2 VARIABILI -->
+  <div id="view-lp2d" class="view">
+    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
+    <div class="calc-card">
+      <h2>7. PL Grafico — 2 Variabili</h2>
+      <p class="sub">Obiettivo: <select id="lp-sense"><option value="min">Min</option><option value="max">Max</option></select> z = [<input type="number" id="lp-c1" value="1" step="any">] x1 + [<input type="number" id="lp-c2" value="1" step="any">] x2</p>
+      <p class="sub">Vincoli (spunta "attivo" per quelli usati; lascia 0 e disattivato quelli non presenti):</p>
+      <div id="lp-constraints"></div>
+      <div class="row"><label class="chk"><input type="checkbox" id="lp-x1nn" checked> x1 ≥ 0</label> <label class="chk"><input type="checkbox" id="lp-x2nn" checked> x2 ≥ 0</label></div>
+      <button class="action" onclick="calcLP2D()">Calcola vertici e ottimo</button>
+      <div class="result-box" id="res-lp2d">—</div>
+    </div>
+  </div>
+
+  <!-- 8. MULTI-OBIETTIVO EPSILON -->
   <div id="view-multiobj" class="view">
     <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
     <div class="calc-card">
-      <h2>5. Multi-obiettivo (&epsilon;-vincoli)</h2>
-      <p class="sub">Min z₁ = c₁₁x₁ + c₁₂x₂ &nbsp;|&nbsp; Max z₂ = c₂₁x₁ + c₂₂x₂ (convertito in z₂ &ge; &epsilon;)</p>
-      <div class="row">z₁: c₁₁=<input type="number" id="mo-c11" value="2" oninput="calcMultiObj()"> c₁₂=<input type="number" id="mo-c12" value="-3" oninput="calcMultiObj()"></div>
-      <div class="row">z₂: c₂₁=<input type="number" id="mo-c21" value="1" oninput="calcMultiObj()"> c₂₂=<input type="number" id="mo-c22" value="0" oninput="calcMultiObj()"> &nbsp; &epsilon;=<input type="number" id="mo-eps" value="0.5" oninput="calcMultiObj()"></div>
-      <hr>
-      <p class="sub">Vincoli (a·x₁ + b·x₂ &le; d):</p>
-      <div class="row">V1: <input type="number" id="mo-v1a" value="1">x₁ + <input type="number" id="mo-v1b" value="1">x₂ &le; <input type="number" id="mo-v1d" value="3"></div>
-      <div class="row">V2: <input type="number" id="mo-v2a" value="1">x₁ + <input type="number" id="mo-v2b" value="-2">x₂ &le; <input type="number" id="mo-v2d" value="2"></div>
-      <div class="row">V3: <input type="number" id="mo-v3a" value="2">x₁ + <input type="number" id="mo-v3b" value="1">x₂ &le; <input type="number" id="mo-v3d" value="4"></div>
+      <h2>8. Multi-obiettivo (&epsilon;-vincoli)</h2>
+      <p class="sub">z1 (obiettivo principale): <select id="mo-sense1"><option value="min">Min</option><option value="max">Max</option></select> z1 = [<input type="number" id="mo-c11" value="2" step="any">] x1 + [<input type="number" id="mo-c12" value="-3" step="any">] x2</p>
+      <p class="sub">z2 (trasformato in vincolo): <select id="mo-sense2"><option value="max">Max</option><option value="min">Min</option></select> z2 = [<input type="number" id="mo-c21" value="1" step="any">] x1 + [<input type="number" id="mo-c22" value="0" step="any">] x2 &nbsp;&nbsp; &epsilon; = [<input type="number" id="mo-eps" value="0.5" step="any">]</p>
+      <p class="sub">Altri vincoli (spunta "attivo"):</p>
+      <div id="mo-constraints"></div>
+      <div class="row"><label class="chk"><input type="checkbox" id="mo-x1nn" checked> x1 ≥ 0</label> <label class="chk"><input type="checkbox" id="mo-x2nn" checked> x2 ≥ 0</label></div>
+      <button class="action" onclick="calcMultiObj()">Calcola Ottimo</button>
       <div class="result-box" id="res-multiobj">—</div>
-    </div>
-  </div>
-
-  <!-- 6. PL MIN X1+X2 -->
-  <div id="view-plmin" class="view">
-    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
-    <div class="calc-card">
-      <h2>6. Analisi PL Min x₁ + x₂</h2>
-      <p class="sub">Problema con vincoli misti e nonnegatività.</p>
-      <div class="row">V1: 3x₁ + x₂ &ge; 2</div>
-      <div class="row">V2: 3x₁ - x₂ &le; 1</div>
-      <div class="row">V3: x₁ + 2x₂ &ge; 1</div>
-      <div class="result-box" id="res-plmin">—</div>
-    </div>
-  </div>
-
-  <!-- 7. KNAPSACK 0-1 (B=8 e Ratios) -->
-  <div id="view-knap8" class="view">
-    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
-    <div class="calc-card">
-      <h2>7. Knapsack 0-1 (B = 8) &amp; Rapporti</h2>
-      <div class="row" style="flex-direction:column;align-items:flex-start;">
-        <label>Profitti p:</label><input type="text" id="k8-p" value="3,4,5,2" oninput="calcKnap8()">
-      </div>
-      <div class="row" style="flex-direction:column;align-items:flex-start;">
-        <label>Pesi w:</label><input type="text" id="k8-w" value="4,2,2,2" oninput="calcKnap8()">
-      </div>
-      <div class="row"><label>Capacità B =</label><input type="number" id="k8-b" value="8" oninput="calcKnap8()"></div>
-      <div class="result-box" id="res-knap8">—</div>
-    </div>
-  </div>
-
-  <!-- 8. VARIABILI FUORI BASE & FO -->
-  <div id="view-fuoribase" class="view">
-    <button class="back-btn" onclick="showView('home-view')">&larr; Indietro</button>
-    <div class="calc-card">
-      <h2>8. PL: Matrice Fuori Base F &amp; FO</h2>
-      <p class="sub">Inserisci i costi ridotti o calcola l'obiettivo ottimo conoscendo F.</p>
-      <div class="row"><label>Variabili fuori base F:</label><input type="text" id="fb-vars" value="A2,A4" oninput="calcFuoriBase()"></div>
-      <div class="row"><label>Valore FO*:</label><input type="number" id="fb-fo" value="-3.5" oninput="calcFuoriBase()"></div>
-      <div class="result-box" id="res-fuoribase">—</div>
     </div>
   </div>
 
@@ -291,18 +301,38 @@ function showView(id){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
+  if(id==='view-cinem') calcCinem();
   if(id==='view-grad') calcGrad();
   if(id==='view-prod') calcProd();
   if(id==='view-knap') calcKnapsack();
   if(id==='view-basi') calcBaseCount();
-  if(id==='view-multiobj') calcMultiObj();
-  if(id==='view-plmin') calcPLMin();
-  if(id==='view-knap8') calcKnap8();
-  if(id==='view-fuoribase') calcFuoriBase();
+  if(id==='view-standard' && !document.getElementById('st-table-container').innerHTML) generaTabellaStandard();
+  if(id==='view-lp2d' && !document.getElementById('lp-constraints').innerHTML) initLPRows('lp-constraints');
+  if(id==='view-multiobj' && !document.getElementById('mo-constraints').innerHTML) initLPRows('mo-constraints');
   if(id==='view-teoria') renderTeoria();
 }
 
-/* ============ MODULO 1: GRADIENTE ============ */
+/* ============ UTIL ============ */
+function val(id){ const el=document.getElementById(id); return el?el.value:'0'; }
+function checked(id){ const el=document.getElementById(id); return el?el.checked:false; }
+function fmt(x){ return !isFinite(x)?'N/D':Math.round(x*10000)/10000; }
+function parseList(id){
+  return val(id).split(',').map(s=>parseFloat(s.trim())).filter(v=>!isNaN(v));
+}
+
+/* ============ MODULO 1: CINEMATICA ============ */
+function calcCinem(){
+  const a=+val('ci-a'), vkmh=+val('ci-v');
+  const v=vkmh/3.6;
+  const s=(v*v)/(2*a);
+  const t=v/a;
+  document.getElementById('res-cinem').innerHTML=
+    `v = ${fmt(vkmh)} km/h = <b>${fmt(v)} m/s</b><br>`+
+    `s = v² / (2a) = ${fmt(v)}² / (2·${fmt(a)}) = <b>${fmt(s)} m</b><br>`+
+    `<span class="small">Tempo per raggiungere v: t = v/a = ${fmt(t)} s</span>`;
+}
+
+/* ============ MODULO 2: GRADIENTE ============ */
 function calcGrad(){
   const A=+val('g-a'),B=+val('g-b'),C=+val('g-c'),D=+val('g-d'),E=+val('g-e');
   const x0=+val('g-x0'),y0=+val('g-y0');
@@ -310,11 +340,11 @@ function calcGrad(){
   const d2=2*B*y0+C*x0+E;
   const mod=Math.sqrt(d1*d1+d2*d2);
   document.getElementById('res-grad').innerHTML=
-    `∇f(x₁⁰,x₂⁰) = [${fmt(d1)}, ${fmt(d2)}]ᵗ<br>`+
-    `||∇f|| = √(${fmt(d1)}² + ${fmt(d2)}²) = <b>${fmt(mod)}</b>`;
+    `&nabla;f(x₁⁰,x₂⁰) = [${fmt(d1)}, ${fmt(d2)}]ᵗ<br>`+
+    `||&nabla;f|| = &radic;(${fmt(d1)}² + ${fmt(d2)}²) = <b>${fmt(mod)}</b>`;
 }
 
-/* ============ MODULO 2: PRODUZIONE & BACKLOG ============ */
+/* ============ MODULO 3: PRODUZIONE & BACKLOG ============ */
 function calcProd(){
   const A1=+val('p-a1'),B1=+val('p-b1'),A2=+val('p-a2'),B2=+val('p-b2');
   const h1=+val('p-h1'),bck1=+val('p-bck1'),D1=+val('p-d1'),D2=+val('p-d2');
@@ -322,19 +352,17 @@ function calcProd(){
   const costEarly = A1 + B1*(D1+D2) + h1*D2;
   const costLate  = A2 + B2*(D1+D2) + bck1*D1;
   const opts=[
-    {label:'Produzione separata',cost:costSplit},
-    {label:'Tutto in periodo 1 + holding',cost:costEarly},
-    {label:'Tutto in periodo 2 + backlog',cost:costLate}
+    {label:'Produzione separata (entrambi i periodi produttivi)',cost:costSplit},
+    {label:'Tutto nel periodo 1 + holding (solo primo produttivo)',cost:costEarly},
+    {label:'Tutto nel periodo 2 + backlog (solo secondo produttivo)',cost:costLate}
   ];
   opts.sort((a,b)=>a.cost-b.cost);
   document.getElementById('res-prod').innerHTML=
-    `Strategia ottima: <b>${opts[0].label}</b><br>FO* = <b>${fmt(opts[0].cost)}</b>`;
+    `Strategia ottima: <b>${opts[0].label}</b><br>FO* = <b>${fmt(opts[0].cost)}</b>`+
+    `<span class="small">Confronto — separata: ${fmt(costSplit)} | holding: ${fmt(costEarly)} | backlog: ${fmt(costLate)}</span>`;
 }
 
-/* ============ MODULO 3: KNAPSACK & COVERS ============ */
-function parseList(id){
-  return val(id).split(',').map(s=>parseFloat(s.trim())).filter(v=>!isNaN(v));
-}
+/* ============ MODULO 4: KNAPSACK & COVERS ============ */
 function calcKnapsack(){
   const p=parseList('k-p'), w=parseList('k-w'), B=+val('k-b');
   const n=Math.min(p.length,w.length);
@@ -348,11 +376,13 @@ function calcKnapsack(){
   const chosen=[];
   for(let i=0;i<n;i++) if(bestSet&(1<<i)) chosen.push(i+1);
   document.getElementById('res-knap').innerHTML=
-    `FO* = <b>${fmt(bestProfit)}</b> | Residua = <b>${fmt(B-bestWeight)}</b><br>`+
-    `<span class="small">Oggetti: {${chosen.join(', ')}}</span>`;
+    `FO* = <b>${fmt(bestProfit)}</b> | Capienza residua = <b>${fmt(B-bestWeight)}</b><br>`+
+    `<span class="small">Oggetti scelti: {${chosen.join(', ')}}</span>`;
+  calcCovers(w,B);
+  const ratios = p.map((pi, i)=> (w[i]?`x${i+1}: ${pi}/${w[i]} = ${fmt(pi/w[i])}`:`x${i+1}: peso 0`)).join('<br>');
+  document.getElementById('res-ratio').innerHTML=`<span class="small">${ratios}</span>`;
 }
-function calcCovers(){
-  const w=parseList('k-w'), B=+val('k-b');
+function calcCovers(w,B){
   const n=w.length;
   if(n===0){ document.getElementById('res-cover').innerHTML='Inserisci i pesi.'; return; }
   const covers=[];
@@ -374,10 +404,10 @@ function calcCovers(){
     const idx=[]; for(let i=0;i<n;i++) if(mask&(1<<i)) idx.push(i+1);
     return `{${idx.join(',')}}`;
   });
-  document.getElementById('res-cover').innerHTML=`Cover minimali:<br><span class="small">${list.join(' &nbsp; ')}</span>`;
+  document.getElementById('res-cover').innerHTML=list.length?`<span class="small">${list.join(' &nbsp; ')}</span>`:'<span class="small">Nessun cover (nessun sottoinsieme eccede B).</span>';
 }
 
-/* ============ MODULO 4: BASI PL ============ */
+/* ============ MODULO 5: BASI PL ============ */
 function combinazioni(n,k){
   if(k<0||k>n) return 0;
   k=Math.min(k,n-k);
@@ -386,83 +416,213 @@ function combinazioni(n,k){
 }
 function calcBaseCount(){
   const N=+val('b-n'), M=+val('b-m');
-  document.getElementById('res-basecount').innerHTML=`C(${N},${M}) = <b>${combinazioni(N,M)}</b>`;
+  document.getElementById('res-basecount').innerHTML=`C(${N},${M}) = <b>${combinazioni(N,M)}</b> possibili basi`;
 }
-function generaTabellaBasi(){
-  const m=+val('bg-m'), n=+val('bg-n');
+
+/* ============ MODULO 6: PL FORMA STANDARD — SOLUZIONE DI BASE ============ */
+function generaTabellaStandard(){
+  const m=+val('st-m'), n=+val('st-n');
   let html='<div class="matrix-table"><table class="mtx"><tr><td></td>';
   for(let j=1;j<=n;j++) html+=`<td style="text-align:center;font-weight:600;">x${j}</td>`;
   html+='<td style="font-weight:600;">= b</td></tr>';
   for(let i=1;i<=m;i++){
     html+=`<tr><td style="font-weight:600;">Vinc.${i}</td>`;
-    for(let j=1;j<=n;j++) html+=`<td><input type="number" id="A_${i}_${j}" value="0"></td>`;
-    html+=`<td><input type="number" id="b_${i}" value="0"></td></tr>`;
+    for(let j=1;j<=n;j++) html+=`<td><input type="number" id="stA_${i}_${j}" value="0" step="any" oninput="calcStandard()"></td>`;
+    html+=`<td><input type="number" id="stb_${i}" value="0" step="any" oninput="calcStandard()"></td></tr>`;
   }
-  html+='</table></div>';
-  document.getElementById('bg-table-container').innerHTML=html;
+  html+=`<tr><td style="font-weight:600;">c (costi)</td>`;
+  for(let j=1;j<=n;j++) html+=`<td><input type="number" id="stc_${j}" value="0" step="any" oninput="calcStandard()"></td>`;
+  html+='<td></td></tr></table></div>';
+  document.getElementById('st-table-container').innerHTML=html;
+  calcStandard();
 }
-function calcBasiGenerico(){
-  document.getElementById('res-basigen').innerHTML='Tabella configurata.';
+function solveLinearSystem(mat, vec){
+  const n=mat.length;
+  let M = mat.map((row,i)=>[...row, vec[i]]);
+  for(let i=0;i<n;i++){
+    let maxRow=i;
+    for(let k=i+1;k<n;k++) if(Math.abs(M[k][i])>Math.abs(M[maxRow][i])) maxRow=k;
+    [M[i],M[maxRow]]=[M[maxRow],M[i]];
+    if(Math.abs(M[i][i])<1e-9) return null;
+    for(let k=i+1;k<n;k++){
+      const f=M[k][i]/M[i][i];
+      for(let j=i;j<=n;j++) M[k][j]-=f*M[i][j];
+    }
+  }
+  const x=new Array(n).fill(0);
+  for(let i=n-1;i>=0;i--){
+    let sum=M[i][n];
+    for(let j=i+1;j<n;j++) sum-=M[i][j]*x[j];
+    x[i]=sum/M[i][i];
+  }
+  return x;
+}
+function calcStandard(){
+  const m=+val('st-m'), n=+val('st-n');
+  const resBox=document.getElementById('res-standard');
+  const A=[]; for(let i=1;i<=m;i++){ const row=[]; for(let j=1;j<=n;j++) row.push(+val(`stA_${i}_${j}`)); A.push(row); }
+  const b=[]; for(let i=1;i<=m;i++) b.push(+val(`stb_${i}`));
+  const c=[]; for(let j=1;j<=n;j++) c.push(+val(`stc_${j}`));
+  if(A.some(row=>row.some(v=>isNaN(v)))){ resBox.innerHTML='Compila la tabella.'; return; }
+  let indicated=val('st-basis').split(',').map(s=>parseInt(s.trim())).filter(v=>!isNaN(v));
+  let basisIdx;
+  if(checked('st-fuori')){
+    const all=[]; for(let j=1;j<=n;j++) all.push(j);
+    basisIdx = all.filter(j=>!indicated.includes(j));
+  } else {
+    basisIdx = indicated;
+  }
+  if(basisIdx.length!==m){ resBox.innerHTML=`<span class="small">Le colonne in base devono essere ${m} (attualmente ${basisIdx.length}).</span>`; return; }
+  const B=[]; for(let i=0;i<m;i++){ const row=[]; for(const j of basisIdx) row.push(A[i][j-1]); B.push(row); }
+  const xB=solveLinearSystem(B,b);
+  if(!xB){ resBox.innerHTML='<span class="small">La matrice di base è singolare: colonne scelte non indipendenti.</span>'; return; }
+  const x=new Array(n).fill(0);
+  basisIdx.forEach((j,idx)=>{ x[j-1]=xB[idx]; });
+  const negativa = xB.some(v=>v< -1e-6);
+  const FO = x.reduce((s,xi,idx)=>s+xi*c[idx],0);
+  let html = `Base = {${basisIdx.map(j=>'A'+j).join(', ')}}<br>`;
+  html += x.map((xi,idx)=>`x${idx+1} = <b>${fmt(xi)}</b>`).join(' &nbsp; ') + '<br>';
+  html += `FO* = &Sigma; cⱼxⱼ = <b>${fmt(FO)}</b>`;
+  if(negativa) html += `<div class="warn-box">Attenzione: alcune variabili di base risultano negative &rarr; soluzione non ammissibile (x deve essere &ge; 0).</div>`;
+  resBox.innerHTML = html;
 }
 
-/* ============ MODULO 5: MULTI-OBIETTIVO EPSILON ============ */
+/* ============ MOTORE COMUNE: PL GRAFICO 2 VARIABILI ============ */
+function initLPRows(containerId){
+  let html='';
+  for(let i=1;i<=5;i++){
+    html+=`<div class="constraint-row">
+      <label class="chk"><input type="checkbox" id="${containerId}-a${i}" ${i<=3?'checked':''}> attivo</label>
+      <input type="number" id="${containerId}-c1-${i}" value="0" step="any">x1 +
+      <input type="number" id="${containerId}-c2-${i}" value="0" step="any">x2
+      <select id="${containerId}-rel-${i}"><option value="<=">&le;</option><option value=">=">&ge;</option><option value="=">=</option></select>
+      <input type="number" id="${containerId}-d-${i}" value="0" step="any">
+    </div>`;
+  }
+  document.getElementById(containerId).innerHTML=html;
+}
+function readLPRows(containerId){
+  const cons=[];
+  for(let i=1;i<=5;i++){
+    if(!checked(`${containerId}-a${i}`)) continue;
+    cons.push({
+      a: +val(`${containerId}-c1-${i}`),
+      b: +val(`${containerId}-c2-${i}`),
+      rel: val(`${containerId}-rel-${i}`),
+      d: +val(`${containerId}-d-${i}`)
+    });
+  }
+  return cons;
+}
+function feasiblePoint(x1,x2,cons,nn1,nn2){
+  const eps=1e-6;
+  for(const c of cons){
+    const v=c.a*x1+c.b*x2;
+    if(c.rel==='<=' && v>c.d+eps) return false;
+    if(c.rel==='>=' && v<c.d-eps) return false;
+    if(c.rel==='=' && Math.abs(v-c.d)>eps) return false;
+  }
+  if(nn1 && x1< -eps) return false;
+  if(nn2 && x2< -eps) return false;
+  return true;
+}
+function solveLP2D(cons, c1, c2, sense, nn1, nn2){
+  const lines=cons.map(c=>({a:c.a,b:c.b,d:c.d}));
+  if(nn1) lines.push({a:1,b:0,d:0});
+  if(nn2) lines.push({a:0,b:1,d:0});
+  const verts=[];
+  for(let i=0;i<lines.length;i++){
+    for(let j=i+1;j<lines.length;j++){
+      const L1=lines[i], L2=lines[j];
+      const det=L1.a*L2.b-L2.a*L1.b;
+      if(Math.abs(det)<1e-9) continue;
+      const x1=(L1.d*L2.b-L2.d*L1.b)/det;
+      const x2=(L1.a*L2.d-L2.a*L1.d)/det;
+      if(feasiblePoint(x1,x2,cons,nn1,nn2)){
+        const dup=verts.some(v=>Math.abs(v.x1-x1)<1e-6 && Math.abs(v.x2-x2)<1e-6);
+        if(!dup) verts.push({x1,x2,z:c1*x1+c2*x2});
+      }
+    }
+  }
+  if(verts.length===0) return {verts:[], best:null};
+  let best=verts[0];
+  for(const v of verts){
+    if(sense==='max' && v.z>best.z) best=v;
+    if(sense==='min' && v.z<best.z) best=v;
+  }
+  return {verts, best};
+}
+function renderLPResult(elId, result, sense){
+  const el=document.getElementById(elId);
+  if(result.verts.length===0){
+    el.innerHTML='<span class="small">Nessun vertice ammissibile trovato: regione vuota, non limitata, o vincoli inseriti non corretti.</span>';
+    return;
+  }
+  const list = result.verts.map(v=>{
+    const isBest = v===result.best;
+    return `${isBest?'<span class="opt">&#9679; ':''}(x1=${fmt(v.x1)}, x2=${fmt(v.x2)}) &rarr; z=${fmt(v.z)}${isBest?'</span>':''}`;
+  }).join('<br>');
+  el.innerHTML =
+    `Ottimo (${sense}): x1=<b>${fmt(result.best.x1)}</b>, x2=<b>${fmt(result.best.x2)}</b> &rarr; z* = <b>${fmt(result.best.z)}</b><br>`+
+    `<div class="vlist">Tutti i vertici ammissibili:<br>${list}</div>`+
+    `<div class="note">Se il valore ottimo cresce senza limite lungo un vertice ai bordi del grafico, verifica se la regione è effettivamente illimitata (il calcolo dei soli vertici non rileva l'illimitatezza).</div>`;
+}
+
+/* ============ MODULO 7: PL GRAFICO 2 VARIABILI (standalone) ============ */
+function calcLP2D(){
+  const c1=+val('lp-c1'), c2=+val('lp-c2'), sense=val('lp-sense');
+  const nn1=checked('lp-x1nn'), nn2=checked('lp-x2nn');
+  const cons=readLPRows('lp-constraints');
+  const result=solveLP2D(cons,c1,c2,sense,nn1,nn2);
+  renderLPResult('res-lp2d', result, sense);
+}
+
+/* ============ MODULO 8: MULTI-OBIETTIVO EPSILON ============ */
 function calcMultiObj(){
-  const eps = +val('mo-eps');
-  const foVal = -6.5; 
-  document.getElementById('res-multiobj').innerHTML =
-    `Funzione obiettivo all'ottimo (per &epsilon; = ${eps}):<br>`+
-    `<b>z₁* = ${fmt(foVal)}</b> (con z₂ &ge; ${eps})`;
-}
-
-/* ============ MODULO 6: PL MIN X1 + X2 ============ */
-function calcPLMin(){
-  document.getElementById('res-plmin').innerHTML =
-    `Analisi del problema:<br>`+
-    `• Regione ammissibile: illimitata superiormente ma delimitata inferiormente.<br>`+
-    `• Valore della funzione obiettivo all'ottimo: <b>1</b>`;
-}
-
-/* ============ MODULO 7: KNAPSACK 0-1 (B=8) & RATIO ============ */
-function calcKnap8(){
-  const p=parseList('k8-p'), w=parseList('k8-w'), B=+val('k8-b');
-  let bestPr=-1;
-  for(let mask=0; mask<(1<<p.length); mask++){
-    let wt=0, pr=0;
-    for(let i=0;i<p.length;i++){ if(mask&(1<<i)){ wt+=w[i]; pr+=p[i]; } }
-    if(wt<=B && pr>bestPr) bestPr=pr;
+  const c1=+val('mo-c11'), c2=+val('mo-c12'), sense1=val('mo-sense1');
+  const d1=+val('mo-c21'), d2=+val('mo-c22'), sense2=val('mo-sense2'), eps=+val('mo-eps');
+  const nn1=checked('mo-x1nn'), nn2=checked('mo-x2nn');
+  const cons=readLPRows('mo-constraints');
+  // z2 diventa vincolo: se z2 era da massimizzare, imponiamo z2 >= eps; se era da minimizzare, z2 <= eps
+  const epsRel = (sense2==='max') ? '>=' : '<=';
+  cons.push({a:d1,b:d2,rel:epsRel,d:eps});
+  const result=solveLP2D(cons,c1,c2,sense1,nn1,nn2);
+  const el=document.getElementById('res-multiobj');
+  if(result.verts.length===0){
+    el.innerHTML='<span class="small">Nessun vertice ammissibile: verifica vincoli e &epsilon;.</span>';
+    return;
   }
-  const ratios = p.map((pi, i)=> `x${i+1}: ${pi}/${w[i]} = ${fmt(pi/w[i])}`).join('<br>');
-  document.getElementById('res-knap8').innerHTML =
-    `FO* (Capacità B=${B}) = <b>${fmt(bestPr)}</b><br><br>`+
-    `<b>Rapporti profitto/peso (p/w):</b><br><span class="small">${ratios}</span>`;
-}
-
-/* ============ MODULO 8: VARIABILI FUORI BASE & FO ============ */
-function calcFuoriBase(){
-  const vars = document.getElementById('fb-vars').value;
-  const fo = +val('fb-fo');
-  document.getElementById('res-fuoribase').innerHTML =
-    `Variabili fuori base: [${vars}]<br>`+
-    `Funzione obiettivo all'ottimo (FO*): <b>${fmt(fo)}</b>`;
+  el.innerHTML =
+    `Vincolo &epsilon; aggiunto: z2 ${epsRel} ${fmt(eps)}<br>`+
+    `Ottimo (${sense1} z1): x1=<b>${fmt(result.best.x1)}</b>, x2=<b>${fmt(result.best.x2)}</b> &rarr; z1* = <b>${fmt(result.best.z)}</b><br>`+
+    `<div class="vlist">Vertici ammissibili:<br>${result.verts.map(v=>`(x1=${fmt(v.x1)}, x2=${fmt(v.x2)}) &rarr; z1=${fmt(v.z)}`).join('<br>')}</div>`;
 }
 
 /* ============ MODULO 9: TEORIA ============ */
 const teoria=[
- {t:'Origini', q:"La Ricerca Operativa è nata?", a:"Nel 1938 in Gran Bretagna per scopi militari."},
- {t:'Modellazione', q:"Formulare un modello significa:", a:"Tradurre problemi reali in relazioni matematiche."},
- {t:'Vertici', q:"Un punto di un poliedro è vertice se:", a:"Non è esprimibile come combinazione convessa stretta di altri punti."}
+ {t:'Nascita della Ricerca Operativa', q:"La Ricerca Operativa è nata?", a:"Durante la Seconda Guerra Mondiale (fine anni '30 - anni '40) in Gran Bretagna, per scopi militari (ottimizzare l'uso di risorse belliche); si è poi estesa alle applicazioni civili/industriali."},
+ {t:'Vincolo attivo', q:"Un vincolo di disuguaglianza g(x) ≥ 0 è attivo nel punto y se:", a:"g(y) = 0, cioè il vincolo è soddisfatto con il segno di uguaglianza (y si trova sulla frontiera dell'insieme ammissibile individuato da quel vincolo)."},
+ {t:'Condizione di riduzione sufficiente', q:"Condizione di sufficiente riduzione impone che:", a:"Ad ogni iterazione di un metodo di discesa, il passo/la direzione scelti producano una riduzione della funzione obiettivo sufficientemente grande (non arbitrariamente piccola), garantendo la convergenza del metodo."},
+ {t:'Vertice di un poliedro', q:"Un punto x di un poliedro è un vertice se e solo se:", a:"x non può essere espresso come combinazione convessa stretta di due (o più) altri punti distinti del poliedro."},
+ {t:'Formulare un modello', q:"Formulare un modello significa:", a:"Tradurre un problema reale in relazioni matematiche (variabili decisionali, funzione obiettivo, vincoli)."},
+ {t:'Costruzione del modello', q:"Il processo di costruzione del modello consiste nel:", a:"Descrivere in termini matematici le caratteristiche principali del problema reale."},
+ {t:'Variabili di slack', q:"Le variabili di slack servono per la conversione di un vincolo da:", a:"Una disuguaglianza (≤ oppure ≥) a un'uguaglianza (=), per portare il problema in forma standard."},
+ {t:'Branch and Bound', q:"Obiettivo principale dell'algoritmo di branch and bound:", a:"Limitare lo spazio di ricerca eliminando (potando) i sottoproblemi non promettenti, garantendo comunque di trovare la soluzione ottima esatta."},
+ {t:'PNL vincolata — definizione', q:"Un problema di programmazione non lineare vincolata è un problema in cui:", a:"La funzione obiettivo e/o i vincoli non sono lineari, e l'insieme ammissibile è determinato da equazioni e disequazioni (non coincide con tutto Rⁿ)."},
+ {t:'PNL vincolata — come risolvere (KKT)', q:"Come si risolvono numericamente gli esercizi di PNL vincolata (moltiplicatori di Lagrange, valore delle variabili all'ottimo)?", a:"Non sono generalizzabili in un unico calcolatore perché ogni esercizio ha funzione obiettivo e vincoli diversi. Procedimento generale: scrivi la Lagrangiana L = f(x) − Σλᵢgᵢ(x); imponi le condizioni KKT (∇L = 0, vincoli attivi soddisfatti con uguaglianza, λᵢ ≥ 0 per vincoli di disuguaglianza, condizioni di complementarità); risolvi il sistema (in genere non lineare) per x e per i moltiplicatori λᵢ indicati come attivi nel testo."}
 ];
 function renderTeoria(){
-  let html='<h2>Formulario Teoria — Cluster A</h2>';
+  let html='<h2>Formulario Teoria</h2>';
   teoria.forEach(i=>{ html+=`<div class="theory-item"><h4>${i.t}</h4><div class="q">${i.q}</div><div class="a">${i.a}</div></div>`; });
   document.getElementById('teoria-container').innerHTML=html;
 }
 
-/* ============ UTIL ============ */
-function val(id){ const el=document.getElementById(id); return el?el.value:'0'; }
-function fmt(x){ return !isFinite(x)?'N/D':Math.round(x*10000)/10000; }
-
+/* ============ INIT ============ */
+calcCinem();
 calcGrad();
+calcProd();
+calcKnapsack();
+calcBaseCount();
 </script>
 </body>
 </html>
