@@ -1,213 +1,181 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>CV - Nadia Provenza</title>
-  <style>
-    @page {
-      size: A4 portrait;
-      margin: 0;
-    }
-    html, body {
-      width: 210mm;
-      height: 297mm;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-    :root {
-      --base-font: 9.5pt;
-      --line-height: 1.35;
-      --section-margin: 10px;
-      --page-padding: 14mm;
-      --primary-color: #1a1a1a;
-      --accent-color: #004578;
-      --text-muted: #555555;
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      font-size: var(--base-font);
-      line-height: var(--line-height);
-      color: var(--primary-color);
-      background-color: #ffffff;
-    }
-    .page-container {
-      width: 210mm;
-      height: 297mm;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: var(--page-padding);
-    }
-    header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      border-bottom: 2px solid var(--accent-color);
-      padding-bottom: 8px;
-      margin-bottom: var(--section-margin);
-    }
-    .header-content h1 {
-      font-size: calc(var(--base-font) * 1.8);
-      margin: 0 0 2px 0;
-      color: var(--accent-color);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .header-content h2 {
-      font-size: calc(var(--base-font) * 1.1);
-      margin: 0 0 6px 0;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-    .contacts {
-      font-size: calc(var(--base-font) * 0.9);
-      color: var(--text-muted);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 0;
-    }
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    section {
-      margin-bottom: var(--section-margin);
-    }
-    h3 {
-      font-size: calc(var(--base-font) * 1.1);
-      color: var(--accent-color);
-      border-bottom: 1px solid #cccccc;
-      padding-bottom: 2px;
-      margin: 0 0 4px 0;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-    }
-    p {
-      margin: 0 0 4px 0;
-    }
-    .job-item {
-      margin-bottom: 6px;
-    }
-    .job-title {
-      font-weight: bold;
-      color: var(--primary-color);
-    }
-    .job-company {
-      font-style: italic;
-      color: var(--text-muted);
-    }
-    ul {
-      margin: 2px 0 4px 16px;
-      padding: 0;
-    }
-    li {
-      margin-bottom: 2px;
-    }
-    .skills-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    footer {
-      border-top: 1px solid #e0e0e0;
-      padding-top: 4px;
-      font-size: calc(var(--base-font) * 0.8);
-      color: var(--text-muted);
-      text-align: center;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>CV - Nadia Provenza</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-family: Arial, sans-serif;
+    color: #333333;
+    --base-font: 9.5pt;
+    --line-height: 1.35;
+    --section-margin: 10px;
+    --page-padding: 14mm;
+  }
+  .page-container {
+    width: 210mm;
+    height: 297mm;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--page-padding);
+    background-color: #ffffff;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #0056b3;
+    padding-bottom: 8px;
+    margin-bottom: var(--section-margin);
+  }
+  .header-content {
+    flex-grow: 1;
+  }
+  h1 {
+    font-size: calc(var(--base-font) * 1.6);
+    color: #003366;
+    margin: 0 0 2px 0;
+  }
+  .subtitle {
+    font-size: calc(var(--base-font) * 1.1);
+    color: #0056b3;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  .contact-info {
+    font-size: calc(var(--base-font) * 0.9);
+    color: #555555;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .photo-placeholder {
+    width: 28mm;
+    height: 28mm;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #0056b3;
+    margin-left: 15px;
+  }
+  main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  section {
+    margin-bottom: var(--section-margin);
+  }
+  h2 {
+    font-size: calc(var(--base-font) * 1.15);
+    color: #003366;
+    border-bottom: 1px solid #0056b3;
+    padding-bottom: 2px;
+    margin: 0 0 4px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  p, li {
+    font-size: var(--base-font);
+    line-height: var(--line-height);
+    margin: 0 0 3px 0;
+  }
+  ul {
+    margin: 0;
+    padding-left: 15px;
+  }
+  .job-title {
+    font-weight: bold;
+    color: #222222;
+  }
+  .job-company {
+    font-style: italic;
+    color: #555555;
+    font-size: calc(var(--base-font) * 0.95);
+  }
+  footer {
+    font-size: calc(var(--base-font) * 0.8);
+    color: #666666;
+    text-align: center;
+    border-top: 1px solid #dddddd;
+    padding-top: 4px;
+  }
+</style>
 </head>
 <body>
-  <div class="page-container">
-    <div>
-      <header>
-        <img class="photo-placeholder" src="foto_cv.png" alt="Foto Profilo" style="width: 26mm; height: 26mm; object-fit: cover; border-radius: 4px;">
-        <div class="header-content">
-          <h1>Nadia Provenza</h1>
-          <h2>Digital Workplace Engineer – Microsoft 365, Power Platform & Automation</h2>
-          <div class="contacts">
-            <span>📍 Torino</span> | 
-            <span>✉️ nadia.provenza@email.com</span> | 
-            <span>📞 +39 000 000 0000</span> | 
-            <span>🔗 linkedin.com/in/nadiaprovenza</span>
-          </div>
-        </div>
-      </header>
-
-      <main>
-        <section>
-          <h3>Profilo Professionale</h3>
-          <p>Operations & Automation Specialist con oltre 5 anni di esperienza nell'analisi dei processi, digital transformation e sviluppo di soluzioni Low-Code. Specializzata nella progettazione di flussi operativi tramite Power Automate e SharePoint, agisce come raccordo strategico tra le esigenze aziendali e la tecnologia per eliminare inefficienze procedurali e abilitare l'adozione digitale.</p>
-        </section>
-
-        <section>
-          <h3>Esperienze Professionali</h3>
-          
-          <div class="job-item">
-            <div class="job-title">Operations & Automation Specialist</div>
-            <div class="job-company">CWS S.R.L. – Torino (Ottobre 2023 – Oggi)</div>
-            <ul>
-              <li><strong>Riprogettazione processi:</strong> Ho analizzato e riprogettato il flusso delle note spese aziendali, riducendo il tempo di gestione da 30 a 6 ore mensili per un gruppo di circa 15 risorse in trasferta.</li>
-              <li><strong>Sviluppo Low-Code & Cloud:</strong> Ho ideato e sviluppato un sistema LMS integrato (Academy CWS) tramite SharePoint e Power Automate con notifiche Adaptive Card su Teams, implementando un'architettura logica per isolare le istanze utente e prevenire la corruzione di stato delle variabili globali.</li>
-              <li><strong>User Enablement:</strong> Ho condotto attività di discovery e stesura di guide operative, affiancando direttamente i colleghi per facilitare la transizione e l'adozione delle nuove piattaforme digitali.</li>
-            </ul>
-          </div>
-
-          <div class="job-item">
-            <div class="job-title">Referente Team Innovazione & Consulente R&S</div>
-            <div class="job-company">Giotto S.R.L. – Torino (Aprile 2022 – Settembre 2023)</div>
-            <ul>
-              <li><strong>Analisi e Consulenza:</strong> Ho gestito l'interfaccia diretta con i clienti per mappare la struttura logica di progetti di ricerca e sviluppo tecnologico.</li>
-              <li><strong>Automazione dei flussi:</strong> Ho sviluppato script in Google AppScript per automatizzare lo scambio di dati interfunzionale e i flussi di lavoro interni.</li>
-            </ul>
-          </div>
-
-          <div class="job-item">
-            <div class="job-title">Consulente Junior R&S (Apprendistato di Ricerca)</div>
-            <div class="job-company">T4B - Technology For Business S.R.L. – Torino (Marzo 2021 – Marzo 2022)</div>
-            <ul>
-              <li><strong>Prototipazione IoT:</strong> Ho eseguito prototipazione e test su microcontrollori Arduino per l'acquisizione di dati industriali tramite protocolli wireless LoRa/LoRaWAN.</li>
-              <li><strong>Rendicontazione:</strong> Ho redatto la documentazione e la reportistica di progetto a supporto della rendicontazione tecnica finale.</li>
-            </ul>
-          </div>
-
-          <div class="job-item">
-            <div class="job-title">Customer Care & Digital Support Specialist</div>
-            <div class="job-company">Sin Tesi Forma S.R.L. – Torino (Gennaio 2020 – Marzo 2022)</div>
-            <ul>
-              <li><strong>Gestione Piattaforme:</strong> Ho gestito il supporto backend di piattaforme e-learning (LMS) e siti WordPress, curando l'erogazione dei contenuti e l'assistenza agli utenti.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section>
-          <h3>Competenze Chiave</h3>
-          <div class="skills-grid">
-            <div><strong>Hard Skills:</strong> Process Automation & Low-Code (Power Automate, SharePoint Online, Google AppScript, Macro VBA) | AI & Development Support (Prompt engineering con LLM, HTML/CSS per generazione documentale) | Digital Support (Gestione backend LMS e WordPress)</div>
-            <div><strong>Soft Skills:</strong> Capacità di fare da ponte (bridge) tra esigenze di business e soluzioni tecnologiche | Gestione del cambiamento e stesura di guide operative 1-a-1 | Risoluzione sistematica dei problemi procedurali e superamento di blocchi operativi rigidi</div>
-          </div>
-        </section>
-
-        <section>
-          <h3>Formazione e Certificazioni</h3>
-          <ul>
-            <li><strong>Formazione in Ingegneria:</strong> Studi in Ingegneria Fisica (Politecnico di Torino) e percorso in Ingegneria Gestionale (Università Mercatorum).</li>
-            <li><strong>Certificazioni e Corsi:</strong> Corso di Formazione in Python (80 ore), Certificazione di lingua inglese B2 First.</li>
-          </ul>
-        </section>
-      </main>
+<div class="page-container">
+  <header>
+    <div class="header-content">
+      <h1>Nadia Provenza</h1>
+      <div class="subtitle">Digital Workplace Engineer – Microsoft 365, Power Platform & Automation</div>
+      <div class="contact-info">
+        <span>📍 Torino</span>
+        <span>✉️ nadia.provenza@email.com</span>
+        <span>📞 +39 000 0000000</span>
+        <span>🔗 LinkedIn / Portfolio</span>
+      </div>
     </div>
+    <img class="photo-placeholder" src="foto_cv.png" alt="Foto Profilo">
+  </header>
+  
+  <main>
+    <section>
+      <h2>Profilo Professionale</h2>
+      <p>Operations & Automation Specialist con oltre 5 anni di esperienza nell'analisi dei processi, digital transformation e sviluppo di soluzioni Low-Code. Specializzata nella progettazione di flussi operativi tramite Power Automate e SharePoint, agisce come raccordo strategico tra le esigenze aziendali e la tecnologia per eliminare inefficienze procedurali e abilitare l'adozione digitale.</p>
+    </section>
 
-    <footer>
-      Autorizzo il trattamento dei dati personali contenuti nel presente curriculum vitae ai sensi del D.Lgs. 196/2003 e del GDPR (Regolamento UE 2016/679).
-    </footer>
-  </div>
+    <section>
+      <h2>Esperienze Professionali</h2>
+      <p><span class="job-title">Operations & Automation Specialist</span><br><span class="job-company">CWS S.R.L. – Torino (Ottobre 2023 – Oggi)</span></p>
+      <ul>
+        <li>Riprogettazione processi: Ho analizzato e riprogettato il flusso delle note spese aziendali, riducendo il tempo di gestione da 30 a 6 ore mensili per un gruppo di circa 15 risorse in trasferta.</li>
+        <li>Sviluppo Low-Code & Cloud: Ho ideato e sviluppato un sistema LMS integrato (Academy CWS) tramite SharePoint e Power Automate con notifiche Adaptive Card su Teams, implementando un'architettura logica per isolare le istanze utente e prevenire la corruzione di stato delle variabili globali.</li>
+        <li>User Enablement: Ho condotto attività di discovery e stesura di guide operative, affiancando direttamente i colleghi per facilitare la transizione e l'adozione delle nuove piattaforme digitali.</li>
+      </ul>
+      <p style="margin-top: 4px;"><span class="job-title">Referente Team Innovazione & Consulente R&S</span><br><span class="job-company">Giotto S.R.L. – Torino (Aprile 2022 – Settembre 2023)</span></p>
+      <ul>
+        <li>Analisi e Consulenza: Ho gestito l'interfaccia diretta con i clienti per mappare la struttura logica di progetti di ricerca e sviluppo tecnologico.</li>
+        <li>Automazione dei flussi: Ho sviluppato script in Google AppScript per automatizzare lo scambio di dati interfunzionale e i flussi di lavoro interni.</li>
+      </ul>
+      <p style="margin-top: 4px;"><span class="job-title">Consulente Junior R&S (Apprendistato di Ricerca)</span><br><span class="job-company">T4B - Technology For Business S.R.L. – Torino (Marzo 2021 – Marzo 2022)</span></p>
+      <ul>
+        <li>Prototipazione IoT: Ho eseguito prototipazione e test su microcontrollori Arduino per l'acquisizione di dati industriali tramite protocolli wireless LoRa/LoRaWAN.</li>
+        <li>Rendicontazione: Ho redatto la documentazione e la reportistica di progetto a supporto della rendicontazione tecnica finale.</li>
+      </ul>
+      <p style="margin-top: 4px;"><span class="job-title">Customer Care & Digital Support Specialist</span><br><span class="job-company">Sin Tesi Forma S.R.L. – Torino (Gennaio 2020 – Marzo 2022)</span></p>
+      <ul>
+        <li>Gestione Piattaforme: Ho gestito il supporto backend di piattaforme e-learning (LMS) e siti WordPress, curando l'erogazione dei contenuti e l'assistenza agli utenti.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Competenze Chiave</h2>
+      <p><strong>Hard Skills:</strong> Process Automation & Low-Code (Power Automate, SharePoint Online, Google AppScript, Macro VBA) | AI & Development Support (Prompt engineering con LLM, HTML/CSS per generazione documentale) | Digital Support (Gestione backend LMS e WordPress)</p>
+      <p><strong>Soft Skills:</strong> Capacità di fare da ponte (bridge) tra esigenze di business e soluzioni tecnologiche | Gestione del cambiamento e stesura di guide operative 1-a-1 | Risoluzione sistematica dei problemi procedurali e superamento di blocchi operativi rigidi</p>
+    </section>
+
+    <section>
+      <h2>Formazione e Certificazioni</h2>
+      <p><strong>Formazione in Ingegneria:</strong> Studi in Ingegneria Fisica (Politecnico di Torino) e percorso in Ingegneria Gestionale (Università Mercatorum).</p>
+      <p><strong>Certificazioni e Corsi:</strong> Corso di Formazione in Python (80 ore), Certificazione di lingua inglese B2 First.</p>
+    </section>
+  </main>
+
+  <footer>
+    Autorizzo il trattamento dei dati personali contenuti nel presente curriculum vitae ai sensi del D.Lgs. 196/2003 e del GDPR (Regolamento UE 2016/679).
+  </footer>
+</div>
 </body>
 </html>
